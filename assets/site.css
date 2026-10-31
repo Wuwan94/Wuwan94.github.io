@@ -235,3 +235,5 @@
 #deck .slide{background:#000!important}
 #deck .slide:before{background-size:contain!important;background-position:center center!important}
 .theme-toggle{display:none!important}
+
+.shop-card{margin-top:12px}
