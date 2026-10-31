@@ -260,9 +260,12 @@
   #deck .slide:before{background-size:contain!important;background-position:center center!important}
 }
 
-/* 2026-10-31 owner originals: fill screen (cover), no blur, crisp text */
+/* 2026-10-31 owner originals: fill screen (cover), no blur, crisp text; lazy via .bg-ready */
+#deck .slide::before{
+  background-image:linear-gradient(90deg,color-mix(in srgb,var(--bg) 93%,transparent) 0%,color-mix(in srgb,var(--bg) 84%,transparent) 54%,color-mix(in srgb,var(--bg) 76%,transparent) 100%),var(--slide-bg-img,none)!important;
+}
 #deck .slide::after{
-  background-image:linear-gradient(180deg,rgba(5,5,10,.50),rgba(5,5,10,.28) 48%,rgba(5,5,10,.55)),var(--slide-bg)!important;
+  background-image:linear-gradient(180deg,rgba(5,5,10,.50),rgba(5,5,10,.28) 48%,rgba(5,5,10,.55)),var(--slide-bg-img,none)!important;
   background-size:cover,cover!important;
   background-position:center,var(--slide-bg-position,center)!important;
   background-repeat:no-repeat!important;
@@ -272,4 +275,8 @@
 .slide-projects{--slide-bg-position:70% 50%}
 .slide-contact{--slide-bg-position:62% 50%}
 .slide-websites{--slide-bg-position:60% 50%}
+.slide-about.bg-ready{--slide-bg-img:url('bg-about.jpg')}
+.slide-projects.bg-ready{--slide-bg-img:url('bg-projects.jpg')}
+.slide-contact.bg-ready{--slide-bg-img:url('bg-contact.jpg')}
+.slide-websites.bg-ready{--slide-bg-img:url('bg-websites.jpg')}
 #deck .slide-inner{text-shadow:0 1px 10px rgba(0,0,0,.35)}

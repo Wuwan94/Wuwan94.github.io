@@ -20,6 +20,11 @@
   }));
 
   const activeIndex = () => Math.max(0, Math.min(slides.length - 1, Math.round(deck.scrollLeft / Math.max(1, deck.clientWidth))));
+  const ensureBg = () => {
+    const inDeck = body.classList.contains('in-deck');
+    const i = activeIndex();
+    slides.forEach((s, j) => s.classList.toggle('bg-ready', inDeck ? Math.abs(j - i) <= 1 : slides[j].id === location.hash.slice(1)));
+  };
   const syncStatus = () => {
     const index = activeIndex();
     if (currentLabel) currentLabel.textContent = String(index + 1).padStart(2, '0');
@@ -30,6 +35,7 @@
       else link.removeAttribute('aria-current');
     });
     dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
+    ensureBg();
   };
   const goTo = (index, updateHash = true, smooth = true) => {
     const target = Math.max(0, Math.min(slides.length - 1, index));
@@ -165,7 +171,7 @@
     });
   }
 
-  // Preserve the original China-only rule, fallback and six-second fail-open timeout.
+  // Preserve the original China-only rule, fallback and 2.5-second fail-open timeout.
   const gate = document.getElementById('geoGate');
   if (!gate) return;
   const allow = () => { gate.style.display = 'none'; };
@@ -186,8 +192,8 @@
     if (!/^[A-Z]{2}$/.test(country)) throw new Error('bad country');
     return country;
   });
-  fromTrace().catch(fromIpapi).then((country) => country === 'CN' ? allow() : block()).catch(allow);
+  Promise.any([fromTrace(), fromIpapi()]).then((country) => country === 'CN' ? allow() : block()).catch(allow);
   window.setTimeout(() => {
     if (gate.style.display !== 'none' && gate.querySelector('h2')?.textContent.startsWith('正在确认')) allow();
-  }, 6000);
+  }, 2500);
 })();
