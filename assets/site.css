@@ -251,3 +251,11 @@
 #deck .slide h2,#deck .slide h2 *{text-shadow:-2px -2px 0 #000,2px -2px 0 #000,-2px 2px 0 #000,2px 2px 0 #000,0 -2px 0 #000,0 2px 0 #000,-2px 0 0 #000,2px 0 0 #000,0 4px 12px rgba(0,0,0,.8)!important}
 #deck .slide .gradient-text{color:#f0e6ff!important;-webkit-text-fill-color:#f0e6ff!important}
 :root[data-theme="light"] #deck .slide,:root[data-theme="light"] #deck .slide h2,:root[data-theme="light"] #deck .slide h3,:root[data-theme="light"] #deck .slide p,:root[data-theme="light"] #deck .slide b,:root[data-theme="light"] #deck .slide small,:root[data-theme="light"] #deck .slide span,:root[data-theme="light"] #deck .slide a{color:#fff!important;-webkit-text-fill-color:#fff!important}
+
+/* v3：顶部导航透明；手机端显示完整原图(contain)，电脑端铺满(cover) */
+.topbar,.in-deck .topbar,body .topbar,:root[data-theme="light"] .topbar{background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-bottom-color:transparent!important;box-shadow:none!important}
+.topbar .brand,.topbar .brand span,.topbar .slide-nav a{color:#fff!important;text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000,0 2px 6px rgba(0,0,0,.9)!important}
+@media(max-width:900px){
+  #deck .slide{background:#000!important}
+  #deck .slide:before{background-size:contain!important;background-position:center center!important}
+}
