@@ -19,6 +19,8 @@
   body{font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.75}
   a{color:var(--accent);text-decoration:none}
   a:hover{text-decoration:underline}
+  body::before{content:"";position:fixed;inset:0;z-index:-2;background:url("bg.jpg") center 18%/cover no-repeat}
+  body::after{content:"";position:fixed;inset:0;z-index:-1;background:var(--bg);opacity:.85}
   .wrap{max-width:880px;margin:0 auto;padding:0 20px}
 
   nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
