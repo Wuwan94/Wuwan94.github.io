@@ -98,3 +98,39 @@
 :root[data-theme="light"] .website-card-copy small,:root[data-theme="light"] .tile-main p,:root[data-theme="light"] .tile-secondary,:root[data-theme="light"] .website-index,:root[data-theme="light"] .tile-top,:root[data-theme="light"] .contact-visual-copy small,:root[data-theme="light"] .contact-visual-copy>span,:root[data-theme="light"] .contact-visual-tag{color:var(--muted)!important}
 :root[data-theme="light"] .website-arrow,:root[data-theme="light"] .tile-symbol,:root[data-theme="light"] .contact-star{color:var(--accent)!important}
 :root[data-theme="light"] .tile-link{color:var(--accent)!important}
+
+/* Layout adjustments after removing duplicate personal-site entry cards. */
+.website-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(min-width:981px){.project-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:680px){.website-grid{grid-template-columns:1fr;grid-template-rows:repeat(2,minmax(0,1fr))}.project-grid>.project-tile:last-child{grid-column:1/-1}}
+
+/* Compact transparent cards for every public GitHub development project. */
+.about-skills .skills-heading{margin-bottom:8px}
+.interest-repo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.interest-repo{min-width:0;min-height:38px;display:flex;align-items:center;justify-content:space-between;gap:6px;padding:5px 8px;border:1px solid rgba(230,226,255,.30);border-radius:7px;background:transparent;color:var(--text);transition:border-color .2s,transform .2s}
+.interest-repo:hover{border-color:var(--accent);transform:translateY(-1px)}
+.interest-repo-info{display:flex;flex-direction:column;min-width:0;line-height:1.22}
+.interest-repo-info b{font-size:8px;font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+.interest-repo-info small{font-size:6px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.interest-repo-arrow{font-size:11px;color:var(--accent);flex:0 0 auto}
+:root[data-theme="light"] .interest-repo{border-color:rgba(23,22,34,.24)}
+@media(max-width:680px){
+  .about-skills .skills-heading{margin-bottom:6px}
+  .interest-repo-grid{gap:5px}
+  .interest-repo{min-height:34px;padding:4px 6px;border-radius:5px}
+  .interest-repo-info b{font-size:7px}
+  .interest-repo-info small{font-size:5.5px}
+  .interest-repo-arrow{font-size:9px}
+}
+
+/* Increase project-label readability while keeping the cards fully transparent. */
+.interest-repo{min-height:44px;padding:6px 9px}
+.interest-repo-info b{font-size:10px}
+.interest-repo-info small{font-size:8px;color:var(--text);opacity:.82}
+.interest-repo-arrow{font-size:12px}
+@media(max-width:680px){
+  .interest-repo{min-height:40px;padding:5px 7px}
+  .interest-repo-info b{font-size:8.5px}
+  .interest-repo-info small{font-size:6.8px}
+  .interest-repo-arrow{font-size:10px}
+}
