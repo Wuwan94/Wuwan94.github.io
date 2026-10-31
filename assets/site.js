@@ -11,7 +11,7 @@
 
   let savedTheme = null;
   try { savedTheme = localStorage.getItem('wuwan-theme'); } catch (_) {}
-  if (savedTheme === 'light') root.dataset.theme = 'light';
+  delete root.dataset.theme; try { localStorage.removeItem('wuwan-theme'); } catch (_) {}
   themeButtons.forEach((button) => button.addEventListener('click', () => {
     const next = root.dataset.theme === 'light' ? 'dark' : 'light';
     if (next === 'light') root.dataset.theme = 'light';
@@ -37,34 +37,9 @@
     if (updateHash) history.replaceState(null, '', `#${slides[target].id}`);
     syncStatus();
   };
-  // @author 雾晚: 背景按需加载——未进入时一张背景都不请求，
-  // 进入后先给当前页与相邻页，其余靠滚动接近再拉。
-  const bgArmed = new WeakSet();
-  let bgObserver = null;
-  const armSlide = (el) => {
-    if (!el || bgArmed.has(el)) return;
-    bgArmed.add(el);
-    el.classList.add('has-bg');
-  };
-  const startBackgrounds = () => {
-    if (bgObserver) return;
-    const index = activeIndex();
-    armSlide(slides[index]);
-    armSlide(slides[index + 1]);
-    if (typeof IntersectionObserver !== 'function') {
-      slides.forEach(armSlide);
-      return;
-    }
-    bgObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => { if (entry.isIntersecting) armSlide(entry.target); });
-    }, {root: deck, rootMargin: '100% 0%'});
-    slides.forEach((slide) => bgObserver.observe(slide));
-  };
-
   const enterDeck = (targetId, setHistory = true) => {
     const index = Math.max(0, slides.findIndex((slide) => slide.id === targetId));
     body.classList.add('in-deck');
-    startBackgrounds();
     deck.scrollLeft = index * deck.clientWidth;
     if (setHistory) history.replaceState(null, '', `#${slides[index].id}`);
     syncStatus();

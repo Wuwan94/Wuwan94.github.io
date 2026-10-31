@@ -232,3 +232,6 @@
 }
 #deck .slide:before{will-change:transform;transform:translateZ(0);backface-visibility:hidden}
 #deck .slide{contain:paint}
+#deck .slide{background:#000!important}
+#deck .slide:before{background-size:contain!important;background-position:center center!important}
+.theme-toggle{display:none!important}
