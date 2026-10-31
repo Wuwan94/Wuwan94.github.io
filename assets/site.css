@@ -196,3 +196,21 @@
 @media(max-width:680px){
   #deck .slide:after{background-image:linear-gradient(180deg,color-mix(in srgb,var(--bg) 25%,transparent) 0%,color-mix(in srgb,var(--bg) 18%,transparent) 48%,color-mix(in srgb,var(--bg) 24%,transparent) 100%),var(--slide-bg);background-size:100% 100%,contain;background-position:center,var(--slide-mobile-position,center);filter:blur(.55px);opacity:1}
 }
+
+/* User preference: one complete original image per content page, directly visible. */
+#deck .slide{background-color:var(--bg)}
+#deck .slide:before{display:none!important;background:none!important;filter:none!important;transform:none!important;opacity:0!important}
+#deck .slide:after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:var(--slide-bg)!important;background-size:contain!important;background-position:center!important;background-repeat:no-repeat!important;filter:none!important;opacity:1!important}
+#deck .about-skills,#deck .website-card,#deck .project-tile,#deck .contact-card,#deck .contact-visual{background:transparent!important;background-color:transparent!important;background-image:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:none!important}
+#deck .website-live,#deck .website-source,#deck .website-all,#deck .tile-app,#deck .tile-web,#deck .tile-notes,#deck .tile-lab{background:transparent!important;background-color:transparent!important;background-image:none!important}
+#deck .about-skills,#deck .website-card,#deck .project-tile,#deck .contact-card,#deck .contact-visual{border-color:rgba(255,255,255,.58)!important}
+:root[data-theme="light"] #deck .about-skills,:root[data-theme="light"] #deck .website-card,:root[data-theme="light"] #deck .project-tile,:root[data-theme="light"] #deck .contact-card,:root[data-theme="light"] #deck .contact-visual{border-color:rgba(26,24,45,.48)!important}
+.topbar{background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+#deck .slide .about-copy>p:not(.eyebrow),#deck .slide .section-intro,#deck .slide .website-card-copy small,#deck .slide .tile-main p,#deck .slide .contact-lede,#deck .slide .contact-footnote,#deck .slide .contact-card-copy span,#deck .slide .interest-repo-info small{color:var(--text)!important;font-weight:500}
+#deck .slide h2,#deck .slide h3,#deck .slide p,#deck .slide a,#deck .slide .tiny-label,#deck .slide .website-index,#deck .slide .tile-top{font-weight:600}
+:root:not([data-theme="light"]) #deck .slide h2,:root:not([data-theme="light"]) #deck .slide h3,:root:not([data-theme="light"]) #deck .slide p,:root:not([data-theme="light"]) #deck .slide a{text-shadow:0 1px 2px rgba(0,0,0,.98),0 0 9px rgba(0,0,0,.72)!important}
+:root[data-theme="light"] #deck .slide h2,:root[data-theme="light"] #deck .slide h3,:root[data-theme="light"] #deck .slide p,:root[data-theme="light"] #deck .slide a{text-shadow:0 1px 2px rgba(255,255,255,1),0 0 9px rgba(255,255,255,.92)!important}
+
+/* Keep headings bright against a direct, unmodified photo without adding a backing layer. */
+:root:not([data-theme="light"]) #deck .slide .gradient-text{background-image:linear-gradient(100deg,#eadfff 0%,#b8ceff 52%,#a5f0df 100%)!important;color:transparent!important;-webkit-background-clip:text!important;background-clip:text!important;text-shadow:0 1px 2px rgba(0,0,0,.95),0 0 5px rgba(0,0,0,.78)!important}
+#deck .slide h2,#deck .slide h3{font-weight:760}
