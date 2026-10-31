@@ -135,18 +135,14 @@
   if (slides.some((slide) => slide.id === initial)) enterDeck(initial, false);
   else syncStatus();
 
-  const downloadLinks = [...document.querySelectorAll('[data-latest-download]')];
-  if (downloadLinks.length) {
-    const releasesPage = 'https://github.com/Wuwan94/wanBoxForAndroid/releases';
-    const applyRelease = (url, tag) => downloadLinks.forEach((link) => {
+  const bundleLinks = [...document.querySelectorAll('[data-latest-bundle]')];
+  if (bundleLinks.length) {
+    const applyBundle = (url, tag) => bundleLinks.forEach((link) => {
       link.href = url;
       if (tag) {
-        link.title = `自动指向仓库最新发布：${tag}`;
-        link.setAttribute('aria-label', `下载 wanBox 最新客户端（${tag}）`);
+        link.title = `自动指向最新合并包：${tag}`;
+        link.setAttribute('aria-label', `下载 wanBox 最新合并包（${tag}）`);
         link.dataset.releaseTag = tag;
-      } else {
-        link.title = '打开 GitHub Releases 查看最新客户端';
-        delete link.dataset.releaseTag;
       }
     });
     fetch('https://api.github.com/repos/Wuwan94/wanBoxForAndroid/releases?per_page=10', {
@@ -156,16 +152,16 @@
       if (!response.ok) throw new Error('release lookup unavailable');
       return response.json();
     }).then((releases) => {
-      const apk = releases
+      const bundle = releases
         .filter((release) => !release.draft && Array.isArray(release.assets))
         .flatMap((release) => release.assets
-          .filter((asset) => asset.name.toLowerCase().endsWith('.apk') && asset.name.toLowerCase().includes('arm64-v8a'))
+          .filter((asset) => asset.name.toLowerCase().includes('with-manager') && asset.name.toLowerCase().endsWith('.zip'))
           .map((asset) => ({ asset, release })))
         .sort((a, b) => new Date(b.release.published_at || b.release.created_at) - new Date(a.release.published_at || a.release.created_at))[0];
-      if (!apk?.asset?.browser_download_url) throw new Error('no matching APK asset');
-      applyRelease(apk.asset.browser_download_url, apk.release.tag_name);
+      if (!bundle?.asset?.browser_download_url) throw new Error('no matching bundle asset');
+      applyBundle(bundle.asset.browser_download_url, bundle.release.tag_name);
     }).catch(() => {
-      applyRelease(releasesPage, '');
+      // Keep the static bundle link already in the page.
     });
   }
 
