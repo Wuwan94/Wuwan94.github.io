@@ -49,3 +49,14 @@
   .slide{padding-top:68px;padding-bottom:34px}
   .contact-visual{height:clamp(135px,22vh,170px);min-height:135px}
 }
+
+/* Full-screen editorial backgrounds: About → open sky, Web → rooftop motion, Projects → Halloween, Contact → cozy interior. */
+.slide{isolation:isolate}
+.slide:before{z-index:0;background-image:linear-gradient(90deg,color-mix(in srgb,var(--bg) 93%,transparent) 0%,color-mix(in srgb,var(--bg) 84%,transparent) 54%,color-mix(in srgb,var(--bg) 76%,transparent) 100%),var(--slide-bg);background-size:cover,cover;background-position:center,var(--slide-bg-position,center);background-repeat:no-repeat}
+.slide-about{--slide-bg:url('bg-about.jpg');--slide-bg-position:73% 50%;--slide-mobile-position:75% 50%}
+.slide-websites{--slide-bg:url('bg-websites.jpg');--slide-bg-position:67% 50%;--slide-mobile-position:66% 50%}
+.slide-projects{--slide-bg:url('bg-projects.jpg');--slide-bg-position:52% 50%;--slide-mobile-position:52% 50%}
+.slide-contact{--slide-bg:url('bg-contact.jpg');--slide-bg-position:26% 50%;--slide-mobile-position:28% 50%}
+@media(max-width:680px){
+  .slide:before{background-image:linear-gradient(180deg,color-mix(in srgb,var(--bg) 88%,transparent) 0%,color-mix(in srgb,var(--bg) 78%,transparent) 48%,color-mix(in srgb,var(--bg) 85%,transparent) 100%),var(--slide-bg);background-position:center,var(--slide-mobile-position,center)}
+}
