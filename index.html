@@ -187,13 +187,17 @@
 (function(){
   var gate = document.getElementById('geoGate');
   function allow(){ if(gate) gate.style.display = 'none'; }
+  var visitorIp = '';
   function block(){
     if(!gate) return;
-    gate.innerHTML = '<div class="box"><h2>访问受限</h2><p>本站仅向中国大陆地区 IP 开放，感谢理解。</p></div>';
+    var detail = visitorIp ? ('<p>' + visitorIp + '</p>') : '';
+    gate.innerHTML = '<div class="box"><h2>此 IP 已被拉黑</h2>' + detail + '<p>本站仅向中国地区 IP 开放。</p></div>';
   }
   function fromTrace(){
     return fetch('https://www.cloudflare.com/cdn-cgi/trace').then(function(r){return r.text();}).then(function(t){
-      var m = t.match(/loc=([A-Z]{2})/); if(!m) throw new Error('no loc'); return m[1];
+      var m = t.match(/loc=([A-Z]{2})/); if(!m) throw new Error('no loc');
+      var im = t.match(/ip=([^\n]+)/); if(im) visitorIp = im[1].trim();
+      return m[1];
     });
   }
   function fromIpapi(){
