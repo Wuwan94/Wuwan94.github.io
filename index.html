@@ -40,8 +40,9 @@
   .cta{margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
   .btn{display:inline-block;padding:10px 22px;border-radius:999px;font-size:14px;border:1px solid var(--border);color:var(--text);background:var(--card)}
   .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
-  .hero-download{display:inline-block;padding:13px 38px;font-size:16px;font-weight:600;border-radius:999px;background:var(--accent);color:#fff;border:1px solid var(--accent);box-shadow:0 8px 24px rgba(0,0,0,.30)}
-  .hero-download:hover{text-decoration:none;opacity:.92}
+  .hero{position:relative}
+  .dl-corner{position:absolute;top:14px;right:16px;z-index:30;padding:7px 14px;font-size:12.5px;font-weight:600;border-radius:999px;background:var(--accent);color:#fff;border:1px solid var(--accent);box-shadow:0 6px 18px rgba(0,0,0,.35)}
+  .dl-corner:hover{text-decoration:none;opacity:.92}
   .btn:hover{text-decoration:none;opacity:.9}
 
   section{padding:42px 0 6px}
@@ -93,9 +94,9 @@
 </nav>
 
 <header class="hero">
+  <a class="dl-corner" href="https://github.com/Wuwan94/wanBoxForAndroid/releases/download/v3.0.10-preview.26-thin/wanBoxForAndroid-3.0.10-preview.26-arm64-v8a-release.apk">下载客户端</a>
   <div class="wrap">
     <img class="avatar" src="avatar.jpg" alt="雾晚">
-    <div><a class="hero-download" href="https://github.com/Wuwan94/wanBoxForAndroid/releases/download/v3.0.10-preview.26-thin/wanBoxForAndroid-3.0.10-preview.26-arm64-v8a-release.apk">下载客户端</a></div>
     <h1>你好，我是 雾晚</h1>
     <div class="role">开发者 · 终身学习者</div>
     <p class="intro">欢迎来到我的个人主页。我喜欢动手做东西、学新技术，并把学到的东西变成真正能用的产品。这里是我的在线名片，也是我记录成长的地方。</p>
