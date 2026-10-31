@@ -134,3 +134,59 @@
   .interest-repo-info small{font-size:6.8px}
   .interest-repo-arrow{font-size:10px}
 }
+
+/* Frosted-background readability and full-image fit for slides 2 and 4. */
+.slide{isolation:isolate}
+.slide:before{inset:-20px;filter:blur(6px) saturate(1.08);transform:scale(1.025)}
+.slide-projects:after,.slide-websites:after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(90deg,color-mix(in srgb,var(--bg) 44%,transparent) 0%,color-mix(in srgb,var(--bg) 36%,transparent) 52%,color-mix(in srgb,var(--bg) 42%,transparent) 100%),var(--slide-bg);background-size:100% 100%,contain;background-position:center,var(--slide-bg-position,center);background-repeat:no-repeat;filter:blur(1px);opacity:.96}
+.about-skills,.website-card,.project-tile,.contact-card,.contact-visual{background:color-mix(in srgb,var(--bg) 29%,transparent)!important;background-image:none!important;backdrop-filter:blur(16px) saturate(145%)!important;-webkit-backdrop-filter:blur(16px) saturate(145%)!important;box-shadow:0 12px 34px rgba(0,0,0,.19)!important;border-color:rgba(239,234,255,.48)!important}
+:root[data-theme="light"] .about-skills,:root[data-theme="light"] .website-card,:root[data-theme="light"] .project-tile,:root[data-theme="light"] .contact-card,:root[data-theme="light"] .contact-visual{box-shadow:0 12px 34px rgba(38,32,70,.13)!important;border-color:rgba(40,34,70,.28)!important}
+.slide .about-copy>p:not(.eyebrow),.slide .section-intro,.slide .website-card-copy small,.slide .tile-main p,.slide .contact-lede,.slide .contact-footnote,.slide .contact-card-copy span{color:color-mix(in srgb,var(--text) 88%,transparent)!important}
+.slide .about-copy>p:not(.eyebrow){font-size:12px!important;line-height:1.72}
+.slide .section-intro{font-size:11px!important}
+.slide .website-index,.slide .tile-top,.slide .tiny-label{font-size:9px!important}
+.slide .website-card-copy b{font-size:13px!important;color:var(--text)!important}
+.slide .website-card-copy small{font-size:10px!important}
+.slide .tile-main h3{font-size:14px!important;color:var(--text)!important}
+.slide .tile-main p{font-size:11px!important;line-height:1.55}
+.slide .tile-link{font-size:10px!important}
+.slide .contact-lede{font-size:13px!important}
+.slide .contact-card-copy small{font-size:9px!important}
+.slide .contact-card-copy b{font-size:14px!important;color:var(--text)!important}
+.slide .contact-card-copy span{font-size:10px!important}
+.slide .contact-footnote{font-size:9px!important}
+.slide .contact-visual-copy small,.slide .contact-visual-copy>span,.slide .contact-visual-tag{font-size:9px!important}
+.slide .interest-repo-info b{font-size:12px!important}
+.slide .interest-repo-info small{font-size:9px!important;color:color-mix(in srgb,var(--text) 88%,transparent)!important}
+:root:not([data-theme="light"]) .slide h2,:root:not([data-theme="light"]) .slide h3,:root:not([data-theme="light"]) .slide p,:root:not([data-theme="light"]) .slide a{text-shadow:0 1px 7px rgba(0,0,0,.66)}
+:root[data-theme="light"] .slide h2,:root[data-theme="light"] .slide h3,:root[data-theme="light"] .slide p,:root[data-theme="light"] .slide a{text-shadow:0 1px 4px rgba(255,255,255,.82)}
+@media(max-width:680px){
+  .slide-projects:after,.slide-websites:after{background-image:linear-gradient(180deg,color-mix(in srgb,var(--bg) 44%,transparent) 0%,color-mix(in srgb,var(--bg) 36%,transparent) 48%,color-mix(in srgb,var(--bg) 42%,transparent) 100%),var(--slide-bg);background-size:100% 100%,contain;background-position:center,var(--slide-mobile-position,center)}
+  .slide .about-copy>p:not(.eyebrow){font-size:10px!important;line-height:1.62}
+  .slide .section-intro{font-size:8.5px!important}
+  .slide .website-index,.slide .tile-top,.slide .tiny-label{font-size:8px!important}
+  .slide .website-card-copy b{font-size:12px!important}
+  .slide .website-card-copy small{font-size:9px!important}
+  .slide .tile-main h3{font-size:12px!important}
+  .slide .tile-main p{font-size:9.5px!important;line-height:1.45}
+  .slide .tile-link{font-size:9px!important}
+  .slide .contact-lede{font-size:10.5px!important}
+  .slide .contact-card-copy small{font-size:8px!important}
+  .slide .contact-card-copy b{font-size:12px!important}
+  .slide .contact-card-copy span{font-size:9px!important}
+  .slide .contact-footnote{font-size:8px!important}
+  .slide .contact-visual-copy small,.slide .contact-visual-copy>span,.slide .contact-visual-tag{font-size:8px!important}
+  .slide .interest-repo-info b{font-size:10px!important}
+  .slide .interest-repo-info small{font-size:7.5px!important}
+}
+
+/* Final legibility tuning: keep the full framed artwork visible through lighter frost. */
+.slide-projects:after,.slide-websites:after{background-image:linear-gradient(90deg,color-mix(in srgb,var(--bg) 25%,transparent) 0%,color-mix(in srgb,var(--bg) 18%,transparent) 52%,color-mix(in srgb,var(--bg) 24%,transparent) 100%),var(--slide-bg);background-size:100% 100%,contain;background-position:center,var(--slide-bg-position,center);filter:blur(.55px);opacity:1}
+.about-skills,.website-card,.project-tile,.contact-card,.contact-visual{background:rgba(255,255,255,.11)!important;backdrop-filter:blur(18px) saturate(150%)!important;-webkit-backdrop-filter:blur(18px) saturate(150%)!important}
+:root[data-theme="light"] .about-skills,:root[data-theme="light"] .website-card,:root[data-theme="light"] .project-tile,:root[data-theme="light"] .contact-card,:root[data-theme="light"] .contact-visual{background:rgba(255,255,255,.36)!important}
+@media(max-width:680px){
+  .slide-projects:after,.slide-websites:after{background-image:linear-gradient(180deg,color-mix(in srgb,var(--bg) 25%,transparent) 0%,color-mix(in srgb,var(--bg) 18%,transparent) 48%,color-mix(in srgb,var(--bg) 24%,transparent) 100%),var(--slide-bg);background-size:100% 100%,contain;background-position:center,var(--slide-mobile-position,center);filter:blur(.55px);opacity:1}
+  #projects .section-heading,#websites .section-heading{display:grid;grid-template-columns:minmax(0,1fr);align-items:start;gap:4px}
+  #projects .all-repos-link{justify-self:start;font-size:9px}
+  #websites .section-intro{white-space:normal;margin:0}
+}
