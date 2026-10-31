@@ -190,3 +190,9 @@
   #projects .all-repos-link{justify-self:start;font-size:9px}
   #websites .section-intro{white-space:normal;margin:0}
 }
+
+/* Every content page now shows its entire source image, with a blurred cover fill behind it. */
+#deck .slide:after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(90deg,color-mix(in srgb,var(--bg) 25%,transparent) 0%,color-mix(in srgb,var(--bg) 18%,transparent) 52%,color-mix(in srgb,var(--bg) 24%,transparent) 100%),var(--slide-bg);background-size:100% 100%,contain;background-position:center,var(--slide-bg-position,center);background-repeat:no-repeat;filter:blur(.55px);opacity:1}
+@media(max-width:680px){
+  #deck .slide:after{background-image:linear-gradient(180deg,color-mix(in srgb,var(--bg) 25%,transparent) 0%,color-mix(in srgb,var(--bg) 18%,transparent) 48%,color-mix(in srgb,var(--bg) 24%,transparent) 100%),var(--slide-bg);background-size:100% 100%,contain;background-position:center,var(--slide-mobile-position,center);filter:blur(.55px);opacity:1}
+}
