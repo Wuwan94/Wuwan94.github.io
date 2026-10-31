@@ -218,3 +218,36 @@
 /* Use opaque heading ink for reliable contrast on mobile; the photo itself remains untouched. */
 :root:not([data-theme="light"]) #deck .slide .gradient-text{background:none!important;background-image:none!important;background-clip:initial!important;-webkit-background-clip:initial!important;color:#eadfff!important;-webkit-text-fill-color:#eadfff!important;text-shadow:0 1px 2px rgba(0,0,0,1),0 0 4px rgba(0,0,0,.82)!important}
 :root[data-theme="light"] #deck .slide .gradient-text{background:none!important;background-image:none!important;background-clip:initial!important;-webkit-background-clip:initial!important;color:#493b7d!important;-webkit-text-fill-color:#493b7d!important;text-shadow:0 1px 2px rgba(255,255,255,1),0 0 5px rgba(255,255,255,.95)!important}
+
+/* ===== 2026-10-31 四页原图背景：铺满裁切 + 文字清晰 ===== */
+.slide-about{--slide-bg:url('bg-about.jpg');--bgpos:35% 45%;--bgpos-m:30% 50%}
+.slide-projects{--slide-bg:url('bg-projects.jpg');--bgpos:65% 40%;--bgpos-m:68% 45%}
+.slide-contact{--slide-bg:url('bg-contact.jpg');--bgpos:55% 45%;--bgpos-m:58% 50%}
+.slide-websites{--slide-bg:url('bg-websites.jpg');--bgpos:60% 45%;--bgpos-m:62% 50%}
+#deck .slide{background:#0b0b13!important}
+#deck .slide:before{content:"";display:block!important;position:absolute;inset:0;z-index:0;pointer-events:none;background-image:var(--slide-bg)!important;background-size:cover!important;background-position:var(--bgpos)!important;background-repeat:no-repeat!important;filter:none!important;opacity:1!important}
+#deck .slide:after{content:"";display:block!important;position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(8,8,16,.72) 0%,rgba(8,8,16,.50) 45%,rgba(8,8,16,.30) 100%)!important;filter:none!important;opacity:1!important}
+#deck .slide>*{position:relative;z-index:1}
+#deck .slide-foot{position:absolute;z-index:1}
+#deck .slide,#deck .slide h2,#deck .slide h3,#deck .slide p,#deck .slide b,#deck .slide small,#deck .slide span,#deck .slide a{color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.9),0 0 10px rgba(0,0,0,.6)}
+#deck .slide .gradient-text{background:none!important;-webkit-background-clip:initial!important;background-clip:initial!important;color:#e6dbff!important;-webkit-text-fill-color:#e6dbff!important}
+#deck .about-skills,#deck .website-card,#deck .project-tile,#deck .contact-card,#deck .contact-visual,#deck .about-quote,#deck .interest-repo,#deck .website-note{background:rgba(10,10,20,.48)!important;backdrop-filter:blur(10px)!important;-webkit-backdrop-filter:blur(10px)!important;border-color:rgba(255,255,255,.22)!important}
+#deck .interest-repo{background:rgba(10,10,20,.35)!important}
+@media(max-width:900px){
+  #deck .slide:before{background-position:var(--bgpos-m)!important}
+  #deck .slide:after{background:linear-gradient(180deg,rgba(8,8,16,.68) 0%,rgba(8,8,16,.48) 50%,rgba(8,8,16,.62) 100%)!important}
+}
+:root[data-theme="light"] #deck .slide:after{background:linear-gradient(90deg,rgba(255,255,255,.70) 0%,rgba(255,255,255,.48) 50%,rgba(255,255,255,.30) 100%)!important}
+:root[data-theme="light"] #deck .slide,:root[data-theme="light"] #deck .slide h2,:root[data-theme="light"] #deck .slide h3,:root[data-theme="light"] #deck .slide p,:root[data-theme="light"] #deck .slide b,:root[data-theme="light"] #deck .slide small,:root[data-theme="light"] #deck .slide span,:root[data-theme="light"] #deck .slide a{color:#15121f;text-shadow:0 1px 3px rgba(255,255,255,.95),0 0 10px rgba(255,255,255,.7)}
+:root[data-theme="light"] #deck .slide .gradient-text{color:#4a347f!important;-webkit-text-fill-color:#4a347f!important}
+:root[data-theme="light"] #deck .about-skills,:root[data-theme="light"] #deck .website-card,:root[data-theme="light"] #deck .project-tile,:root[data-theme="light"] #deck .contact-card,:root[data-theme="light"] #deck .contact-visual,:root[data-theme="light"] #deck .about-quote,:root[data-theme="light"] #deck .interest-repo,:root[data-theme="light"] #deck .website-note{background:rgba(255,255,255,.55)!important;border-color:rgba(0,0,0,.12)!important}
+.in-deck .topbar,body .topbar{background:rgba(8,8,16,.55)!important;backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important}.topbar .slide-nav a{color:#fff!important;text-shadow:0 1px 3px rgba(0,0,0,.9)}:root[data-theme="light"] .topbar{background:rgba(255,255,255,.6)!important}:root[data-theme="light"] .topbar .slide-nav a{color:#15121f!important;text-shadow:none}
+
+/* v2：去掉遮罩，背景原图全清晰；文字用描边+阴影保证可读 */
+#deck .slide:after{display:none!important;background:none!important}
+#deck .about-skills,#deck .website-card,#deck .project-tile,#deck .contact-card,#deck .contact-visual,#deck .about-quote,#deck .interest-repo,#deck .website-note{background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-color:rgba(255,255,255,.75)!important;box-shadow:0 0 0 1px rgba(0,0,0,.35),inset 0 0 0 1px rgba(0,0,0,.35)!important}
+#deck .contact-ring,#deck .tile-top~*:before{opacity:.9}
+#deck .slide,#deck .slide h2,#deck .slide h3,#deck .slide p,#deck .slide b,#deck .slide small,#deck .slide span,#deck .slide a,#deck .slide em{color:#fff!important;-webkit-text-fill-color:#fff!important;text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000,0 -1px 0 #000,0 1px 0 #000,-1px 0 0 #000,1px 0 0 #000,0 2px 6px rgba(0,0,0,.9)!important}
+#deck .slide h2,#deck .slide h2 *{text-shadow:-2px -2px 0 #000,2px -2px 0 #000,-2px 2px 0 #000,2px 2px 0 #000,0 -2px 0 #000,0 2px 0 #000,-2px 0 0 #000,2px 0 0 #000,0 4px 12px rgba(0,0,0,.8)!important}
+#deck .slide .gradient-text{color:#f0e6ff!important;-webkit-text-fill-color:#f0e6ff!important}
+:root[data-theme="light"] #deck .slide,:root[data-theme="light"] #deck .slide h2,:root[data-theme="light"] #deck .slide h3,:root[data-theme="light"] #deck .slide p,:root[data-theme="light"] #deck .slide b,:root[data-theme="light"] #deck .slide small,:root[data-theme="light"] #deck .slide span,:root[data-theme="light"] #deck .slide a{color:#fff!important;-webkit-text-fill-color:#fff!important}
