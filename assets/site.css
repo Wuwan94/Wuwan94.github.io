@@ -259,3 +259,17 @@
   #deck .slide{background:#000!important}
   #deck .slide:before{background-size:contain!important;background-position:center center!important}
 }
+
+/* 2026-10-31 owner originals: fill screen (cover), no blur, crisp text */
+#deck .slide::after{
+  background-image:linear-gradient(180deg,rgba(5,5,10,.50),rgba(5,5,10,.28) 48%,rgba(5,5,10,.55)),var(--slide-bg)!important;
+  background-size:cover,cover!important;
+  background-position:center,var(--slide-bg-position,center)!important;
+  background-repeat:no-repeat!important;
+  filter:none!important;
+}
+.slide-about{--slide-bg-position:38% 50%}
+.slide-projects{--slide-bg-position:70% 50%}
+.slide-contact{--slide-bg-position:62% 50%}
+.slide-websites{--slide-bg-position:60% 50%}
+#deck .slide-inner{text-shadow:0 1px 10px rgba(0,0,0,.35)}
