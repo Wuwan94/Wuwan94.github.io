@@ -16,41 +16,31 @@
 @media(max-height:720px){.welcome-cover{padding-top:76px;padding-bottom:50px}.cover-shell{gap:25px}.cover-art{height:42vh;min-height:190px}.slide{padding-top:78px;padding-bottom:60px}.about-layout{gap:25px}.skill-row{padding:10px 0}.website-card{min-height:200px}.project-tile{min-height:145px}.projects-layout{gap:14px}.contact-visual{height:40vh;min-height:190px}}
 @media(max-width:680px) and (max-height:720px){.cover-shell{gap:12px}.cover-art{height:23vh;min-height:125px}.cover-copy h1{font-size:43px}.cover-intro{font-size:9px}.cover-hint{margin-top:9px}.slide{padding-top:70px;padding-bottom:55px}.about-copy>p:not(.eyebrow){font-size:8px}.about-quote{margin-top:6px}.skill-row{padding:5px 0}.website-card{min-height:95px}.website-note{font-size:6px}.project-tile{min-height:120px}.contact-visual{height:20vh;min-height:125px}}
 @media(prefers-reduced-motion:reduce){#deck{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
-
-/* Latest client download control, shown after entering the four-slide site. */
 .download-client{display:none;align-items:center;justify-content:center;gap:8px;min-height:34px;padding:0 12px;border-radius:7px;background:var(--accent);color:#171326;font-size:10px;font-weight:700;white-space:nowrap;box-shadow:0 5px 20px rgba(156,136,255,.15);transition:transform .2s,background .2s}.in-deck .download-client{display:inline-flex}.download-client:hover{transform:translateY(-1px);background:#c8baff}.download-client b{font-size:14px;line-height:1;font-weight:500}.in-deck .theme-toggle{margin-left:10px}
 @media(max-width:680px){.in-deck .slide-nav{margin-right:8px;gap:clamp(7px,2.5vw,13px)}.download-client{gap:4px;min-height:29px;padding:0 7px;font-size:7px;border-radius:6px}.download-client b{font-size:10px}.in-deck .theme-toggle{margin-left:6px}}
-
-/* Touch movement is handled as exactly one slide per swipe in site.js. */
 #deck{touch-action:pan-y}
-
-/* User-provided profile avatar in the site header. */
 .brand-avatar{display:block;flex:0 0 auto;width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:center 42%;border:1px solid var(--line-strong);box-shadow:0 2px 12px rgba(10,8,20,.25)}
 @media(max-width:680px){.brand-avatar{width:30px;height:30px}}
-
-/* Gesture-first browsing: remove bottom counters and arrow controls. */
 .slide-foot span:last-child,.deck-controls{display:none!important}
 @media(max-width:680px){
-  .slide{align-items:stretch;padding-top:72px;padding-bottom:40px}
-  .slide-inner{height:100%}
-  .slide-foot{display:none}
-  .about-layout{grid-template-rows:auto auto;align-content:space-evenly;gap:10px}
-  .websites-layout,.projects-layout{height:100%;justify-content:space-between;gap:9px}
-  .section-heading{flex:0 0 auto;margin-bottom:5px}
-  .website-grid{flex:1;min-height:0;grid-template-rows:repeat(3,minmax(0,1fr))}
-  .website-card{min-height:0}
-  .website-note{flex:0 0 auto;margin-top:3px}
-  .project-grid{flex:1;min-height:0;grid-template-rows:repeat(2,minmax(0,1fr))}
-  .project-tile{min-height:0}
-  .contact-layout{align-content:space-evenly;gap:10px}
-  .contact-visual{height:clamp(165px,25vh,230px);min-height:165px}
+.slide{align-items:stretch;padding-top:72px;padding-bottom:40px}
+.slide-inner{height:100%}
+.slide-foot{display:none}
+.about-layout{grid-template-rows:auto auto;align-content:space-evenly;gap:10px}
+.websites-layout,.projects-layout{height:100%;justify-content:space-between;gap:9px}
+.section-heading{flex:0 0 auto;margin-bottom:5px}
+.website-grid{flex:1;min-height:0;grid-template-rows:repeat(3,minmax(0,1fr))}
+.website-card{min-height:0}
+.website-note{flex:0 0 auto;margin-top:3px}
+.project-grid{flex:1;min-height:0;grid-template-rows:repeat(2,minmax(0,1fr))}
+.project-tile{min-height:0}
+.contact-layout{align-content:space-evenly;gap:10px}
+.contact-visual{height:clamp(165px,25vh,230px);min-height:165px}
 }
 @media(max-width:680px) and (max-height:720px){
-  .slide{padding-top:68px;padding-bottom:34px}
-  .contact-visual{height:clamp(135px,22vh,170px);min-height:135px}
+.slide{padding-top:68px;padding-bottom:34px}
+.contact-visual{height:clamp(135px,22vh,170px);min-height:135px}
 }
-
-/* Full-screen editorial backgrounds: About → open sky, Web → rooftop motion, Projects → Halloween, Contact → cozy interior. */
 .slide{isolation:isolate}
 .slide:before{z-index:0;background-image:linear-gradient(90deg,color-mix(in srgb,var(--bg) 93%,transparent) 0%,color-mix(in srgb,var(--bg) 84%,transparent) 54%,color-mix(in srgb,var(--bg) 76%,transparent) 100%),var(--slide-bg);background-size:cover,cover;background-position:center,var(--slide-bg-position,center);background-repeat:no-repeat}
 .slide-about{--slide-bg:url('bg-about.jpg');--slide-bg-position:73% 50%;--slide-mobile-position:75% 50%}
@@ -58,10 +48,8 @@
 .slide-projects{--slide-bg:url('bg-projects.jpg');--slide-bg-position:52% 50%;--slide-mobile-position:52% 50%}
 .slide-contact{--slide-bg:url('bg-contact.jpg');--slide-bg-position:26% 50%;--slide-mobile-position:28% 50%}
 @media(max-width:680px){
-  .slide:before{background-image:linear-gradient(180deg,color-mix(in srgb,var(--bg) 88%,transparent) 0%,color-mix(in srgb,var(--bg) 78%,transparent) 48%,color-mix(in srgb,var(--bg) 85%,transparent) 100%),var(--slide-bg);background-position:center,var(--slide-mobile-position,center)}
+.slide:before{background-image:linear-gradient(180deg,color-mix(in srgb,var(--bg) 88%,transparent) 0%,color-mix(in srgb,var(--bg) 78%,transparent) 48%,color-mix(in srgb,var(--bg) 85%,transparent) 100%),var(--slide-bg);background-position:center,var(--slide-mobile-position,center)}
 }
-
-/* Frosted-glass panels: let each page's artwork show through while keeping foreground text legible. */
 .about-skills{background:color-mix(in srgb,var(--panel) 62%,transparent);backdrop-filter:blur(16px) saturate(135%);-webkit-backdrop-filter:blur(16px) saturate(135%);border-color:color-mix(in srgb,var(--line-strong) 85%,transparent);box-shadow:0 18px 48px rgba(0,0,0,.15)}
 .website-card{backdrop-filter:blur(16px) saturate(135%);-webkit-backdrop-filter:blur(16px) saturate(135%);border-color:rgba(226,221,255,.24);box-shadow:0 18px 48px rgba(0,0,0,.16)}
 .website-live{background:linear-gradient(140deg,rgba(26,24,53,.62),rgba(37,35,71,.52) 58%,rgba(20,43,60,.47))}
@@ -77,11 +65,9 @@
 .contact-visual:after{background:linear-gradient(0deg,rgba(9,10,20,.42),transparent 70%)}
 .slide:before{background-image:linear-gradient(90deg,color-mix(in srgb,var(--bg) 86%,transparent) 0%,color-mix(in srgb,var(--bg) 72%,transparent) 54%,color-mix(in srgb,var(--bg) 64%,transparent) 100%),var(--slide-bg)}
 @media(max-width:680px){
-  .slide:before{background-image:linear-gradient(180deg,color-mix(in srgb,var(--bg) 80%,transparent) 0%,color-mix(in srgb,var(--bg) 68%,transparent) 48%,color-mix(in srgb,var(--bg) 76%,transparent) 100%),var(--slide-bg)}
-  .about-skills,.website-card,.project-tile,.contact-card,.contact-visual{backdrop-filter:blur(12px) saturate(130%);-webkit-backdrop-filter:blur(12px) saturate(130%)}
+.slide:before{background-image:linear-gradient(180deg,color-mix(in srgb,var(--bg) 80%,transparent) 0%,color-mix(in srgb,var(--bg) 68%,transparent) 48%,color-mix(in srgb,var(--bg) 76%,transparent) 100%),var(--slide-bg)}
+.about-skills,.website-card,.project-tile,.contact-card,.contact-visual{backdrop-filter:blur(12px) saturate(130%);-webkit-backdrop-filter:blur(12px) saturate(130%)}
 }
-
-/* Final transparency pass requested: the full page artwork should remain visible through every panel. */
 .topbar{background:color-mix(in srgb,var(--bg) 58%,transparent);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .about-skills,.website-card,.project-tile,.contact-card,.contact-visual{background:transparent!important;background-image:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:none!important}
 .website-live,.website-source,.website-all,.tile-app,.tile-web,.tile-notes,.tile-lab{background:transparent!important;background-image:none!important}
@@ -90,21 +76,16 @@
 .slide:before{background-image:linear-gradient(90deg,color-mix(in srgb,var(--bg) 66%,transparent) 0%,color-mix(in srgb,var(--bg) 56%,transparent) 54%,color-mix(in srgb,var(--bg) 52%,transparent) 100%),var(--slide-bg)}
 :root:not([data-theme="light"]) .slide h2,:root:not([data-theme="light"]) .slide h3,:root:not([data-theme="light"]) .slide p,:root:not([data-theme="light"]) .slide a{text-shadow:0 1px 5px rgba(0,0,0,.48)}
 @media(max-width:680px){
-  .slide:before{background-image:linear-gradient(180deg,color-mix(in srgb,var(--bg) 66%,transparent) 0%,color-mix(in srgb,var(--bg) 55%,transparent) 48%,color-mix(in srgb,var(--bg) 62%,transparent) 100%),var(--slide-bg)}
+.slide:before{background-image:linear-gradient(180deg,color-mix(in srgb,var(--bg) 66%,transparent) 0%,color-mix(in srgb,var(--bg) 55%,transparent) 48%,color-mix(in srgb,var(--bg) 62%,transparent) 100%),var(--slide-bg)}
 }
-
 :root[data-theme="light"] .slide .gradient-text{background-image:linear-gradient(100deg,#4e3498 2%,#4055b5 48%,#126471 100%)}
 :root[data-theme="light"] .website-index,:root[data-theme="light"] .website-card-copy b,:root[data-theme="light"] .website-card-copy small,:root[data-theme="light"] .tile-top,:root[data-theme="light"] .tile-main h3,:root[data-theme="light"] .tile-main p,:root[data-theme="light"] .tile-secondary,:root[data-theme="light"] .contact-visual-copy,:root[data-theme="light"] .contact-visual-copy small,:root[data-theme="light"] .contact-visual-copy>span,:root[data-theme="light"] .contact-visual-tag{color:var(--text)!important}
 :root[data-theme="light"] .website-card-copy small,:root[data-theme="light"] .tile-main p,:root[data-theme="light"] .tile-secondary,:root[data-theme="light"] .website-index,:root[data-theme="light"] .tile-top,:root[data-theme="light"] .contact-visual-copy small,:root[data-theme="light"] .contact-visual-copy>span,:root[data-theme="light"] .contact-visual-tag{color:var(--muted)!important}
 :root[data-theme="light"] .website-arrow,:root[data-theme="light"] .tile-symbol,:root[data-theme="light"] .contact-star{color:var(--accent)!important}
 :root[data-theme="light"] .tile-link{color:var(--accent)!important}
-
-/* Layout adjustments after removing duplicate personal-site entry cards. */
 .website-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 @media(min-width:981px){.project-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:680px){.website-grid{grid-template-columns:1fr;grid-template-rows:repeat(2,minmax(0,1fr))}.project-grid>.project-tile:last-child{grid-column:1/-1}}
-
-/* Compact transparent cards for every public GitHub development project. */
 .about-skills .skills-heading{margin-bottom:8px}
 .interest-repo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
 .interest-repo{min-width:0;min-height:38px;display:flex;align-items:center;justify-content:space-between;gap:6px;padding:5px 8px;border:1px solid rgba(230,226,255,.30);border-radius:7px;background:transparent;color:var(--text);transition:border-color .2s,transform .2s}
@@ -115,27 +96,23 @@
 .interest-repo-arrow{font-size:11px;color:var(--accent);flex:0 0 auto}
 :root[data-theme="light"] .interest-repo{border-color:rgba(23,22,34,.24)}
 @media(max-width:680px){
-  .about-skills .skills-heading{margin-bottom:6px}
-  .interest-repo-grid{gap:5px}
-  .interest-repo{min-height:34px;padding:4px 6px;border-radius:5px}
-  .interest-repo-info b{font-size:7px}
-  .interest-repo-info small{font-size:5.5px}
-  .interest-repo-arrow{font-size:9px}
+.about-skills .skills-heading{margin-bottom:6px}
+.interest-repo-grid{gap:5px}
+.interest-repo{min-height:34px;padding:4px 6px;border-radius:5px}
+.interest-repo-info b{font-size:7px}
+.interest-repo-info small{font-size:5.5px}
+.interest-repo-arrow{font-size:9px}
 }
-
-/* Increase project-label readability while keeping the cards fully transparent. */
 .interest-repo{min-height:44px;padding:6px 9px}
 .interest-repo-info b{font-size:10px}
 .interest-repo-info small{font-size:8px;color:var(--text);opacity:.82}
 .interest-repo-arrow{font-size:12px}
 @media(max-width:680px){
-  .interest-repo{min-height:40px;padding:5px 7px}
-  .interest-repo-info b{font-size:8.5px}
-  .interest-repo-info small{font-size:6.8px}
-  .interest-repo-arrow{font-size:10px}
+.interest-repo{min-height:40px;padding:5px 7px}
+.interest-repo-info b{font-size:8.5px}
+.interest-repo-info small{font-size:6.8px}
+.interest-repo-arrow{font-size:10px}
 }
-
-/* Frosted-background readability and full-image fit for slides 2 and 4. */
 .slide{isolation:isolate}
 .slide:before{inset:-20px;filter:blur(6px) saturate(1.08);transform:scale(1.025)}
 .slide-projects:after,.slide-websites:after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(90deg,color-mix(in srgb,var(--bg) 44%,transparent) 0%,color-mix(in srgb,var(--bg) 36%,transparent) 52%,color-mix(in srgb,var(--bg) 42%,transparent) 100%),var(--slide-bg);background-size:100% 100%,contain;background-position:center,var(--slide-bg-position,center);background-repeat:no-repeat;filter:blur(1px);opacity:.96}
@@ -161,43 +138,37 @@
 :root:not([data-theme="light"]) .slide h2,:root:not([data-theme="light"]) .slide h3,:root:not([data-theme="light"]) .slide p,:root:not([data-theme="light"]) .slide a{text-shadow:0 1px 7px rgba(0,0,0,.66)}
 :root[data-theme="light"] .slide h2,:root[data-theme="light"] .slide h3,:root[data-theme="light"] .slide p,:root[data-theme="light"] .slide a{text-shadow:0 1px 4px rgba(255,255,255,.82)}
 @media(max-width:680px){
-  .slide-projects:after,.slide-websites:after{background-image:linear-gradient(180deg,color-mix(in srgb,var(--bg) 44%,transparent) 0%,color-mix(in srgb,var(--bg) 36%,transparent) 48%,color-mix(in srgb,var(--bg) 42%,transparent) 100%),var(--slide-bg);background-size:100% 100%,contain;background-position:center,var(--slide-mobile-position,center)}
-  .slide .about-copy>p:not(.eyebrow){font-size:10px!important;line-height:1.62}
-  .slide .section-intro{font-size:8.5px!important}
-  .slide .website-index,.slide .tile-top,.slide .tiny-label{font-size:8px!important}
-  .slide .website-card-copy b{font-size:12px!important}
-  .slide .website-card-copy small{font-size:9px!important}
-  .slide .tile-main h3{font-size:12px!important}
-  .slide .tile-main p{font-size:9.5px!important;line-height:1.45}
-  .slide .tile-link{font-size:9px!important}
-  .slide .contact-lede{font-size:10.5px!important}
-  .slide .contact-card-copy small{font-size:8px!important}
-  .slide .contact-card-copy b{font-size:12px!important}
-  .slide .contact-card-copy span{font-size:9px!important}
-  .slide .contact-footnote{font-size:8px!important}
-  .slide .contact-visual-copy small,.slide .contact-visual-copy>span,.slide .contact-visual-tag{font-size:8px!important}
-  .slide .interest-repo-info b{font-size:10px!important}
-  .slide .interest-repo-info small{font-size:7.5px!important}
+.slide-projects:after,.slide-websites:after{background-image:linear-gradient(180deg,color-mix(in srgb,var(--bg) 44%,transparent) 0%,color-mix(in srgb,var(--bg) 36%,transparent) 48%,color-mix(in srgb,var(--bg) 42%,transparent) 100%),var(--slide-bg);background-size:100% 100%,contain;background-position:center,var(--slide-mobile-position,center)}
+.slide .about-copy>p:not(.eyebrow){font-size:10px!important;line-height:1.62}
+.slide .section-intro{font-size:8.5px!important}
+.slide .website-index,.slide .tile-top,.slide .tiny-label{font-size:8px!important}
+.slide .website-card-copy b{font-size:12px!important}
+.slide .website-card-copy small{font-size:9px!important}
+.slide .tile-main h3{font-size:12px!important}
+.slide .tile-main p{font-size:9.5px!important;line-height:1.45}
+.slide .tile-link{font-size:9px!important}
+.slide .contact-lede{font-size:10.5px!important}
+.slide .contact-card-copy small{font-size:8px!important}
+.slide .contact-card-copy b{font-size:12px!important}
+.slide .contact-card-copy span{font-size:9px!important}
+.slide .contact-footnote{font-size:8px!important}
+.slide .contact-visual-copy small,.slide .contact-visual-copy>span,.slide .contact-visual-tag{font-size:8px!important}
+.slide .interest-repo-info b{font-size:10px!important}
+.slide .interest-repo-info small{font-size:7.5px!important}
 }
-
-/* Final legibility tuning: keep the full framed artwork visible through lighter frost. */
 .slide-projects:after,.slide-websites:after{background-image:linear-gradient(90deg,color-mix(in srgb,var(--bg) 25%,transparent) 0%,color-mix(in srgb,var(--bg) 18%,transparent) 52%,color-mix(in srgb,var(--bg) 24%,transparent) 100%),var(--slide-bg);background-size:100% 100%,contain;background-position:center,var(--slide-bg-position,center);filter:blur(.55px);opacity:1}
 .about-skills,.website-card,.project-tile,.contact-card,.contact-visual{background:rgba(255,255,255,.11)!important;backdrop-filter:blur(18px) saturate(150%)!important;-webkit-backdrop-filter:blur(18px) saturate(150%)!important}
 :root[data-theme="light"] .about-skills,:root[data-theme="light"] .website-card,:root[data-theme="light"] .project-tile,:root[data-theme="light"] .contact-card,:root[data-theme="light"] .contact-visual{background:rgba(255,255,255,.36)!important}
 @media(max-width:680px){
-  .slide-projects:after,.slide-websites:after{background-image:linear-gradient(180deg,color-mix(in srgb,var(--bg) 25%,transparent) 0%,color-mix(in srgb,var(--bg) 18%,transparent) 48%,color-mix(in srgb,var(--bg) 24%,transparent) 100%),var(--slide-bg);background-size:100% 100%,contain;background-position:center,var(--slide-mobile-position,center);filter:blur(.55px);opacity:1}
-  #projects .section-heading,#websites .section-heading{display:grid;grid-template-columns:minmax(0,1fr);align-items:start;gap:4px}
-  #projects .all-repos-link{justify-self:start;font-size:9px}
-  #websites .section-intro{white-space:normal;margin:0}
+.slide-projects:after,.slide-websites:after{background-image:linear-gradient(180deg,color-mix(in srgb,var(--bg) 25%,transparent) 0%,color-mix(in srgb,var(--bg) 18%,transparent) 48%,color-mix(in srgb,var(--bg) 24%,transparent) 100%),var(--slide-bg);background-size:100% 100%,contain;background-position:center,var(--slide-mobile-position,center);filter:blur(.55px);opacity:1}
+#projects .section-heading,#websites .section-heading{display:grid;grid-template-columns:minmax(0,1fr);align-items:start;gap:4px}
+#projects .all-repos-link{justify-self:start;font-size:9px}
+#websites .section-intro{white-space:normal;margin:0}
 }
-
-/* Every content page now shows its entire source image, with a blurred cover fill behind it. */
 #deck .slide:after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(90deg,color-mix(in srgb,var(--bg) 25%,transparent) 0%,color-mix(in srgb,var(--bg) 18%,transparent) 52%,color-mix(in srgb,var(--bg) 24%,transparent) 100%),var(--slide-bg);background-size:100% 100%,contain;background-position:center,var(--slide-bg-position,center);background-repeat:no-repeat;filter:blur(.55px);opacity:1}
 @media(max-width:680px){
-  #deck .slide:after{background-image:linear-gradient(180deg,color-mix(in srgb,var(--bg) 25%,transparent) 0%,color-mix(in srgb,var(--bg) 18%,transparent) 48%,color-mix(in srgb,var(--bg) 24%,transparent) 100%),var(--slide-bg);background-size:100% 100%,contain;background-position:center,var(--slide-mobile-position,center);filter:blur(.55px);opacity:1}
+#deck .slide:after{background-image:linear-gradient(180deg,color-mix(in srgb,var(--bg) 25%,transparent) 0%,color-mix(in srgb,var(--bg) 18%,transparent) 48%,color-mix(in srgb,var(--bg) 24%,transparent) 100%),var(--slide-bg);background-size:100% 100%,contain;background-position:center,var(--slide-mobile-position,center);filter:blur(.55px);opacity:1}
 }
-
-/* User preference: one complete original image per content page, directly visible. */
 #deck .slide{background-color:var(--bg)}
 #deck .slide:before{display:none!important;background:none!important;filter:none!important;transform:none!important;opacity:0!important}
 #deck .slide:after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:var(--slide-bg)!important;background-size:contain!important;background-position:center!important;background-repeat:no-repeat!important;filter:none!important;opacity:1!important}
@@ -210,16 +181,10 @@
 #deck .slide h2,#deck .slide h3,#deck .slide p,#deck .slide a,#deck .slide .tiny-label,#deck .slide .website-index,#deck .slide .tile-top{font-weight:600}
 :root:not([data-theme="light"]) #deck .slide h2,:root:not([data-theme="light"]) #deck .slide h3,:root:not([data-theme="light"]) #deck .slide p,:root:not([data-theme="light"]) #deck .slide a{text-shadow:0 1px 2px rgba(0,0,0,.98),0 0 9px rgba(0,0,0,.72)!important}
 :root[data-theme="light"] #deck .slide h2,:root[data-theme="light"] #deck .slide h3,:root[data-theme="light"] #deck .slide p,:root[data-theme="light"] #deck .slide a{text-shadow:0 1px 2px rgba(255,255,255,1),0 0 9px rgba(255,255,255,.92)!important}
-
-/* Keep headings bright against a direct, unmodified photo without adding a backing layer. */
 :root:not([data-theme="light"]) #deck .slide .gradient-text{background-image:linear-gradient(100deg,#eadfff 0%,#b8ceff 52%,#a5f0df 100%)!important;color:transparent!important;-webkit-background-clip:text!important;background-clip:text!important;text-shadow:0 1px 2px rgba(0,0,0,.95),0 0 5px rgba(0,0,0,.78)!important}
 #deck .slide h2,#deck .slide h3{font-weight:760}
-
-/* Use opaque heading ink for reliable contrast on mobile; the photo itself remains untouched. */
 :root:not([data-theme="light"]) #deck .slide .gradient-text{background:none!important;background-image:none!important;background-clip:initial!important;-webkit-background-clip:initial!important;color:#eadfff!important;-webkit-text-fill-color:#eadfff!important;text-shadow:0 1px 2px rgba(0,0,0,1),0 0 4px rgba(0,0,0,.82)!important}
 :root[data-theme="light"] #deck .slide .gradient-text{background:none!important;background-image:none!important;background-clip:initial!important;-webkit-background-clip:initial!important;color:#493b7d!important;-webkit-text-fill-color:#493b7d!important;text-shadow:0 1px 2px rgba(255,255,255,1),0 0 5px rgba(255,255,255,.95)!important}
-
-/* ===== 2026-10-31 四页原图背景：铺满裁切 + 文字清晰 ===== */
 .slide-about{--slide-bg:url('bg-about.jpg');--bgpos:35% 45%;--bgpos-m:30% 50%}
 .slide-projects{--slide-bg:url('bg-projects.jpg');--bgpos:65% 40%;--bgpos-m:68% 45%}
 .slide-contact{--slide-bg:url('bg-contact.jpg');--bgpos:55% 45%;--bgpos-m:58% 50%}
@@ -234,16 +199,14 @@
 #deck .about-skills,#deck .website-card,#deck .project-tile,#deck .contact-card,#deck .contact-visual,#deck .about-quote,#deck .interest-repo,#deck .website-note{background:rgba(10,10,20,.48)!important;backdrop-filter:blur(10px)!important;-webkit-backdrop-filter:blur(10px)!important;border-color:rgba(255,255,255,.22)!important}
 #deck .interest-repo{background:rgba(10,10,20,.35)!important}
 @media(max-width:900px){
-  #deck .slide:before{background-position:var(--bgpos-m)!important}
-  #deck .slide:after{background:linear-gradient(180deg,rgba(8,8,16,.68) 0%,rgba(8,8,16,.48) 50%,rgba(8,8,16,.62) 100%)!important}
+#deck .slide:before{background-position:var(--bgpos-m)!important}
+#deck .slide:after{background:linear-gradient(180deg,rgba(8,8,16,.68) 0%,rgba(8,8,16,.48) 50%,rgba(8,8,16,.62) 100%)!important}
 }
 :root[data-theme="light"] #deck .slide:after{background:linear-gradient(90deg,rgba(255,255,255,.70) 0%,rgba(255,255,255,.48) 50%,rgba(255,255,255,.30) 100%)!important}
 :root[data-theme="light"] #deck .slide,:root[data-theme="light"] #deck .slide h2,:root[data-theme="light"] #deck .slide h3,:root[data-theme="light"] #deck .slide p,:root[data-theme="light"] #deck .slide b,:root[data-theme="light"] #deck .slide small,:root[data-theme="light"] #deck .slide span,:root[data-theme="light"] #deck .slide a{color:#15121f;text-shadow:0 1px 3px rgba(255,255,255,.95),0 0 10px rgba(255,255,255,.7)}
 :root[data-theme="light"] #deck .slide .gradient-text{color:#4a347f!important;-webkit-text-fill-color:#4a347f!important}
 :root[data-theme="light"] #deck .about-skills,:root[data-theme="light"] #deck .website-card,:root[data-theme="light"] #deck .project-tile,:root[data-theme="light"] #deck .contact-card,:root[data-theme="light"] #deck .contact-visual,:root[data-theme="light"] #deck .about-quote,:root[data-theme="light"] #deck .interest-repo,:root[data-theme="light"] #deck .website-note{background:rgba(255,255,255,.55)!important;border-color:rgba(0,0,0,.12)!important}
 .in-deck .topbar,body .topbar{background:rgba(8,8,16,.55)!important;backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important}.topbar .slide-nav a{color:#fff!important;text-shadow:0 1px 3px rgba(0,0,0,.9)}:root[data-theme="light"] .topbar{background:rgba(255,255,255,.6)!important}:root[data-theme="light"] .topbar .slide-nav a{color:#15121f!important;text-shadow:none}
-
-/* v2：去掉遮罩，背景原图全清晰；文字用描边+阴影保证可读 */
 #deck .slide:after{display:none!important;background:none!important}
 #deck .about-skills,#deck .website-card,#deck .project-tile,#deck .contact-card,#deck .contact-visual,#deck .about-quote,#deck .interest-repo,#deck .website-note{background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-color:rgba(255,255,255,.75)!important;box-shadow:0 0 0 1px rgba(0,0,0,.35),inset 0 0 0 1px rgba(0,0,0,.35)!important}
 #deck .contact-ring,#deck .tile-top~*:before{opacity:.9}
@@ -251,32 +214,21 @@
 #deck .slide h2,#deck .slide h2 *{text-shadow:-2px -2px 0 #000,2px -2px 0 #000,-2px 2px 0 #000,2px 2px 0 #000,0 -2px 0 #000,0 2px 0 #000,-2px 0 0 #000,2px 0 0 #000,0 4px 12px rgba(0,0,0,.8)!important}
 #deck .slide .gradient-text{color:#f0e6ff!important;-webkit-text-fill-color:#f0e6ff!important}
 :root[data-theme="light"] #deck .slide,:root[data-theme="light"] #deck .slide h2,:root[data-theme="light"] #deck .slide h3,:root[data-theme="light"] #deck .slide p,:root[data-theme="light"] #deck .slide b,:root[data-theme="light"] #deck .slide small,:root[data-theme="light"] #deck .slide span,:root[data-theme="light"] #deck .slide a{color:#fff!important;-webkit-text-fill-color:#fff!important}
-
-/* v3：顶部导航透明；手机端显示完整原图(contain)，电脑端铺满(cover) */
 .topbar,.in-deck .topbar,body .topbar,:root[data-theme="light"] .topbar{background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-bottom-color:transparent!important;box-shadow:none!important}
 .topbar .brand,.topbar .brand span,.topbar .slide-nav a{color:#fff!important;text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000,0 2px 6px rgba(0,0,0,.9)!important}
 @media(max-width:900px){
-  #deck .slide{background:#000!important}
-  #deck .slide:before{background-size:contain!important;background-position:center center!important}
+#deck .slide{background:#000!important}
+#deck .slide:before{background-size:contain!important;background-position:center center!important}
 }
-
-/* 2026-10-31 owner originals: fill screen (cover), no blur, crisp text; lazy via .bg-ready */
-#deck .slide::before{
-  background-image:linear-gradient(90deg,color-mix(in srgb,var(--bg) 93%,transparent) 0%,color-mix(in srgb,var(--bg) 84%,transparent) 54%,color-mix(in srgb,var(--bg) 76%,transparent) 100%),var(--slide-bg-img,none)!important;
+.slide-about{--slide-bg:image-set(url('bg-about-1920.webp') type('image/webp'),url('bg-about-1920.jpg') type('image/jpeg'))}
+.slide-projects{--slide-bg:image-set(url('bg-projects-1920.webp') type('image/webp'),url('bg-projects-1920.jpg') type('image/jpeg'))}
+.slide-contact{--slide-bg:image-set(url('bg-contact-1920.webp') type('image/webp'),url('bg-contact-1920.jpg') type('image/jpeg'))}
+.slide-websites{--slide-bg:image-set(url('bg-websites-1920.webp') type('image/webp'),url('bg-websites-1920.jpg') type('image/jpeg'))}
+@media(max-width:900px){
+.slide-about{--slide-bg:image-set(url('bg-about-1280.webp') type('image/webp'),url('bg-about-1280.jpg') type('image/jpeg'))}
+.slide-projects{--slide-bg:image-set(url('bg-projects-1280.webp') type('image/webp'),url('bg-projects-1280.jpg') type('image/jpeg'))}
+.slide-contact{--slide-bg:image-set(url('bg-contact-1280.webp') type('image/webp'),url('bg-contact-1280.jpg') type('image/jpeg'))}
+.slide-websites{--slide-bg:image-set(url('bg-websites-1280.webp') type('image/webp'),url('bg-websites-1280.jpg') type('image/jpeg'))}
 }
-#deck .slide::after{
-  background-image:linear-gradient(180deg,rgba(5,5,10,.50),rgba(5,5,10,.28) 48%,rgba(5,5,10,.55)),var(--slide-bg-img,none)!important;
-  background-size:cover,cover!important;
-  background-position:center,var(--slide-bg-position,center)!important;
-  background-repeat:no-repeat!important;
-  filter:none!important;
-}
-.slide-about{--slide-bg-position:38% 50%}
-.slide-projects{--slide-bg-position:70% 50%}
-.slide-contact{--slide-bg-position:62% 50%}
-.slide-websites{--slide-bg-position:60% 50%}
-.slide-about.bg-ready{--slide-bg-img:url('bg-about.jpg')}
-.slide-projects.bg-ready{--slide-bg-img:url('bg-projects.jpg')}
-.slide-contact.bg-ready{--slide-bg-img:url('bg-contact.jpg')}
-.slide-websites.bg-ready{--slide-bg-img:url('bg-websites.jpg')}
-#deck .slide-inner{text-shadow:0 1px 10px rgba(0,0,0,.35)}
+#deck .slide:before{will-change:transform;transform:translateZ(0);backface-visibility:hidden}
+#deck .slide{contain:paint}
