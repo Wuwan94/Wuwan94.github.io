@@ -80,3 +80,21 @@
   .slide:before{background-image:linear-gradient(180deg,color-mix(in srgb,var(--bg) 80%,transparent) 0%,color-mix(in srgb,var(--bg) 68%,transparent) 48%,color-mix(in srgb,var(--bg) 76%,transparent) 100%),var(--slide-bg)}
   .about-skills,.website-card,.project-tile,.contact-card,.contact-visual{backdrop-filter:blur(12px) saturate(130%);-webkit-backdrop-filter:blur(12px) saturate(130%)}
 }
+
+/* Final transparency pass requested: the full page artwork should remain visible through every panel. */
+.topbar{background:color-mix(in srgb,var(--bg) 58%,transparent);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.about-skills,.website-card,.project-tile,.contact-card,.contact-visual{background:transparent!important;background-image:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:none!important}
+.website-live,.website-source,.website-all,.tile-app,.tile-web,.tile-notes,.tile-lab{background:transparent!important;background-image:none!important}
+.about-skills,.website-card,.project-tile,.contact-card,.contact-visual{border-color:rgba(239,234,255,.42)}
+.contact-visual:after{background:none!important}
+.slide:before{background-image:linear-gradient(90deg,color-mix(in srgb,var(--bg) 66%,transparent) 0%,color-mix(in srgb,var(--bg) 56%,transparent) 54%,color-mix(in srgb,var(--bg) 52%,transparent) 100%),var(--slide-bg)}
+:root:not([data-theme="light"]) .slide h2,:root:not([data-theme="light"]) .slide h3,:root:not([data-theme="light"]) .slide p,:root:not([data-theme="light"]) .slide a{text-shadow:0 1px 5px rgba(0,0,0,.48)}
+@media(max-width:680px){
+  .slide:before{background-image:linear-gradient(180deg,color-mix(in srgb,var(--bg) 66%,transparent) 0%,color-mix(in srgb,var(--bg) 55%,transparent) 48%,color-mix(in srgb,var(--bg) 62%,transparent) 100%),var(--slide-bg)}
+}
+
+:root[data-theme="light"] .slide .gradient-text{background-image:linear-gradient(100deg,#4e3498 2%,#4055b5 48%,#126471 100%)}
+:root[data-theme="light"] .website-index,:root[data-theme="light"] .website-card-copy b,:root[data-theme="light"] .website-card-copy small,:root[data-theme="light"] .tile-top,:root[data-theme="light"] .tile-main h3,:root[data-theme="light"] .tile-main p,:root[data-theme="light"] .tile-secondary,:root[data-theme="light"] .contact-visual-copy,:root[data-theme="light"] .contact-visual-copy small,:root[data-theme="light"] .contact-visual-copy>span,:root[data-theme="light"] .contact-visual-tag{color:var(--text)!important}
+:root[data-theme="light"] .website-card-copy small,:root[data-theme="light"] .tile-main p,:root[data-theme="light"] .tile-secondary,:root[data-theme="light"] .website-index,:root[data-theme="light"] .tile-top,:root[data-theme="light"] .contact-visual-copy small,:root[data-theme="light"] .contact-visual-copy>span,:root[data-theme="light"] .contact-visual-tag{color:var(--muted)!important}
+:root[data-theme="light"] .website-arrow,:root[data-theme="light"] .tile-symbol,:root[data-theme="light"] .contact-star{color:var(--accent)!important}
+:root[data-theme="light"] .tile-link{color:var(--accent)!important}
