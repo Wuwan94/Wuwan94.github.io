@@ -214,3 +214,7 @@
 /* Keep headings bright against a direct, unmodified photo without adding a backing layer. */
 :root:not([data-theme="light"]) #deck .slide .gradient-text{background-image:linear-gradient(100deg,#eadfff 0%,#b8ceff 52%,#a5f0df 100%)!important;color:transparent!important;-webkit-background-clip:text!important;background-clip:text!important;text-shadow:0 1px 2px rgba(0,0,0,.95),0 0 5px rgba(0,0,0,.78)!important}
 #deck .slide h2,#deck .slide h3{font-weight:760}
+
+/* Use opaque heading ink for reliable contrast on mobile; the photo itself remains untouched. */
+:root:not([data-theme="light"]) #deck .slide .gradient-text{background:none!important;background-image:none!important;background-clip:initial!important;-webkit-background-clip:initial!important;color:#eadfff!important;-webkit-text-fill-color:#eadfff!important;text-shadow:0 1px 2px rgba(0,0,0,1),0 0 4px rgba(0,0,0,.82)!important}
+:root[data-theme="light"] #deck .slide .gradient-text{background:none!important;background-image:none!important;background-clip:initial!important;-webkit-background-clip:initial!important;color:#493b7d!important;-webkit-text-fill-color:#493b7d!important;text-shadow:0 1px 2px rgba(255,255,255,1),0 0 5px rgba(255,255,255,.95)!important}
