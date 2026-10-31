@@ -1,221 +1,78 @@
-<!DOCTYPE html>
-<html lang="zh-CN" data-theme="dark">
+<!doctype html>
+<html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>雾晚 · 个人主页</title>
-<meta name="description" content="雾晚 的个人主页 — 开发者、学习者。这里记录我的技能、项目和想法。">
-<style>
-  :root{
-    --bg:#0b0e14; --bg2:#10141d; --card:#151a26; --text:#e9edf5; --muted:#97a1b3;
-    --accent:#6ea8fe; --accent2:#a371f7; --border:#232a3a; --chip:#1c2333;
-  }
-  html[data-theme="light"]{
-    --bg:#f4f6fa; --bg2:#eceff5; --card:#ffffff; --text:#1a1f2b; --muted:#5b6577;
-    --accent:#2563eb; --accent2:#7c3aed; --border:#dde2ec; --chip:#edf1f8;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.75}
-  a{color:var(--accent);text-decoration:none}
-  a:hover{text-decoration:underline}
-  body::before{content:"";position:fixed;inset:0;z-index:-2;background:url("bg.jpg") center 18%/cover no-repeat}
-  body::after{content:"";position:fixed;inset:0;z-index:-1;background:var(--bg);opacity:.85}
-  .wrap{max-width:880px;margin:0 auto;padding:0 20px}
-
-  nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
-  .logo{font-weight:700;font-size:17px;color:var(--text)}
-  .logo span{color:var(--accent)}
-  .links{display:flex;gap:22px;align-items:center}
-  .links a{color:var(--muted);font-size:14px}
-  .links a:hover{color:var(--text);text-decoration:none}
-  #themeBtn{background:var(--chip);border:1px solid var(--border);color:var(--text);border-radius:999px;padding:5px 13px;cursor:pointer;font-size:13px}
-
-  .hero{padding:84px 0 56px;text-align:center;background:radial-gradient(640px 320px at 50% -60px,color-mix(in srgb,var(--accent) 22%,transparent),transparent 70%)}
-  .avatar{width:112px;height:112px;border-radius:50%;margin:0 auto 22px;object-fit:cover;display:block;box-shadow:0 10px 32px rgba(0,0,0,.35)}
-  .hero h1{font-size:40px;letter-spacing:.5px}
-  .hero .role{margin-top:10px;font-size:18px;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:600}
-  .hero .intro{max-width:560px;margin:16px auto 0;color:var(--muted)}
-  .cta{margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-  .btn{display:inline-block;padding:10px 22px;border-radius:999px;font-size:14px;border:1px solid var(--border);color:var(--text);background:var(--card)}
-  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
-  .hero{position:relative}
-  .dl-corner{position:absolute;top:14px;right:16px;z-index:30;padding:7px 14px;font-size:12.5px;font-weight:600;border-radius:999px;background:var(--accent);color:#fff;border:1px solid var(--accent);box-shadow:0 6px 18px rgba(0,0,0,.35)}
-  .dl-corner:hover{text-decoration:none;opacity:.92}
-  .btn:hover{text-decoration:none;opacity:.9}
-
-  section{padding:42px 0 6px}
-  h2{font-size:23px;margin-bottom:6px}
-  h2 .no{color:var(--accent);font-size:15px;margin-right:8px;font-weight:600}
-  .sub{color:var(--muted);margin-bottom:20px;font-size:14px}
-  .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px 26px}
-  .card p+p{margin-top:10px}
-  .muted{color:var(--muted)}
-
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-  .skill{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 22px}
-  .skill h3{font-size:16px;margin-bottom:8px}
-  .skill p{color:var(--muted);font-size:14px}
-  .chips{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
-  .chip{background:var(--chip);border:1px solid var(--border);border-radius:999px;padding:3px 12px;font-size:12.5px;color:var(--muted)}
-
-  .project{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 24px;display:flex;flex-direction:column;gap:8px}
-  .project h3{font-size:16.5px}
-  .project p{color:var(--muted);font-size:14px;flex:1}
-  .project .tag{font-size:12px;color:var(--accent)}
-
-  footer{margin-top:64px;border-top:1px solid var(--border);padding:26px 0 40px;text-align:center;color:var(--muted);font-size:13px}
-  @media (max-width:560px){ .links a{display:none} .links a:last-child{display:block} .hero h1{font-size:32px} }
-</style>
-
-<style>
-  #geoGate{position:fixed;inset:0;z-index:9999;background:var(--bg,#0b0e14);color:var(--text,#e9edf5);display:flex;align-items:center;justify-content:center;text-align:center;padding:24px}
-  #geoGate .box{max-width:420px}
-  #geoGate h2{font-size:20px;margin-bottom:10px}
-  #geoGate p{color:var(--muted,#97a1b3);font-size:14px}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0b13">
+  <meta name="description" content="雾晚的个人作品集。开发者与终身学习者，记录正在做的项目、学习与探索。">
+  <title>雾晚 — 把好奇心做成作品</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/site.css">
+  <script src="assets/site.js" defer></script>
 </head>
-<body>
-<div id="geoGate"><div class="box"><h2>正在确认访问地区…</h2><p>请稍候</p></div></div>
+<body data-page="home">
+  <div id="geoGate"><div class="box"><h2>正在确认访问地区…</h2><p>请稍候</p></div></div>
 
-
-<nav>
-  <div class="wrap">
-    <div class="logo">雾晚<span>.</span></div>
-    <div class="links">
-      <a href="#about">关于</a>
-      <a href="#skills">技能</a>
-      <a href="#projects">项目</a>
-      <a href="#contact">联系</a>
-      <button id="themeBtn" type="button">浅色模式</button>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="index.html" aria-label="雾晚，返回首页"><span class="brand-mark">W.</span><span class="brand-name">雾晚<span class="brand-dot">.</span></span></a>
+      <button class="menu-toggle" type="button" aria-label="打开导航" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span></button>
+      <nav class="primary-nav" id="primary-nav" aria-label="主导航">
+        <a data-nav="home" href="index.html">首页</a><a data-nav="about" href="about.html">关于</a><a data-nav="projects" href="projects.html">项目</a><a data-nav="contact" href="contact.html">联系</a>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="切换明暗主题" title="切换明暗主题"><span class="theme-glyph" aria-hidden="true">◐</span></button>
     </div>
-  </div>
-</nav>
-
-<header class="hero">
-  <a class="dl-corner" href="https://github.com/Wuwan94/wanBoxForAndroid/releases/download/v3.0.10-preview.26-thin/wanBoxForAndroid-3.0.10-preview.26-arm64-v8a-release.apk">下载客户端</a>
-  <div class="wrap">
-    <img class="avatar" src="avatar.jpg" alt="雾晚">
-    <h1>你好，我是 雾晚</h1>
-    <div class="role">开发者 · 终身学习者</div>
-    <p class="intro">欢迎来到我的个人主页。我喜欢动手做东西、学新技术，并把学到的东西变成真正能用的产品。这里是我的在线名片，也是我记录成长的地方。</p>
-    <div class="cta">
-      <a class="btn" href="#projects">看看我的项目</a>
-      <a class="btn" href="#contact">联系我</a>
-    </div>
-  </div>
-</header>
-
-<main class="wrap">
-
-  <section id="about">
-    <h2><span class="no">01</span>关于我</h2>
-    <p class="sub">About me</p>
-    <div class="card">
-      <p>我是一名对技术充满热情的开发者，平时喜欢折腾网站和各种小工具。这个主页就是我自己的作品之一——从页面、样式到部署，全部亲手完成。</p>
-      <p>我相信学习的最好方式就是动手做项目：每做完一个项目，就把经验记录下来，慢慢积累成自己的作品集。这个网站会持续更新，记录我正在学的东西和正在做的项目。</p>
-      <p class="muted">如果你也对开发感兴趣，或者有想一起做的项目，欢迎通过下面的方式找到我。</p>
-    </div>
-  </section>
-
-  <section id="skills">
-    <h2><span class="no">02</span>技能与兴趣</h2>
-    <p class="sub">Skills &amp; interests</p>
-    <div class="grid">
-      <div class="skill">
-        <h3>Web 开发</h3>
-        <p>能独立完成静态网站的开发与部署，熟悉页面结构、响应式布局和基础交互。</p>
-        <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">GitHub Pages</span></div>
+  </header>
+  <main>
+    <section class="hero page-wrap">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span>独立开发 · 持续学习</p>
+        <h1>把好奇心，<br><span class="gradient-text nowrap">做成看得见的东西。</span></h1>
+        <p class="hero-lede">你好，我是雾晚。一名开发者与终身学习者，喜欢动手做网站和小工具，也喜欢把学到的东西变成真正能用的作品。</p>
+        <div class="hero-actions"><a class="button button-primary" href="projects.html">看看我做的项目 <span aria-hidden="true">↗</span></a><a class="button button-quiet" href="about.html">认识我 <span aria-hidden="true">→</span></a></div>
+        <div class="hero-meta"><span class="availability"><i></i>欢迎交流与合作</span><span class="meta-separator">/</span><span>目前专注于 Web 与工具探索</span></div>
       </div>
-      <div class="skill">
-        <h3>工具与协作</h3>
-        <p>日常使用 Git 和 GitHub 管理代码，习惯把项目、笔记都整理成文档。</p>
-        <div class="chips"><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Markdown</span><span class="chip">VS Code</span></div>
+      <div class="hero-art" aria-label="紫蓝色抽象光影背景">
+        <div class="art-noise"></div><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+        <div class="art-label"><span>FIELD NOTES</span><span>001 — ∞</span></div>
+        <div class="art-center"><span class="art-star">✳</span><span class="art-word">make<br>something<br><em>useful.</em></span></div>
+        <div class="art-foot"><span>LEARN BY MAKING</span><span class="art-foot-dot"></span><span>STAY CURIOUS</span></div>
+        <div class="art-caption"><span class="caption-index">01 / 04</span><span>想法从好奇开始</span></div>
       </div>
-      <div class="skill">
-        <h3>正在学习</h3>
-        <p>持续学习中：更深入的前端开发、自动化工具，以及 AI 在日常开发中的应用。</p>
-        <div class="chips"><span class="chip">前端进阶</span><span class="chip">Python</span><span class="chip">AI 工具</span></div>
+    </section>
+
+    <section class="intro-band page-wrap" aria-label="个人简介">
+      <div class="intro-kicker"><span class="tiny-label">A LITTLE ABOUT ME</span><span class="intro-number">01</span></div>
+      <div class="intro-content"><h2>先动手，再慢慢变好。</h2><p>我相信学习最好的方式是做项目。每一次尝试、复盘和迭代，都会成为下一次创作的起点。这个小小的数字空间，记录我正在学的东西，也记录我正在做的东西。</p><a class="text-link" href="about.html">更多关于我 <span>↗</span></a></div>
+      <div class="intro-orb" aria-hidden="true"><span>W</span></div>
+    </section>
+
+    <section class="section-block page-wrap">
+      <div class="section-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span>SELECTED WORK</p><h2>最近在做的事<span class="muted-period">.</span></h2></div><a class="text-link desktop-link" href="projects.html">浏览全部项目 <span>↗</span></a></div>
+      <div class="project-grid home-projects">
+        <a class="project-card project-card-wide" href="projects.html#portfolio">
+          <div class="project-visual visual-portfolio"><span class="visual-index">01 / WEB</span><span class="mini-window"><i></i><i></i><i></i><b>雾晚 · 个人主页</b><span class="mini-lines"></span></span><span class="visual-spark">✳</span></div>
+          <div class="project-info"><div><span class="project-type">网站 · 个人作品</span><h3>个人主页</h3></div><span class="card-arrow">↗</span></div>
+          <p class="project-desc">一个持续生长的数字名片，记录项目、学习与新的想法。</p>
+        </a>
+        <a class="project-card" href="projects.html#notes">
+          <div class="project-visual visual-notes"><span class="visual-index">02 / NOTES</span><span class="note-sheet"><b>学习笔记</b><i></i><i></i><i></i><small>keep exploring ↗</small></span><span class="note-star">✳</span></div>
+          <div class="project-info"><div><span class="project-type">学习 · 持续整理</span><h3>学习笔记库</h3></div><span class="card-arrow">↗</span></div>
+          <p class="project-desc">把技术点整理成自己的知识地图，方便回看，也方便分享。</p>
+        </a>
+        <a class="project-card" href="projects.html#wanbox">
+          <div class="project-visual visual-app"><span class="visual-index">03 / ANDROID</span><div class="app-glyph">w<span>箱</span></div><span class="app-orbit"></span><span class="app-caption">wanBox<br>for Android</span></div>
+          <div class="project-info"><div><span class="project-type">Android · 应用</span><h3>wanBox for Android</h3></div><span class="card-arrow">↗</span></div>
+          <p class="project-desc">持续迭代中的 Android 项目，可从发布页获取安装包。</p>
+        </a>
       </div>
-    </div>
-  </section>
+      <a class="text-link mobile-link" href="projects.html">浏览全部项目 <span>↗</span></a>
+    </section>
 
-  <section id="projects">
-    <h2><span class="no">03</span>我的项目</h2>
-    <p class="sub">Projects</p>
-    <div class="grid">
-      <div class="project">
-        <div class="tag">网站 · 本站</div>
-        <h3>个人主页</h3>
-        <p>就是你正在看的这个网站。单文件静态页面，支持深浅色切换和手机适配，托管在 GitHub Pages 上。</p>
-      </div>
-      <div class="project">
-        <div class="tag">学习 · 笔记</div>
-        <h3>学习笔记库</h3>
-        <p>把日常学到的技术点整理成笔记，按主题分类，方便随时查阅和复习，也方便分享给朋友。</p>
-      </div>
-      <div class="project">
-        <div class="tag">工具 · 实验</div>
-        <h3>小工具实验场</h3>
-        <p>放各种练手小项目的地方：有想法就快速做出来试一试，做完再复盘哪里可以做得更好。</p>
-      </div>
-    </div>
-  </section>
+    <section class="skill-strip page-wrap"><div><p class="eyebrow"><span class="eyebrow-line"></span>TOOLS I REACH FOR</p><h2>把想法落到实处的工具。</h2></div><div class="skill-chips"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Git</span><span>Markdown</span><span>Python · 学习中</span></div></section>
 
-  <section id="contact">
-    <h2><span class="no">04</span>联系我</h2>
-    <p class="sub">Contact</p>
-    <div class="card">
-      <p>想聊聊技术、合作做项目，或者只是打个招呼，都欢迎。</p>
-      <p class="muted">电报：<a href="https://t.me/wanwuyy?direct" target="_blank" rel="noopener">t.me/wanwuyy</a></p>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <div class="wrap">© <span id="year">2026</span> 雾晚 · 用 HTML/CSS/JS 手工打造 · 托管于 GitHub Pages</div>
-</footer>
-
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-  var btn = document.getElementById('themeBtn');
-  btn.addEventListener('click', function(){
-    var html = document.documentElement;
-    var light = html.getAttribute('data-theme') === 'light';
-    html.setAttribute('data-theme', light ? 'dark' : 'light');
-    btn.textContent = light ? '浅色模式' : '深色模式';
-  });
-</script>
-
-<script>
-(function(){
-  var gate = document.getElementById('geoGate');
-  function allow(){ if(gate) gate.style.display = 'none'; }
-  var visitorIp = '';
-  function block(){
-    if(!gate) return;
-    var detail = visitorIp ? ('<p>' + visitorIp + '</p>') : '';
-    gate.innerHTML = '<div class="box"><h2>此 IP 已被拉黑</h2>' + detail + '<p>本站仅向中国地区 IP 开放。</p></div>';
-  }
-  function fromTrace(){
-    return fetch('https://www.cloudflare.com/cdn-cgi/trace').then(function(r){return r.text();}).then(function(t){
-      var m = t.match(/loc=([A-Z]{2})/); if(!m) throw new Error('no loc');
-      var im = t.match(/ip=([^\n]+)/); if(im) visitorIp = im[1].trim();
-      return m[1];
-    });
-  }
-  function fromIpapi(){
-    return fetch('https://ipapi.co/country/').then(function(r){return r.text();}).then(function(t){
-      var c = t.trim().toUpperCase(); if(!/^[A-Z]{2}$/.test(c)) throw new Error('bad country'); return c;
-    });
-  }
-  fromTrace().catch(fromIpapi).then(function(country){
-    if(country === 'CN') allow(); else block();
-  }).catch(function(){ allow(); });
-  setTimeout(function(){ if(gate && gate.style.display !== 'none' && gate.querySelector('h2').textContent.indexOf('正在确认') === 0) allow(); }, 6000);
-})();
-</script>
+    <section class="contact-banner page-wrap"><div class="banner-glow"></div><div class="banner-copy"><p class="eyebrow">SAY HELLO</p><h2>有想法？<br>我们聊聊。</h2><p>技术、合作，或者交换最近学到的新东西，都欢迎。</p></div><a class="button button-light" href="contact.html">联系雾晚 <span>↗</span></a><span class="banner-stamp" aria-hidden="true">LET'S<br>MAKE<br>THINGS</span></section>
+  </main>
+  <footer class="site-footer page-wrap"><a class="footer-brand" href="index.html">雾晚<span>.</span></a><span>保持好奇，继续创造。</span><span class="footer-copy">© 雾晚 · 个人作品集</span></footer>
 </body>
 </html>
