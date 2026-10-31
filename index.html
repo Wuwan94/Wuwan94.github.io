@@ -63,8 +63,17 @@
   footer{margin-top:64px;border-top:1px solid var(--border);padding:26px 0 40px;text-align:center;color:var(--muted);font-size:13px}
   @media (max-width:560px){ .links a{display:none} .links a:last-child{display:block} .hero h1{font-size:32px} }
 </style>
+
+<style>
+  #geoGate{position:fixed;inset:0;z-index:9999;background:var(--bg,#0b0e14);color:var(--text,#e9edf5);display:flex;align-items:center;justify-content:center;text-align:center;padding:24px}
+  #geoGate .box{max-width:420px}
+  #geoGate h2{font-size:20px;margin-bottom:10px}
+  #geoGate p{color:var(--muted,#97a1b3);font-size:14px}
+</style>
 </head>
 <body>
+<div id="geoGate"><div class="box"><h2>正在确认访问地区…</h2><p>请稍候</p></div></div>
+
 
 <nav>
   <div class="wrap">
@@ -172,6 +181,31 @@
     html.setAttribute('data-theme', light ? 'dark' : 'light');
     btn.textContent = light ? '浅色模式' : '深色模式';
   });
+</script>
+
+<script>
+(function(){
+  var gate = document.getElementById('geoGate');
+  function allow(){ if(gate) gate.style.display = 'none'; }
+  function block(){
+    if(!gate) return;
+    gate.innerHTML = '<div class="box"><h2>访问受限</h2><p>本站仅向中国大陆地区 IP 开放，感谢理解。</p></div>';
+  }
+  function fromTrace(){
+    return fetch('https://www.cloudflare.com/cdn-cgi/trace').then(function(r){return r.text();}).then(function(t){
+      var m = t.match(/loc=([A-Z]{2})/); if(!m) throw new Error('no loc'); return m[1];
+    });
+  }
+  function fromIpapi(){
+    return fetch('https://ipapi.co/country/').then(function(r){return r.text();}).then(function(t){
+      var c = t.trim().toUpperCase(); if(!/^[A-Z]{2}$/.test(c)) throw new Error('bad country'); return c;
+    });
+  }
+  fromTrace().catch(fromIpapi).then(function(country){
+    if(country === 'CN') allow(); else block();
+  }).catch(function(){ allow(); });
+  setTimeout(function(){ if(gate && gate.style.display !== 'none' && gate.querySelector('h2').textContent.indexOf('正在确认') === 0) allow(); }, 6000);
+})();
 </script>
 </body>
 </html>
