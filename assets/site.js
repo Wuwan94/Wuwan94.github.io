@@ -7,11 +7,11 @@
   const currentLabel = document.getElementById('page-current');
   const dots = [...document.querySelectorAll('.progress-dots i')];
   const themeButtons = [...document.querySelectorAll('.theme-toggle')];
-  if (!deck || slides.length !== 4) return;
+  if (!deck || slides.length !== 5) return;
 
   let savedTheme = null;
   try { savedTheme = localStorage.getItem('wuwan-theme'); } catch (_) {}
-  delete root.dataset.theme; try { localStorage.removeItem('wuwan-theme'); } catch (_) {}
+  if (savedTheme === 'light') root.dataset.theme = 'light';
   themeButtons.forEach((button) => button.addEventListener('click', () => {
     const next = root.dataset.theme === 'light' ? 'dark' : 'light';
     if (next === 'light') root.dataset.theme = 'light';

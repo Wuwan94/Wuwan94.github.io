@@ -223,12 +223,12 @@
 .slide-about{--slide-bg:image-set(url('bg-about-1920.webp') type('image/webp'),url('bg-about-1920.jpg') type('image/jpeg'))}
 .slide-projects{--slide-bg:image-set(url('bg-projects-1920.webp') type('image/webp'),url('bg-projects-1920.jpg') type('image/jpeg'))}
 .slide-contact{--slide-bg:image-set(url('bg-contact-1920.webp') type('image/webp'),url('bg-contact-1920.jpg') type('image/jpeg'))}
-.slide-websites{--slide-bg:image-set(url('bg-websites-1920.webp') type('image/webp'),url('bg-websites-1920.jpg') type('image/jpeg'))}
+.slide-websites{--slide-bg:image-set(url('bg-websites-1920.webp') type('image/webp'),url('bg-websites-1920.jpg') type('image/jpeg'))} .slide-works{--slide-bg:image-set(url('bg-works-1920.webp') type('image/webp'),url('bg-works-1920.jpg') type('image/jpeg'))}
 @media(max-width:900px){
 .slide-about{--slide-bg:image-set(url('bg-about-1280.webp') type('image/webp'),url('bg-about-1280.jpg') type('image/jpeg'))}
 .slide-projects{--slide-bg:image-set(url('bg-projects-1280.webp') type('image/webp'),url('bg-projects-1280.jpg') type('image/jpeg'))}
 .slide-contact{--slide-bg:image-set(url('bg-contact-1280.webp') type('image/webp'),url('bg-contact-1280.jpg') type('image/jpeg'))}
-.slide-websites{--slide-bg:image-set(url('bg-websites-1280.webp') type('image/webp'),url('bg-websites-1280.jpg') type('image/jpeg'))}
+.slide-websites{--slide-bg:image-set(url('bg-websites-1280.webp') type('image/webp'),url('bg-websites-1280.jpg') type('image/jpeg'))} .slide-works{--slide-bg:image-set(url('bg-works-1280.webp') type('image/webp'),url('bg-works-1280.jpg') type('image/jpeg'))}
 }
 #deck .slide:before{will-change:transform;transform:translateZ(0);backface-visibility:hidden}
 #deck .slide{contain:paint}
@@ -237,3 +237,20 @@
 .theme-toggle{display:none!important}
 
 .shop-card{margin-top:12px}
+.theme-toggle{display:grid!important}
+
+/* light theme repair v2 (restored 2026-11-01) */
+:root[data-theme="light"] body{background:#f5f4f8!important}
+:root[data-theme="light"] #deck .slide{background:#f5f4f8!important}
+:root[data-theme="light"] #deck .slide:after{background:linear-gradient(90deg,rgba(245,244,248,.80) 0%,rgba(245,244,248,.58) 52%,rgba(245,244,248,.68) 100%)!important}
+:root[data-theme="light"] #deck .slide,:root[data-theme="light"] #deck .slide h2,:root[data-theme="light"] #deck .slide h3,:root[data-theme="light"] #deck .slide p,:root[data-theme="light"] #deck .slide b,:root[data-theme="light"] #deck .slide small,:root[data-theme="light"] #deck .slide span,:root[data-theme="light"] #deck .slide a,:root[data-theme="light"] #deck .slide em{color:#171622!important;-webkit-text-fill-color:#171622!important;text-shadow:none!important}
+:root[data-theme="light"] #deck .slide .gradient-text{color:#4a347f!important;-webkit-text-fill-color:#4a347f!important;text-shadow:none!important}
+:root[data-theme="light"] #deck .slide p,:root[data-theme="light"] #deck .slide small{color:#3d3852!important;-webkit-text-fill-color:#3d3852!important}
+:root[data-theme="light"] #deck .slide .eyebrow,:root[data-theme="light"] #deck .slide .tile-link,:root[data-theme="light"] #deck .slide .all-repos-link{color:#674fca!important;-webkit-text-fill-color:#674fca!important}
+:root[data-theme="light"] #deck .slide .tile-top,:root[data-theme="light"] #deck .slide .website-index,:root[data-theme="light"] #deck .slide-foot,:root[data-theme="light"] #deck .slide-foot span{color:rgba(23,22,34,.60)!important;-webkit-text-fill-color:rgba(23,22,34,.60)!important}
+:root[data-theme="light"] .topbar .brand,:root[data-theme="light"] .topbar .slide-nav a{color:#171622!important;-webkit-text-fill-color:#171622!important;text-shadow:none!important}
+:root[data-theme="light"] .welcome-cover{background:radial-gradient(ellipse at 75% 25%,rgba(113,83,192,.16),transparent 55%),radial-gradient(ellipse at 15% 85%,rgba(103,79,202,.10),transparent 50%),#f5f4f8!important}
+:root[data-theme="light"] .welcome-cover h1,:root[data-theme="light"] .welcome-cover p,:root[data-theme="light"] .welcome-cover span,:root[data-theme="light"] .welcome-cover a{color:#171622!important;-webkit-text-fill-color:#171622!important;text-shadow:none!important}
+:root[data-theme="light"] .welcome-cover .gradient-text{color:#4a347f!important;-webkit-text-fill-color:#4a347f!important}
+:root[data-theme="light"] .welcome-cover .button-primary{color:#fff!important;-webkit-text-fill-color:#fff!important}
+:root[data-theme="light"] .brand span,:root[data-theme="light"] .brand{text-shadow:none!important;color:#171622!important;-webkit-text-fill-color:#171622!important}
