@@ -254,3 +254,103 @@
 :root[data-theme="light"] .welcome-cover .gradient-text{color:#4a347f!important;-webkit-text-fill-color:#4a347f!important}
 :root[data-theme="light"] .welcome-cover .button-primary{color:#fff!important;-webkit-text-fill-color:#fff!important}
 :root[data-theme="light"] .brand span,:root[data-theme="light"] .brand{text-shadow:none!important;color:#171622!important;-webkit-text-fill-color:#171622!important}
+
+/* ===== Taste restyle 2026-11-01 · direction pinned-poster (seed 1996805498); palette & type kept from brand ===== */
+/* Cover: flat ground, no radial glows */
+.welcome-cover{background:var(--bg)!important}
+/* Solid accent instead of gradient-clipped text */
+.gradient-text{background:none!important;-webkit-background-clip:initial!important;background-clip:initial!important}
+.welcome-cover .gradient-text{color:var(--accent)!important;-webkit-text-fill-color:var(--accent)!important}
+/* Flat buttons: no glow, quiet button is a filled tone */
+.button-primary,.button-primary:hover,.button-primary:active{box-shadow:none!important}
+.button-quiet{border-color:transparent!important;background:color-mix(in srgb,var(--panel) 78%,transparent)}
+/* No outline text-shadows; legibility comes from scrims and filled panels */
+#deck .slide,#deck .slide *,.welcome-cover,.welcome-cover *,.topbar,.topbar *{text-shadow:none!important}
+/* Stronger neutral scrims over the slide photos (dark theme) */
+:root:not([data-theme="light"]) #deck .slide:after{background:linear-gradient(90deg,rgba(7,7,14,.78) 0%,rgba(7,7,14,.52) 52%,rgba(7,7,14,.30) 100%)!important}
+@media (max-width:900px){:root:not([data-theme="light"]) #deck .slide:after{background:linear-gradient(180deg,rgba(7,7,14,.78) 0%,rgba(7,7,14,.52) 55%,rgba(7,7,14,.34) 100%)!important}}
+/* Slide photos are real images now (same contain fit on black as before) */
+#deck .slide:before{background-image:none!important}
+.slide-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;z-index:0;pointer-events:none}
+/* Panels: one flat filled surface — no blur, no gradient, no shadow */
+#deck .about-skills,#deck .website-card,#deck .project-tile,#deck .contact-card,#deck .contact-visual,#deck .interest-repo{background:color-mix(in srgb,var(--panel) 90%,transparent)!important;background-image:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:none!important}
+#deck .contact-visual:after{background:none!important}
+/* Cover art: its picture defines the edge, not an outline or shadow */
+.cover-art{border-color:transparent!important;box-shadow:none!important}
+/* Cover-art centre line: one face, no italic serif accent */
+.cover-art-center p{font-family:var(--sans);font-weight:600;letter-spacing:.01em}
+.cover-art-center em{font-style:normal}
+/* Type floors: nothing meant to be read under 13px; body copy at reading size */
+.cover-role{font-size:18px!important;letter-spacing:.05em}
+.about-copy>p:not(.eyebrow){font-size:15px!important;line-height:1.8}
+.contact-lede{font-size:15px!important}
+.tile-main p{font-size:13.5px!important;line-height:1.55}
+.interest-repo-info small{font-size:13px!important}
+.slide-foot,.tile-top,.website-index,.contact-card-copy small,.all-repos-link,.cover-hint,.cover-footer,.tiny-label,.skills-index,.website-card-copy small{font-size:13px!important}
+.section-intro{font-size:13px!important;white-space:normal}
+.tile-top,.website-index,.contact-card-copy small{letter-spacing:.08em}
+.glyph-star{width:1em;height:1em;display:inline-block;vertical-align:-.1em}
+/* Control feedback */
+.button,.project-tile,.website-card,.contact-card,.interest-repo{transition:transform .25s ease,background-color .25s ease,border-color .25s ease}
+.button:active,.contact-card:active,.website-card:active{transform:scale(.98)}
+/* Motion layer: entrances, orbiting rings, live dot — transform/opacity only */
+@media (prefers-reduced-motion:no-preference){
+@keyframes ts-rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ts-spin{to{transform:rotate(360deg)}}
+@keyframes ts-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.5}}
+.cover-copy>*{animation:ts-rise .85s cubic-bezier(.22,.8,.3,1) both}
+.cover-copy>*:nth-child(2){animation-delay:.08s}
+.cover-copy>*:nth-child(3){animation-delay:.16s}
+.cover-copy>*:nth-child(4){animation-delay:.24s}
+.cover-copy>*:nth-child(5){animation-delay:.32s}
+.cover-art{animation:ts-rise .95s cubic-bezier(.22,.8,.3,1) .14s both}
+.cover-footer{animation:ts-rise .85s cubic-bezier(.22,.8,.3,1) .4s both}
+.cover-orbit.orbit-one{animation:ts-spin 48s linear infinite}
+.cover-orbit.orbit-two{animation:ts-spin 68s linear infinite reverse}
+.hint-pulse{animation:ts-pulse 2.2s ease-in-out infinite}
+body.in-deck .slide-inner>*{animation:ts-rise .7s cubic-bezier(.22,.8,.3,1) both}
+body.in-deck .slide-inner>*:nth-child(2){animation-delay:.08s}
+body.in-deck .slide-inner>*:nth-child(3){animation-delay:.16s}
+}
+
+/* ===== Taste restyle round 2 (fixes from the look round) ===== */
+#deck .slide>img.slide-bg{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;z-index:0!important}
+:root:not([data-theme="light"]) #deck .slide h2,:root:not([data-theme="light"]) #deck .slide h3,:root:not([data-theme="light"]) #deck .slide p,:root:not([data-theme="light"]) #deck .slide a,:root[data-theme="light"] #deck .slide h2,:root[data-theme="light"] #deck .slide h3,:root[data-theme="light"] #deck .slide p,:root[data-theme="light"] #deck .slide a,#deck .slide h2,#deck .slide h3,#deck .slide p,#deck .slide b,#deck .slide small,#deck .slide span,#deck .slide a,.contact-star{text-shadow:none!important}
+.cover-art{background:none!important;border:none!important}
+.cover-art:before{content:"";position:absolute;inset:0;background:url('hero-ambient.jpg') center/cover;filter:brightness(.78) saturate(1.05);z-index:0}
+.button-quiet{border:none!important}
+.theme-toggle{border:none!important;background:color-mix(in srgb,var(--panel) 78%,transparent)}
+.cover-hint,.cover-footer{color:var(--muted)!important}
+.cover-intro{font-size:14.5px!important;line-height:1.8}
+.button{font-size:13px!important}
+.slide-nav a{font-size:13px!important}
+@media (max-width:900px){.slide-nav a{font-size:12px!important}}
+@media (prefers-reduced-motion:no-preference){
+@keyframes ts-drift{from{transform:scale(1)}to{transform:scale(1.07)}}
+.cover-art:before{animation:ts-drift 20s ease-in-out infinite alternate}
+.topbar-inner>*{animation:ts-rise .7s cubic-bezier(.22,.8,.3,1) both}
+.topbar-inner>*:nth-child(2){animation-delay:.06s}
+.topbar-inner>*:nth-child(3){animation-delay:.12s}
+.topbar-inner>*:nth-child(4){animation-delay:.18s}
+}
+
+/* ===== Taste restyle round 3: quote legibility, poster label floor ===== */
+.about-quote{background:color-mix(in srgb,var(--bg) 42%,transparent);border-top:none!important;padding:14px 16px}
+.contact-visual-copy small{font-size:12px!important}
+
+/* ===== Taste restyle round 4: last outline shadows out; flat bar in deck ===== */
+.topbar .brand,.topbar .brand span,.topbar .slide-nav a{text-shadow:none!important}
+#deck .slide h2 *,#deck .slide h3 *,#deck .slide .gradient-text{text-shadow:none!important}
+body.in-deck .topbar{background:rgba(8,8,16,.55)!important}
+:root[data-theme="light"] body.in-deck .topbar{background:rgba(245,244,248,.78)!important}
+
+/* ===== Taste restyle round 5: light-theme scrim strength ===== */
+:root[data-theme="light"] #deck .slide:after{background:linear-gradient(90deg,rgba(245,244,248,.88) 0%,rgba(245,244,248,.62) 52%,rgba(245,244,248,.34) 100%)!important}
+@media (max-width:900px){:root[data-theme="light"] #deck .slide:after{background:linear-gradient(180deg,rgba(245,244,248,.88) 0%,rgba(245,244,248,.62) 55%,rgba(245,244,248,.40) 100%)!important}}
+
+/* ===== Taste restyle round 6: the scrim layer itself was display:none — restore it ===== */
+#deck .slide:after{display:block!important}
+
+/* ===== Taste restyle round 7: cover-art caption stays light on its dark panel in light theme ===== */
+:root[data-theme="light"] .welcome-cover .cover-art .cover-art-center{color:#f1eaff!important}
+:root[data-theme="light"] .welcome-cover .cover-art .cover-art-center p{color:#f1eaff!important;-webkit-text-fill-color:#f1eaff!important}
