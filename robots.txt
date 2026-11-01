@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wuwan94.duckdns.org/sitemap.xml
