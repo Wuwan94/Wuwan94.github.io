@@ -24,8 +24,8 @@
   <link rel="preload" as="image" type="image/webp" href="/assets/strip-about-720.webp">
   <link rel="preload" as="image" type="image/webp" href="/assets/bg-about-1920.webp" media="(min-width: 901px)">
   <link rel="preload" as="image" type="image/webp" href="/assets/bg-about-1280.webp" media="(max-width: 900px)">
-  <link rel="stylesheet" href="/assets/site.css?v=live-20261101">
-  <script src="/assets/site.js?v=live-20261101" defer></script>
+  <link rel="stylesheet" href="/assets/site.css?v=live-20261104">
+  <script src="/assets/site.js?v=live-20261104" defer></script>
   <noscript><style>#geoGate{display:none}</style></noscript>
 </head>
 <body>
@@ -35,8 +35,8 @@
     <a class="brand rise" style="--i:0" href="#cover" data-show-cover aria-label="返回欢迎页"><img class="brand-avatar" src="/assets/avatar.webp" width="160" height="160" decoding="async" fetchpriority="high" alt=""><span>雾晚</span></a>
     <nav class="slide-nav" aria-label="五页导航">
       <a href="#about" data-slide-link="about">关于我</a>
-      <a href="#works" data-slide-link="works">作品</a>
       <a href="#projects" data-slide-link="projects">项目</a>
+      <a href="#works" data-slide-link="works">作品</a>
       <a href="#websites" data-slide-link="websites">网页</a>
       <a href="#contact" data-slide-link="contact">联系</a>
     </nav>
@@ -48,15 +48,15 @@
 
   <section class="cover" id="cover" aria-labelledby="cover-title">
     <div class="cover-head">
-      <h1 id="cover-title" class="rise" style="--i:0">你好，我是<br class="br-m">雾晚。</h1>
+      <h1 id="cover-title" class="cover-title rise" style="--i:0">你好，我是<br class="br-m">雾晚。</h1>
       <p class="cover-role rise" style="--i:1">一名开发者，也是终身学习者</p>
       <p class="cover-intro rise" style="--i:2">喜欢动手做网站和小工具，把好奇心变成真正能用的作品。欢迎来到我的小小数字空间。</p>
     </div>
 
     <div class="strip" aria-label="五页预览，可左右拖动，点开进入对应一页">
       <a class="frame rise" style="--i:3" href="#about" data-enter="about"><picture><source type="image/webp" srcset="/assets/strip-about-720.webp 720w, /assets/bg-about-1280.webp 1280w" sizes="(max-width: 680px) 80vw, 34vw"><img src="/assets/strip-about-720.jpg" width="720" height="405" alt="插画：坐在木楼梯上喝下午茶的女仆少女" decoding="async"></picture><span class="frame-title">关于我</span></a>
-      <a class="frame rise" style="--i:4" href="#works" data-enter="works"><picture><source type="image/webp" srcset="/assets/strip-works-720.webp 720w, /assets/bg-works-1280.webp 1280w" sizes="(max-width: 680px) 80vw, 34vw"><img src="/assets/strip-works-720.jpg" width="720" height="360" alt="插画：昏暗书房里的少女" decoding="async" loading="lazy"></picture><span class="frame-title">作品</span></a>
-      <a class="frame rise" style="--i:5" href="#projects" data-enter="projects"><picture><source type="image/webp" srcset="/assets/strip-projects-720.webp 720w, /assets/bg-projects-1280.webp 1280w" sizes="(max-width: 680px) 80vw, 34vw"><img src="/assets/strip-projects-720.jpg" width="720" height="508" alt="插画：蓝天白云下长发飘起的少女" decoding="async" loading="lazy"></picture><span class="frame-title">项目</span></a>
+      <a class="frame rise" style="--i:4" href="#projects" data-enter="projects"><picture><source type="image/webp" srcset="/assets/strip-projects-720.webp 720w, /assets/bg-projects-1280.webp 1280w" sizes="(max-width: 680px) 80vw, 34vw"><img src="/assets/strip-projects-720.jpg" width="720" height="508" alt="插画：蓝天白云下长发飘起的少女" decoding="async" loading="lazy"></picture><span class="frame-title">项目</span></a>
+      <a class="frame rise" style="--i:5" href="#works" data-enter="works"><picture><source type="image/webp" srcset="/assets/strip-works-720.webp 720w, /assets/bg-works-1280.webp 1280w" sizes="(max-width: 680px) 80vw, 34vw"><img src="/assets/strip-works-720.jpg" width="720" height="360" alt="插画：昏暗书房里的少女" decoding="async" loading="lazy"></picture><span class="frame-title">作品</span></a>
       <a class="frame rise" style="--i:6" href="#websites" data-enter="websites"><picture><source type="image/webp" srcset="/assets/strip-websites-720.webp 720w, /assets/bg-websites-1280.webp 1280w" sizes="(max-width: 680px) 80vw, 34vw"><img src="/assets/strip-websites-720.jpg" width="720" height="405" alt="插画：万圣夜骑扫帚飞过城堡的少女" decoding="async" loading="lazy"></picture><span class="frame-title">网页</span></a>
       <a class="frame rise" style="--i:7" href="#contact" data-enter="contact"><picture><source type="image/webp" srcset="/assets/strip-contact-720.webp 720w, /assets/bg-contact-1280.webp 1280w" sizes="(max-width: 680px) 80vw, 34vw"><img src="/assets/strip-contact-720.jpg" width="720" height="405" alt="插画：天台铁网边的两个少女" decoding="async" loading="lazy"></picture><span class="frame-title">联系</span></a>
     </div>
@@ -71,37 +71,56 @@
   </section>
 
   <main id="deck" tabindex="-1" aria-label="雾晚个人主页，横向滑动浏览五页">
-    <section class="slide slide-about" id="about" aria-label="第一页：了解我">
+    <section class="slide slide-about" id="about" aria-labelledby="title-about">
       <picture class="slide-bg"><source type="image/webp" srcset="/assets/bg-about-1280.webp 1280w, /assets/bg-about-1920.webp 1920w" sizes="100vw"><img src="/assets/bg-about-1920.jpg" srcset="/assets/bg-about-1280.jpg 1280w, /assets/bg-about-1920.jpg 1920w" sizes="100vw" width="1920" height="1080" alt="" decoding="async"></picture>
       <div class="slide-scroll">
         <div class="slide-inner about-layout">
           <div class="about-copy">
-            <h2 class="reveal" style="--i:0">先动手，<br>再慢慢变好。</h2>
-            <p class="reveal" style="--i:1">我是一名对技术充满热情的开发者，平时喜欢折腾网站和各种小工具。这个主页也是我的作品之一——从页面、样式到部署，都是一次边做边学的实践。</p>
+            <h2 id="title-about" class="slide-title reveal" style="--i:0">先动手，<br>再慢慢变好。</h2>
+            <p class="reveal" style="--i:1">我是一名对技术充满热情的开发者，平时喜欢折腾网站和各种小工具。这个主页也是我的作品之一，从页面、样式到部署，都是一次边做边学的实践。</p>
             <p class="reveal" style="--i:2">我相信学习最好的方式就是动手做项目。每做完一个小项目，就把经验记下来，慢慢积累成自己的作品集。</p>
-            <blockquote class="about-quote reveal" style="--i:3"><p>“好奇心会带我们走得更远。”</p><cite>— 雾晚</cite></blockquote>
+            <blockquote class="about-quote reveal" style="--i:3"><p>“好奇心会带我们走得更远。”</p><cite>雾晚</cite></blockquote>
           </div>
           <div class="about-repos">
             <h3 class="reveal" style="--i:2">兴趣与项目 <span>6 个开发项目</span></h3>
             <ul class="repo-list">
               <li class="reveal" style="--i:3"><a href="https://github.com/Wuwan94/wanBoxForAndroid" target="_blank" rel="noopener noreferrer"><b>wanBoxForAndroid</b><small>Android 客户端 · Kotlin</small></a></li>
-              <li class="reveal" style="--i:4"><a href="https://github.com/Wuwan94/finasu-sm8850-builder" target="_blank" rel="noopener noreferrer"><b>finasu-sm8850-builder</b><small>SM8850 6.12 内核构建 · FinaSU</small></a></li>
+              <li class="reveal" style="--i:4"><a href="https://github.com/Wuwan94/AnyKernel3" target="_blank" rel="noopener noreferrer"><b>AnyKernel3</b><small>内核项目 · SukiSU / BakaSU / FinaSU</small></a></li>
               <li class="reveal" style="--i:5"><a href="https://github.com/Wuwan94/oppo_oplus_realme_sm8850" target="_blank" rel="noopener noreferrer"><b>oppo_oplus_realme_sm8850</b><small>SM8850 内核自动构建</small></a></li>
-              <li class="reveal" style="--i:6"><a href="https://github.com/Wuwan94/GKI_FinaSU" target="_blank" rel="noopener noreferrer"><b>GKI_FinaSU</b><small>GKI 自动构建 · FinaSU / SUSFSC</small></a></li>
-              <li class="reveal" style="--i:7"><a href="https://github.com/Wuwan94/AnyKernel3" target="_blank" rel="noopener noreferrer"><b>AnyKernel3</b><small>内核项目 · SukiSU / BakaSU / FinaSU</small></a></li>
-              <li class="reveal" style="--i:8"><a href="https://github.com/Wuwan94/rea" target="_blank" rel="noopener noreferrer"><b>rea</b><small>Agent 辅助逆向 · TypeScript</small></a></li>
+              <li class="reveal" style="--i:6"><a href="https://github.com/Wuwan94/finasu-sm8850-builder" target="_blank" rel="noopener noreferrer"><b>finasu-sm8850-builder</b><small>SM8850 6.12 内核构建 · FinaSU</small></a></li>
+              <li class="reveal" style="--i:7"><a href="https://github.com/Wuwan94/rea" target="_blank" rel="noopener noreferrer"><b>rea</b><small>Agent 辅助逆向 · TypeScript</small></a></li>
+              <li class="reveal" style="--i:8"><a href="https://github.com/Wuwan94/GKI_FinaSU" target="_blank" rel="noopener noreferrer"><b>GKI_FinaSU</b><small>GKI 自动构建 · FinaSU / SUSFSC</small></a></li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="slide slide-works" id="works" aria-label="第二页：我的作品">
+    <section class="slide slide-projects" id="projects" aria-labelledby="title-projects">
+      <picture class="slide-bg"><source type="image/webp" srcset="/assets/bg-projects-1280.webp 1280w, /assets/bg-projects-1920.webp 1920w" sizes="100vw"><img src="/assets/bg-projects-1920.jpg" srcset="/assets/bg-projects-1280.jpg 1280w, /assets/bg-projects-1920.jpg 1920w" sizes="100vw" width="1920" height="1356" alt="" decoding="async"></picture>
+      <div class="slide-scroll">
+        <div class="slide-inner">
+          <div class="slide-head">
+            <h2 id="title-projects" class="slide-title reveal" style="--i:0">我的项目，<br>直接看仓库。</h2>
+            <p class="slide-intro reveal" style="--i:1">这里收录我做的 Android 项目、学习笔记和小工具。</p>
+            <a class="text-link reveal" style="--i:2" href="https://github.com/Wuwan94?tab=repositories" target="_blank" rel="noopener noreferrer">浏览全部 GitHub 仓库 <span aria-hidden="true">↗</span></a>
+          </div>
+          <ul class="name-index">
+            <li class="reveal" style="--i:2"><a aria-label="打开 wanBox for Android 的 GitHub 仓库" href="https://github.com/Wuwan94/wanBoxForAndroid" target="_blank" rel="noopener noreferrer"><b>wanBox for Android</b><span><em>Android</em>打开仓库查看代码与项目内容。</span></a></li>
+            <li class="reveal" style="--i:3"><a aria-label="打开学习笔记库的 GitHub 仓库列表" href="https://github.com/Wuwan94?tab=repositories" target="_blank" rel="noopener noreferrer"><b>学习笔记库</b><span><em>笔记</em>把学到的内容整理成自己的知识地图。</span></a></li>
+            <li class="reveal" style="--i:4"><a aria-label="打开小工具项目的 GitHub 仓库列表" href="https://github.com/Wuwan94?tab=repositories" target="_blank" rel="noopener noreferrer"><b>小工具实验场</b><span><em>实验</em>小工具与实验项目，欢迎到仓库里看看。</span></a></li>
+          </ul>
+          <p class="slide-note reveal" style="--i:5">每个项目都可以在仓库中继续了解。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide slide-works" id="works" aria-labelledby="title-works">
       <picture class="slide-bg"><source type="image/webp" srcset="/assets/bg-works-1280.webp 1280w, /assets/bg-works-1920.webp 1920w" sizes="100vw"><img src="/assets/bg-works-1920.jpg" srcset="/assets/bg-works-1280.jpg 1280w, /assets/bg-works-1920.jpg 1920w" sizes="100vw" width="1920" height="960" alt="" decoding="async"></picture>
       <div class="slide-scroll">
         <div class="slide-inner">
           <div class="slide-head">
-            <h2 class="reveal" style="--i:0">我的作品，<br>点开就能玩。</h2>
+            <h2 id="title-works" class="slide-title reveal" style="--i:0">我的作品，<br>点开就能玩。</h2>
             <p class="slide-intro reveal" style="--i:1">3D 场景、小工具和视频，都收在这里。</p>
           </div>
           <div class="work-feature reveal" style="--i:2">
@@ -114,52 +133,34 @@
       </div>
     </section>
 
-    <section class="slide slide-projects" id="projects" aria-label="第三页：项目仓库">
-      <picture class="slide-bg"><source type="image/webp" srcset="/assets/bg-projects-1280.webp 1280w, /assets/bg-projects-1920.webp 1920w" sizes="100vw"><img src="/assets/bg-projects-1920.jpg" srcset="/assets/bg-projects-1280.jpg 1280w, /assets/bg-projects-1920.jpg 1920w" sizes="100vw" width="1920" height="1356" alt="" decoding="async"></picture>
-      <div class="slide-scroll">
-        <div class="slide-inner">
-          <div class="slide-head">
-            <h2 class="reveal" style="--i:0">我的项目，<br>直接看仓库。</h2>
-            <a class="text-link reveal" style="--i:1" href="https://github.com/Wuwan94?tab=repositories" target="_blank" rel="noopener noreferrer">浏览全部 GitHub 仓库 <span aria-hidden="true">↗</span></a>
-          </div>
-          <ul class="name-index">
-            <li class="reveal" style="--i:2"><a href="https://github.com/Wuwan94/wanBoxForAndroid" target="_blank" rel="noopener noreferrer"><b>wanBox for Android</b><span><em>Android</em>打开仓库查看代码与项目内容。<i>查看 GitHub 仓库 ↗</i></span></a></li>
-            <li class="reveal" style="--i:3"><a href="https://github.com/Wuwan94?tab=repositories" target="_blank" rel="noopener noreferrer"><b>小工具实验场</b><span><em>实验</em>小工具与实验项目，欢迎到仓库里看看。<i>去仓库列表查看 ↗</i></span></a></li>
-            <li class="reveal" style="--i:4"><a href="https://github.com/Wuwan94?tab=repositories" target="_blank" rel="noopener noreferrer"><b>学习笔记库</b><span><em>笔记</em>把学到的内容整理成自己的知识地图。<i>去仓库列表查看 ↗</i></span></a></li>
-          </ul>
-          <p class="slide-note reveal" style="--i:5">每个项目都可以在仓库中继续了解。</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide slide-websites" id="websites" aria-label="第四页：网页入口">
+    <section class="slide slide-websites" id="websites" aria-labelledby="title-websites">
       <picture class="slide-bg"><source type="image/webp" srcset="/assets/bg-websites-1280.webp 1280w, /assets/bg-websites-1920.webp 1920w" sizes="100vw"><img src="/assets/bg-websites-1920.jpg" srcset="/assets/bg-websites-1280.jpg 1280w, /assets/bg-websites-1920.jpg 1920w" sizes="100vw" width="1920" height="1080" alt="" decoding="async"></picture>
       <div class="slide-scroll">
         <div class="slide-inner">
           <div class="slide-head">
-            <h2 class="reveal" style="--i:0">网页与仓库，<br>继续探索。</h2>
-            <p class="slide-intro reveal" style="--i:1">源码与公开项目入口。</p>
+            <h2 id="title-websites" class="slide-title reveal" style="--i:0">网页与仓库，<br>继续探索。</h2>
+            <p class="slide-intro reveal" style="--i:1">源码与公开项目入口。这里可以查看网站源码、公开网页和 GitHub 仓库。</p>
           </div>
           <ul class="name-index">
-            <li class="reveal" style="--i:2"><a href="https://github.com/Wuwan94/Wuwan94.github.io" target="_blank" rel="noopener noreferrer"><b>网站源码</b><span><em>源码</em>查看这个网站的 GitHub 仓库。<i>打开仓库 ↗</i></span></a></li>
-            <li class="reveal" style="--i:3"><a href="https://github.com/Wuwan94?tab=repositories" target="_blank" rel="noopener noreferrer"><b>更多网页与仓库</b><span><em>更多</em>打开 GitHub，浏览我的公开仓库。<i>打开 GitHub ↗</i></span></a></li>
+            <li class="reveal" style="--i:2"><a aria-label="打开网站源码仓库" href="https://github.com/Wuwan94/Wuwan94.github.io" target="_blank" rel="noopener noreferrer"><b>网站源码</b><span><em>源码</em>查看这个网站的 GitHub 仓库。</span></a></li>
+            <li class="reveal" style="--i:3"><a href="https://github.com/Wuwan94?tab=repositories" target="_blank" rel="noopener noreferrer"><b>更多网页与仓库</b><span><em>更多</em>打开 GitHub，浏览我的公开仓库。</span></a></li>
           </ul>
           <p class="slide-note reveal" style="--i:4">点开入口查看源码或仓库，项目详情可在对应仓库里了解。</p>
         </div>
       </div>
     </section>
 
-    <section class="slide slide-contact" id="contact" aria-label="第五页：联系我">
+    <section class="slide slide-contact" id="contact" aria-labelledby="title-contact">
       <picture class="slide-bg"><source type="image/webp" srcset="/assets/bg-contact-1280.webp 1280w, /assets/bg-contact-1920.webp 1920w" sizes="100vw"><img src="/assets/bg-contact-1920.jpg" srcset="/assets/bg-contact-1280.jpg 1280w, /assets/bg-contact-1920.jpg 1920w" sizes="100vw" width="1920" height="1080" alt="" decoding="async"></picture>
       <div class="slide-scroll">
         <div class="slide-inner contact-layout">
           <div class="slide-head">
-            <h2 class="reveal" style="--i:0">有想法？<br>我们聊聊。</h2>
-            <p class="slide-intro reveal" style="--i:1">技术、合作，或者交换最近学到的新东西，都欢迎。</p>
+            <h2 id="title-contact" class="slide-title reveal" style="--i:0">有想法？<br>我们聊聊。</h2>
+            <p class="slide-intro contact-message reveal" style="--i:1">技术、合作，或者交换最近学到的新东西，都欢迎；可以通过 Telegram 联系我，也可看看我的 AI 商品小店。</p>
           </div>
           <a class="telegram reveal" style="--i:2" href="https://t.me/wanwuyy?direct" target="_blank" rel="noopener noreferrer"><b>@wanwuyy</b><span>通过 Telegram 联系雾晚 ↗</span></a>
           <a class="shop reveal" style="--i:3" href="https://www.16688.com.cn/shop/S809062" target="_blank" rel="noopener noreferrer"><b>阿婉的 AI 对接</b><span>我自己开的小店，卖 AI 成品号等虚拟商品 ↗</span></a>
-          <p class="contact-close reveal" style="--i:4">保持好奇 · 继续创造。感谢来访，雾晚</p>
+          <p class="contact-close reveal" style="--i:5">保持好奇 · 继续创造。感谢来访，雾晚</p>
         </div>
       </div>
     </section>

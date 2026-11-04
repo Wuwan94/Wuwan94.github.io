@@ -2,8 +2,23 @@
   const root = document.documentElement;
   const body = document.body;
   const deck = document.getElementById('deck');
+  const cover = document.getElementById('cover');
   const slides = [...document.querySelectorAll('.slide')];
   const navLinks = [...document.querySelectorAll('[data-slide-link]')];
+  const titleIds = ['cover-title', ...slides.map((slide) => `title-${slide.id}`)];
+  const setCurrentTitle = (activeId) => {
+    for (const id of titleIds) {
+      const el = document.getElementById(id);
+      if (!el) continue;
+      const shouldBeH1 = id === (activeId === 'cover' ? 'cover-title' : `title-${activeId}`);
+      const wanted = shouldBeH1 ? 'h1' : 'h2';
+      if (el.tagName.toLowerCase() === wanted) continue;
+      const next = document.createElement(wanted);
+      for (const attr of el.attributes) next.setAttribute(attr.name, attr.value);
+      next.innerHTML = el.innerHTML;
+      el.replaceWith(next);
+    }
+  };
   if (!deck || slides.length !== 5) return;
 
   /* ---------- 雾 / 晚 : day and night ---------- */
@@ -42,6 +57,7 @@
       link.classList.toggle('is-active', active);
       if (active) link.setAttribute('aria-current', 'page'); else link.removeAttribute('aria-current');
     });
+    if (body.classList.contains('in-deck')) setCurrentTitle(slides[index].id);
     if (body.classList.contains('in-deck')) slides[index].classList.add('is-in');
   };
   const goTo = (index, updateHash = true) => {
@@ -53,7 +69,9 @@
   };
   const enterDeck = (targetId, setHistory = true) => {
     const index = Math.max(0, slides.findIndex((slide) => slide.id === targetId));
+    setCurrentTitle(slides[index].id);
     body.classList.add('in-deck');
+    if (cover) cover.setAttribute('aria-hidden', 'true');
     const prev = deck.style.scrollBehavior;
     deck.style.scrollBehavior = 'auto';
     deck.scrollLeft = index * deck.clientWidth;
@@ -63,7 +81,9 @@
     deck.focus({ preventScroll: true });
   };
   const leaveDeck = () => {
+    setCurrentTitle('cover');
     body.classList.remove('in-deck');
+    if (cover) cover.removeAttribute('aria-hidden');
     history.replaceState(null, '', `${location.pathname}${location.search}`);
   };
   document.querySelectorAll('[data-enter]').forEach((link) => link.addEventListener('click', (event) => {
