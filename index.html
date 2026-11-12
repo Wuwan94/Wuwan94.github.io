@@ -4,11 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="dark light">
-  <meta name="theme-color" content="#0b0c0f">
-  <meta name="description" content="雾晚的个人主页：了解我、看我的项目与作品、浏览网页入口，并通过 Telegram 联系。">
+  <meta name="theme-color" content="#090b10">
+  <meta name="description" content="雾晚（Wuwan94）的个人主页：Android 系统底层、Root 代理客户端 wanBox 创作者、内核构建与极客工具探索。">
   <title>雾晚 — 开发者 · 终身学习者</title>
   <link rel="canonical" href="https://wuwan94.duckdns.org/">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <script>
     (function () {
       var t = null;
@@ -17,253 +23,436 @@
         t = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
       }
       document.documentElement.dataset.theme = t;
-      document.documentElement.classList.add('js');
     })();
   </script>
-  <link rel="preconnect" href="https://api.github.com" crossorigin>
-  <link rel="preload" as="image" type="image/webp" href="/assets/strip-about-720.webp">
-  <link rel="preload" as="image" type="image/webp" href="/assets/bg-about-1920.webp" media="(min-width: 901px)">
-  <link rel="preload" as="image" type="image/webp" href="/assets/bg-about-1280.webp" media="(max-width: 900px)">
-  <link rel="stylesheet" href="/assets/site.css?v=live-20261113-design">
-  <script src="/assets/site.js?v=live-20261113-design" defer></script>
+
+  <link rel="stylesheet" href="/assets/site.css?v=live-20261113-overhaul">
+  <script src="/assets/site.js?v=live-20261113-overhaul" defer></script>
   <noscript><style>#geoGate{display:none}</style></noscript>
 </head>
 <body>
+  <!-- Geo Gate Access Check -->
   <div id="geoGate"><div class="box"><h2>正在确认访问地区…</h2><p>请稍候</p></div></div>
 
-  <header class="topbar">
-    <a class="brand rise" style="--i:0" href="#cover" data-show-cover aria-label="返回欢迎页"><img class="brand-avatar" src="/assets/avatar.webp" width="160" height="160" decoding="async" fetchpriority="high" alt=""><span>雾晚</span></a>
-    <nav class="slide-nav" aria-label="五页导航">
-      <a href="#about" data-slide-link="about">关于我</a>
-      <a href="#projects" data-slide-link="projects">项目</a>
-      <a href="#works" data-slide-link="works">作品</a>
-      <a href="#websites" data-slide-link="websites">网页</a>
-      <a href="#contact" data-slide-link="contact">联系</a>
-    </nav>
-    <div class="topbar-actions rise" style="--i:2">
-      <button type="button" class="theme-switch" data-theme-toggle aria-label="切换白天 / 黑夜模式"><span class="ts-day" aria-hidden="true">雾</span><span class="ts-night" aria-hidden="true">晚</span></button>
-      <a class="download-client" data-latest-bundle href="https://github.com/Wuwan94/wanBoxForAndroid/releases/download/v3.0.15-preview.1/wanbox-root-module-with-manager-arm64-v8a.zip" target="_blank" rel="noopener noreferrer" aria-label="下载 wanBox 最新客户端"><span>下载客户端</span><b aria-hidden="true">↓</b></a>
+  <!-- Ambient Mist Canvas & Interactive Spotlight -->
+  <canvas id="mistCanvas"></canvas>
+  <div class="ambient-spotlight" aria-hidden="true"></div>
+  <div class="ambient-grid" aria-hidden="true"></div>
+
+  <!-- Sticky Frosted Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand-link" href="#hero" aria-label="回到顶部">
+        <div class="brand-avatar-wrap">
+          <img class="brand-avatar" src="/assets/avatar.webp" width="76" height="76" alt="雾晚的头像" fetchpriority="high">
+          <span class="brand-status-dot" title="活跃在岗"></span>
+        </div>
+        <span>雾晚</span>
+      </a>
+
+      <nav class="nav-menu" aria-label="站内导航">
+        <a class="nav-link" href="#about" data-nav-target>关于</a>
+        <a class="nav-link" href="#projects" data-nav-target>项目</a>
+        <a class="nav-link" href="#works" data-nav-target>作品</a>
+        <a class="nav-link" href="#websites" data-nav-target>足迹</a>
+        <a class="nav-link" href="#contact" data-nav-target>联系</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="theme-toggle-btn" data-theme-toggle aria-label="切换白天 / 黑夜模式">
+          <span class="theme-mode-text">晚 · 深夜</span>
+        </button>
+        <a class="header-download-btn" data-latest-bundle href="https://github.com/Wuwan94/wanBoxForAndroid/releases/download/v3.0.15-preview.1/wanbox-root-module-with-manager-arm64-v8a.zip" target="_blank" rel="noopener noreferrer" aria-label="下载最新 wanBox 客户端模块">
+          <span>wanBox 模块</span><b aria-hidden="true">↓</b>
+        </a>
+        <button type="button" class="mobile-nav-toggle" aria-label="展开或收起菜单" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
     </div>
   </header>
 
-  <section class="cover" id="cover" aria-labelledby="cover-title">
-    <div class="cover-head">
-      <h1 id="cover-title" class="cover-title rise" style="--i:0">你好，我是<br class="br-m">雾晚。</h1>
-      <p class="cover-role rise" style="--i:1">一名开发者，也是终身学习者</p>
-      <p class="cover-intro rise" style="--i:2">喜欢动手做网站和小工具，把好奇心变成真正能用的作品。欢迎来到我的小小数字空间。</p>
-    </div>
-
-    <div class="strip" aria-label="五页预览，可左右拖动，点开进入对应一页">
-      <a class="frame rise" style="--i:3" href="#about" data-enter="about"><picture><source type="image/webp" srcset="/assets/strip-about-720.webp 720w, /assets/bg-about-1280.webp 1280w" sizes="(max-width: 680px) 80vw, 34vw"><img src="/assets/strip-about-720.jpg" width="720" height="405" alt="插画：坐在木楼梯上喝下午茶的女仆少女" decoding="async"></picture><span class="frame-title">关于我</span></a>
-      <a class="frame rise" style="--i:4" href="#projects" data-enter="projects"><picture><source type="image/webp" srcset="/assets/strip-projects-720.webp 720w, /assets/bg-projects-1280.webp 1280w" sizes="(max-width: 680px) 80vw, 34vw"><img src="/assets/strip-projects-720.jpg" width="720" height="508" alt="插画：蓝天白云下长发飘起的少女" decoding="async" loading="lazy"></picture><span class="frame-title">项目</span></a>
-      <a class="frame rise" style="--i:5" href="#works" data-enter="works"><picture><source type="image/webp" srcset="/assets/strip-works-720.webp 720w, /assets/bg-works-1280.webp 1280w" sizes="(max-width: 680px) 80vw, 34vw"><img src="/assets/strip-works-720.jpg" width="720" height="360" alt="插画：昏暗书房里的少女" decoding="async" loading="lazy"></picture><span class="frame-title">作品</span></a>
-      <a class="frame rise" style="--i:6" href="#websites" data-enter="websites"><picture><source type="image/webp" srcset="/assets/strip-websites-720.webp 720w, /assets/bg-websites-1280.webp 1280w" sizes="(max-width: 680px) 80vw, 34vw"><img src="/assets/strip-websites-720.jpg" width="720" height="405" alt="插画：万圣夜骑扫帚飞过城堡的少女" decoding="async" loading="lazy"></picture><span class="frame-title">网页</span></a>
-      <a class="frame rise" style="--i:7" href="#contact" data-enter="contact"><picture><source type="image/webp" srcset="/assets/strip-contact-720.webp 720w, /assets/bg-contact-1280.webp 1280w" sizes="(max-width: 680px) 80vw, 34vw"><img src="/assets/strip-contact-720.jpg" width="720" height="405" alt="插画：天台铁网边的两个少女" decoding="async" loading="lazy"></picture><span class="frame-title">联系</span></a>
-    </div>
-
-    <div class="cover-foot">
-      <div class="cover-actions rise" style="--i:8">
-        <a class="button" href="#about" data-enter="about">进入个人主页 <span aria-hidden="true">→</span></a>
-        <a class="text-link" href="https://github.com/Wuwan94" target="_blank" rel="noopener noreferrer">去仓库 <span aria-hidden="true">↗</span></a>
-      </div>
-      <p class="cover-hint rise" style="--i:9">stay curious. 进入后，左右滑动浏览五页</p>
-    </div>
-  </section>
-
-  <main id="deck" tabindex="-1" aria-label="雾晚个人主页，横向滑动浏览五页">
-        <section class="slide slide-about" id="about" aria-labelledby="title-about">
-      <picture class="slide-bg"><source type="image/webp" srcset="/assets/bg-about-1280.webp 1280w, /assets/bg-about-1920.webp 1920w" sizes="100vw"><img src="/assets/bg-about-1920.jpg" srcset="/assets/bg-about-1280.jpg 1280w, /assets/bg-about-1920.jpg 1920w" sizes="100vw" width="1920" height="1080" alt="" decoding="async"></picture>
-      <div class="slide-scroll">
-        <div class="slide-inner about-layout">
-          <div class="about-copy">
-            <h2 id="title-about" class="slide-title reveal" style="--i:0">先动手，<br>再慢慢变好。</h2>
-            <p class="reveal" style="--i:1">我是一名常在深夜写代码的独立开发者，专注于 Android 系统底层、Root 代理生态与内核自动化编译。喜欢把好奇心沉淀为真正能够稳定运行的开源工具与服务。</p>
-            <p class="reveal" style="--i:2">在工程实践中，我坚持证据驱动与 Fail-Closed 原则：小步快发、严格单测、文档即代码，绝不为图省事而破坏系统安全边界。这个主页也是我的试验田，从版式排布到光影质感，皆是边做边学的印记。</p>
-            <blockquote class="about-quote reveal" style="--i:3"><p>“好奇心会带我们走得更远。”</p><cite>雾晚</cite></blockquote>
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            <span class="hero-eyebrow-dot"></span>
+            <span>Android 底层开发 · 架构工程 · 极客探索</span>
           </div>
-          <div class="about-repos">
-            <h3 class="reveal" style="--i:2">工程信条与技术雷达 <span>Codebase & Standards</span></h3>
-            <div class="principles-grid reveal" style="--i:3">
-              <div class="principle-item">
-                <b>🛡️ Fail-Closed 绝不裸奔</b>
-                <p>异常即阻断，宁断网绝不让流量未经审查直连流出。</p>
-              </div>
-              <div class="principle-item">
-                <b>⚡ 瘦身解耦架构</b>
-                <p>APK 仅 6.19MB，界面与核心守护进程解耦，本地回环通信。</p>
-              </div>
-              <div class="principle-item">
-                <b>🔄 5s 免重启热更新</b>
-                <p>异步健康看门狗，秒级发现崩溃自动平滑回滚，无需重启系统。</p>
-              </div>
-              <div class="principle-item">
-                <b>⚙️ 自动化门禁闭环</b>
-                <p>全量单元测试覆盖，发布包与哈希校验严格对齐，不留隐患。</p>
-              </div>
+          <h1 class="hero-title">
+            你好，我是 <span class="gradient-text">雾晚</span>。
+          </h1>
+          <p class="hero-desc">
+            一名常在深夜写代码的独立开发者。专注于 Android 系统底层、Root 代理生态与内核自动化编译。坚持 Fail-Closed 防御原则与极简解耦架构，把好奇心沉淀为真正趁手稳定的开源工具。
+          </p>
+          <div class="hero-actions">
+            <a class="btn-primary" href="#projects">
+              <span>探索项目矩阵</span>
+              <span aria-hidden="true">↓</span>
+            </a>
+            <a class="btn-secondary" href="https://github.com/Wuwan94" target="_blank" rel="noopener noreferrer">
+              <span>GitHub 个人主页</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a class="btn-secondary" href="/taste-preview/">
+              <span>味蕾尝鲜站</span>
+              <span aria-hidden="true">⚡</span>
+            </a>
+          </div>
+
+          <!-- Quick Stats Bar -->
+          <div class="hero-stats-bar">
+            <div class="stat-item">
+              <span class="stat-value">v3.0.14</span>
+              <span class="stat-label">wanBox 稳定基线</span>
             </div>
-            <div class="tech-stack-pills reveal" style="--i:4">
-              <span>Kotlin</span>
-              <span>Go Core</span>
-              <span>Shell / Bash</span>
-              <span>TypeScript</span>
-              <span>C / C++</span>
-              <span>KernelSU / APatch</span>
-              <span>GitHub Actions</span>
+            <div class="stat-item">
+              <span class="stat-value">v3.0.15-pre.1</span>
+              <span class="stat-label">最新尝鲜版本</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value">6.19 MiB</span>
+              <span class="stat-label">纯净 APK 瘦身体积</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value">Fail-Closed</span>
+              <span class="stat-label">零直连泄漏防御铁律</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-        <section class="slide slide-projects" id="projects" aria-labelledby="title-projects">
-      <picture class="slide-bg"><source type="image/webp" srcset="/assets/bg-projects-1280.webp 1280w, /assets/bg-projects-1920.webp 1920w" sizes="100vw"><img src="/assets/bg-projects-1920.jpg" srcset="/assets/bg-projects-1280.jpg 1280w, /assets/bg-projects-1920.jpg 1920w" sizes="100vw" width="1920" height="1356" alt="" decoding="async"></picture>
-      <div class="slide-scroll">
-        <div class="slide-inner">
-          <div class="slide-head">
-            <h2 id="title-projects" class="slide-title reveal" style="--i:0">工程实践与<br>开源项目。</h2>
-            <p class="slide-intro reveal" style="--i:1">专注于 Android 系统底层、Root 代理客户端与内核自动化构建。所有项目均开源透明。</p>
-            <a class="text-link reveal" style="--i:2" href="https://github.com/Wuwan94?tab=repositories" target="_blank" rel="noopener noreferrer">浏览全部 GitHub 仓库 <span aria-hidden="true">↗</span></a>
+    <!-- About & Standards Section -->
+    <section class="content-section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">About & Standards</span>
+          <h2 class="section-title">先动手，再慢慢变好。</h2>
+          <p class="section-subtitle">坚持证据驱动与防御性编程。在复杂的 Android Root 生态中恪守严格的安全边界。</p>
+        </div>
+
+        <div class="about-grid">
+          <!-- Bio Story Card -->
+          <div class="about-bio-card">
+            <p>
+              在日常工程实践中，我热衷于探索 Linux 内核、Android 系统底层机制与现代网络代理架构。我深知在 Root 权限下，一次疏忽就可能导致设备失联或流量泄漏，因此始终坚持严格的防御性架构。
+            </p>
+            <p>
+              代码即契约，文档即代码。每一个架构决策均自带回退机制与可验证的单测覆盖。这个主页同样是我的数字试验田，从版式排布到光影质感，皆是边做边学的印记。
+            </p>
+            <blockquote class="about-quote">
+              <p>“好奇心会带我们走得更远。”</p>
+              <cite>—— 雾晚</cite>
+            </blockquote>
+
+            <!-- Tech Radar -->
+            <div class="tech-radar-wrap" style="margin-top: 28px;">
+              <div class="tech-radar-title">技术雷达与工具链 · Tech Stack</div>
+              <div class="tech-pills">
+                <span class="tech-pill">Kotlin</span>
+                <span class="tech-pill">Go Core</span>
+                <span class="tech-pill">C / C++</span>
+                <span class="tech-pill">Shell / Bash</span>
+                <span class="tech-pill">KernelSU</span>
+                <span class="tech-pill">APatch</span>
+                <span class="tech-pill">Magisk</span>
+                <span class="tech-pill">sing-box</span>
+                <span class="tech-pill">GitHub Actions</span>
+                <span class="tech-pill">TypeScript</span>
+                <span class="tech-pill">Three.js</span>
+              </div>
+            </div>
           </div>
 
-          <!-- 旗舰项目卡片 -->
-          <div class="project-hero reveal" style="--i:2">
-            <div class="project-hero-badge">
-              <span class="badge-flagship">🔥 主力开源旗舰</span>
-              <span class="badge-pill">稳定版 v3.0.14</span>
-              <span class="badge-pill">尝鲜版 v3.0.15-preview.1</span>
+          <!-- 4 Creeds Grid -->
+          <div class="creeds-grid">
+            <div class="creed-card">
+              <div class="creed-icon-wrap">🛡️</div>
+              <h3 class="creed-title">Fail-Closed 绝不裸奔</h3>
+              <p class="creed-desc">异常即阻断黑洞，坚守流量安全底线，宁断网绝不让流量未经审查直连流出。</p>
             </div>
-            <h3 class="project-hero-title">wanBox for Android</h3>
-            <p class="project-hero-desc">专为 Android 12+ Root 设备打造的高性能透明代理客户端。采用纯瘦身管理器架构（APK 仅 6.19 MiB），核心守护进程与界面完全解耦；严守 Fail-Closed 流量防泄漏红线，支持 5 秒 Canary 探活与秒崩回滚的免重启热更新机制。</p>
-            <div class="project-spec-pills">
-              <span class="spec-pill">🛡️ Fail-Closed 防泄漏</span>
-              <span class="spec-pill">⚡ 瘦身 APK 6.19MB</span>
-              <span class="spec-pill">🔄 5s Canary 热更新</span>
-              <span class="spec-pill">📦 120项 LruCache</span>
-              <span class="spec-pill">🔒 Magisk / KSU / APatch</span>
+
+            <div class="creed-card">
+              <div class="creed-icon-wrap">⚡</div>
+              <h3 class="creed-title">极简解耦架构</h3>
+              <p class="creed-desc">APK 仅 6.19MB，界面与核心守护进程彻底解耦，通过本地回环通信，零冗余开销。</p>
             </div>
-            <div class="project-hero-actions">
-              <a class="button button-sm" href="https://github.com/Wuwan94/wanBoxForAndroid" target="_blank" rel="noopener noreferrer">访问 GitHub 仓库 <span aria-hidden="true">↗</span></a>
-              <a class="button button-sm button-secondary" data-latest-bundle href="https://github.com/Wuwan94/wanBoxForAndroid/releases/download/v3.0.15-preview.1/wanbox-root-module-with-manager-arm64-v8a.zip" target="_blank" rel="noopener noreferrer">下载模块安装包 <span aria-hidden="true">↓</span></a>
+
+            <div class="creed-card">
+              <div class="creed-icon-wrap">🔄</div>
+              <h3 class="creed-title">5s Canary 免重启热更新</h3>
+              <p class="creed-desc">异步健康看门狗实时探测，秒级发现异常即刻自动回滚，无须重启整个系统。</p>
+            </div>
+
+            <div class="creed-card">
+              <div class="creed-icon-wrap">⚙️</div>
+              <h3 class="creed-title">自动化门禁闭环</h3>
+              <p class="creed-desc">全量单测覆盖，发布包与 SHA-256 哈希严格对齐，小步快发且杜绝任何技术负债。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="content-section" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Open Source & Projects</span>
+          <h2 class="section-title">工程实践与开源展台。</h2>
+          <p class="section-subtitle">专注于 Android 系统底层、Root 代理生态与内核自动化构建。所有核心项目均开源透明。</p>
+        </div>
+
+        <!-- Flagship Hero Card: wanBox for Android -->
+        <div class="flagship-card">
+          <div class="flagship-badge-row">
+            <span class="badge-flagship-tag">🔥 核心开源旗舰</span>
+            <span class="badge-version-pill">稳定版 v3.0.14</span>
+            <span class="badge-version-pill">尝鲜版 v3.0.15-preview.1</span>
+            <span class="badge-version-pill">Root 专用</span>
+          </div>
+          <h3 class="flagship-title">wanBox for Android</h3>
+          <p class="flagship-desc">
+            专为 Android 12+ Root 设备打造的高性能透明代理客户端。采用纯瘦身管理器架构（APK 仅 6.19 MiB），核心守护进程与界面完全解耦；严守 Fail-Closed 流量防泄漏红线，支持 5 秒 Canary 探活与秒崩回滚的免重启热更新机制。
+          </p>
+
+          <div class="flagship-specs">
+            <div class="spec-box">
+              <div class="spec-box-title"><span>🛡️</span> Fail-Closed 防泄漏</div>
+              <div class="spec-box-desc">瞬态黑洞路由守护，异常中断绝不裸连</div>
+            </div>
+            <div class="spec-box">
+              <div class="spec-box-title"><span>⚡</span> 极致瘦身材</div>
+              <div class="spec-box-desc">6.19 MiB 纯净 APK，严守 25MB 体积预算</div>
+            </div>
+            <div class="spec-box">
+              <div class="spec-box-title"><span>🔄</span> Canary 热更新</div>
+              <div class="spec-box-desc">5 秒健康看门狗，秒崩即自动安全回滚</div>
+            </div>
+            <div class="spec-box">
+              <div class="spec-box-title"><span>📦</span> 120项 LruCache</div>
+              <div class="spec-box-desc">协程异步化分应用列表渲染与瞬时响应</div>
             </div>
           </div>
 
-          <!-- 开源矩阵网格 -->
-          <div class="project-grid reveal" style="--i:3">
-            <a class="project-card" href="https://github.com/Wuwan94/AnyKernel3" target="_blank" rel="noopener noreferrer">
-              <div>
-                <span class="project-card-tag">Android 内核</span>
-                <h4>AnyKernel3</h4>
-                <p>Android 通用内核刷机打包模块，支持 SukiSU / BakaSU / FinaSU 等主流 Root 框架。</p>
-              </div>
-              <span class="project-card-more">查看仓库 ↗</span>
+          <div class="flagship-actions">
+            <a class="btn-flagship-download" data-latest-bundle href="https://github.com/Wuwan94/wanBoxForAndroid/releases/download/v3.0.15-preview.1/wanbox-root-module-with-manager-arm64-v8a.zip" target="_blank" rel="noopener noreferrer">
+              <span>一键下载合并模块包 (arm64-v8a)</span>
+              <span aria-hidden="true">↓</span>
             </a>
-
-            <a class="project-card" href="https://github.com/Wuwan94/oppo_oplus_realme_sm8850" target="_blank" rel="noopener noreferrer">
-              <div>
-                <span class="project-card-tag">CI / 自动化编译</span>
-                <h4>SM8850 内核自动构建</h4>
-                <p>骁龙 SM8850 Android 6.12 内核自动化构建流水线，集成高性能编译器与依赖缓存。</p>
-              </div>
-              <span class="project-card-more">查看仓库 ↗</span>
+            <a class="btn-secondary" href="https://github.com/Wuwan94/wanBoxForAndroid" target="_blank" rel="noopener noreferrer">
+              <span>访问 GitHub 仓库</span>
+              <span aria-hidden="true">↗</span>
             </a>
-
-            <a class="project-card" href="https://github.com/Wuwan94/finasu-sm8850-builder" target="_blank" rel="noopener noreferrer">
-              <div>
-                <span class="project-card-tag">Root 框架构建</span>
-                <h4>FinaSU SM8850 构建器</h4>
-                <p>针对 SM8850 设备深度定制的 FinaSU 内核构建环境与管理器打包规范。</p>
-              </div>
-              <span class="project-card-more">查看仓库 ↗</span>
+            <a class="btn-secondary" href="https://github.com/Wuwan94/wanBoxForAndroid/releases" target="_blank" rel="noopener noreferrer">
+              <span>发行清单与日志</span>
+              <span aria-hidden="true">→</span>
             </a>
+          </div>
+        </div>
 
-            <a class="project-card" href="https://github.com/Wuwan94/rea" target="_blank" rel="noopener noreferrer">
-              <div>
+        <!-- Ecosystem Grid (6 Projects) -->
+        <div class="projects-grid">
+          <a class="project-card" href="https://github.com/Wuwan94/oppo_oplus_realme_sm8850" target="_blank" rel="noopener noreferrer">
+            <div>
+              <div class="project-card-header">
+                <span class="project-card-tag">CI / 内核编译</span>
+                <span class="project-card-icon">↗</span>
+              </div>
+              <h4 class="project-card-title">SM8850 内核自动构建</h4>
+              <p class="project-card-desc">骁龙 SM8850 Android 6.12 内核自动化构建流水线，集成高性能编译器与依赖缓存。</p>
+            </div>
+            <div class="project-card-meta">查看仓库与构建脚本 ↗</div>
+          </a>
+
+          <a class="project-card" href="https://github.com/Wuwan94/AnyKernel3" target="_blank" rel="noopener noreferrer">
+            <div>
+              <div class="project-card-header">
+                <span class="project-card-tag">Android 内核刷机</span>
+                <span class="project-card-icon">↗</span>
+              </div>
+              <h4 class="project-card-title">AnyKernel3</h4>
+              <p class="project-card-desc">Android 通用内核刷机打包模块，支持 SukiSU / BakaSU / FinaSU 等主流 Root 框架。</p>
+            </div>
+            <div class="project-card-meta">查看仓库与定制配置 ↗</div>
+          </a>
+
+          <a class="project-card" href="https://github.com/Wuwan94/finasu-sm8850-builder" target="_blank" rel="noopener noreferrer">
+            <div>
+              <div class="project-card-header">
+                <span class="project-card-tag">Root 框架集成</span>
+                <span class="project-card-icon">↗</span>
+              </div>
+              <h4 class="project-card-title">FinaSU SM8850 构建器</h4>
+              <p class="project-card-desc">针对 SM8850 旗舰设备深度定制的 FinaSU 内核环境构建与管理器打包工程。</p>
+            </div>
+            <div class="project-card-meta">查看构建器实现 ↗</div>
+          </a>
+
+          <a class="project-card" href="https://github.com/Wuwan94/rea" target="_blank" rel="noopener noreferrer">
+            <div>
+              <div class="project-card-header">
                 <span class="project-card-tag">TypeScript / 逆向</span>
-                <h4>rea 逆向工具库</h4>
-                <p>Agent 辅助逆向工程与代码分析工具，探索自动化程序理解与插桩技术。</p>
+                <span class="project-card-icon">↗</span>
               </div>
-              <span class="project-card-more">查看仓库 ↗</span>
-            </a>
-
-            <a class="project-card" href="https://github.com/Wuwan94/GKI_FinaSU" target="_blank" rel="noopener noreferrer">
-              <div>
-                <span class="project-card-tag">GKI / 安全防护</span>
-                <h4>GKI_FinaSU</h4>
-                <p>通用内核镜像（GKI）自动化构建与集成方案，支持 SUSFS 隐藏与安全加固。</p>
-              </div>
-              <span class="project-card-more">查看仓库 ↗</span>
-            </a>
-
-            <a class="project-card" href="https://github.com/Wuwan94?tab=repositories" target="_blank" rel="noopener noreferrer">
-              <div>
-                <span class="project-card-tag">开源实验场</span>
-                <h4>学习笔记与工具库</h4>
-                <p>个人技术地图、系统架构学习笔记以及日常开发中沉淀的开箱即用脚本。</p>
-              </div>
-              <span class="project-card-more">浏览全部 ↗</span>
-            </a>
-          </div>
-
-          <p class="slide-note reveal" style="--i:4">所有项目源码与发行资产均遵循严格的 CI 门禁与版本规范。</p>
-        </div>
-      </div>
-    </section>
-
-        <section class="slide slide-works" id="works" aria-labelledby="title-works">
-      <picture class="slide-bg"><source type="image/webp" srcset="/assets/bg-works-1280.webp 1280w, /assets/bg-works-1920.webp 1920w" sizes="100vw"><img src="/assets/bg-works-1920.jpg" srcset="/assets/bg-works-1280.jpg 1280w, /assets/bg-works-1920.jpg 1920w" sizes="100vw" width="1920" height="960" alt="" decoding="async"></picture>
-      <div class="slide-scroll">
-        <div class="slide-inner">
-          <div class="slide-head">
-            <h2 id="title-works" class="slide-title reveal" style="--i:0">数字作品，<br>点开即玩。</h2>
-            <p class="slide-intro reveal" style="--i:1">探索 WebGL / 3D 图形学、交互式场景与多媒体实验空间。</p>
-          </div>
-          <div class="work-feature reveal" style="--i:2">
-            <div class="work-feature-header">
-              <span class="badge-flagship">Three.js · WebGL 3D 场景</span>
-              <span class="badge-pill">雨夜便利店</span>
+              <h4 class="project-card-title">rea 逆向工具库</h4>
+              <p class="project-card-desc">Agent 辅助逆向工程与代码分析探索库，专注于自动化程序理解与动态插桩技术。</p>
             </div>
-            <h3>雨夜便利店街角</h3>
-            <p>全景可拖动旋转的 3D 微缩街角。淅淅沥沥的雨滴声、霓虹招牌在湿润沥青路面上的倒影，以及深夜亮着温暖灯光的街角便利店。支持全景视轨旋转与环境音效。</p>
-            <div class="work-feature-actions">
-              <a class="button button-konbini" href="/konbini/">步入 3D 场景 <span aria-hidden="true">→</span></a>
+            <div class="project-card-meta">查看分析工具库 ↗</div>
+          </a>
+
+          <a class="project-card" href="https://github.com/Wuwan94/GKI_FinaSU" target="_blank" rel="noopener noreferrer">
+            <div>
+              <div class="project-card-header">
+                <span class="project-card-tag">GKI / 安全加固</span>
+                <span class="project-card-icon">↗</span>
+              </div>
+              <h4 class="project-card-title">GKI_FinaSU</h4>
+              <p class="project-card-desc">通用内核镜像（GKI）自动化构建与集成方案，支持 SUSFS 隐藏与安全加固。</p>
+            </div>
+            <div class="project-card-meta">查看内核集成配置 ↗</div>
+          </a>
+
+          <a class="project-card" href="https://github.com/Wuwan94?tab=repositories" target="_blank" rel="noopener noreferrer">
+            <div>
+              <div class="project-card-header">
+                <span class="project-card-tag">工具与脚本库</span>
+                <span class="project-card-icon">↗</span>
+              </div>
+              <h4 class="project-card-title">开源实验场 & 脚本</h4>
+              <p class="project-card-desc">日常开发中沉淀的高效运维脚本、系统架构笔记与开箱即用的工程小工具。</p>
+            </div>
+            <div class="project-card-meta">浏览全量代码仓库 ↗</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Works Section (3D & Digital Lab) -->
+    <section class="content-section" id="works">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">3D & Digital Experiences</span>
+          <h2 class="section-title">数字作品，点开即玩。</h2>
+          <p class="section-subtitle">探索 WebGL / 3D 图形学、交互式场景与多媒体实验空间。</p>
+        </div>
+
+        <div class="konbini-feature-card">
+          <div class="konbini-thumb-wrap">
+            <img class="konbini-thumb" src="/assets/konbini-scene.webp" width="720" height="450" alt="雨夜便利店 3D 街角全景预览" loading="lazy">
+          </div>
+          <div class="konbini-content">
+            <div class="flagship-badge-row" style="margin-bottom: 12px;">
+              <span class="badge-flagship-tag">Three.js</span>
+              <span class="badge-version-pill">WebGL 3D 空间</span>
+              <span class="badge-version-pill">全景音效</span>
+            </div>
+            <h3 class="konbini-content-title">雨夜便利店街角</h3>
+            <p class="konbini-content-desc">
+              在数字空间复现深夜雨中街角的宁静氛围。支持全方位拖动视轨自由观察，聆听淅淅沥沥的环境雨声，欣赏霓虹招牌在湿润沥青路面上的倒影与橱窗透出的暖黄灯光。
+            </p>
+            <div class="konbini-audio-hint">
+              <span>🎧 建议佩戴耳机进入体验空间</span>
+            </div>
+            <div>
+              <a class="btn-primary" href="/konbini/">
+                <span>步入 3D 场景空间</span>
+                <span aria-hidden="true">→</span>
+              </a>
             </div>
           </div>
-          <p class="slide-note reveal" style="--i:3">后续制作的 3D 空间与独立交互实验都将陆续收录在此。</p>
         </div>
       </div>
     </section>
 
-        <section class="slide slide-websites" id="websites" aria-labelledby="title-websites">
-      <picture class="slide-bg"><source type="image/webp" srcset="/assets/bg-websites-1280.webp 1280w, /assets/bg-websites-1920.webp 1920w" sizes="100vw"><img src="/assets/bg-websites-1920.jpg" srcset="/assets/bg-websites-1280.jpg 1280w, /assets/bg-websites-1920.jpg 1920w" sizes="100vw" width="1920" height="1080" alt="" decoding="async"></picture>
-      <div class="slide-scroll">
-        <div class="slide-inner">
-          <div class="slide-head">
-            <h2 id="title-websites" class="slide-title reveal" style="--i:0">网页足迹与<br>开源代码。</h2>
-            <p class="slide-intro reveal" style="--i:1">本站采用纯静态双端部署架构（GitHub Pages + Cloudflare Pages），源码开源可读。</p>
-          </div>
-          <ul class="name-index">
-            <li class="reveal" style="--i:2"><a aria-label="打开网站源码仓库" href="https://github.com/Wuwan94/Wuwan94.github.io" target="_blank" rel="noopener noreferrer"><b>网站开源源码</b><span><em>GitHub 仓库</em>采用原生现代 Web 标准构建，包含响应式滑轨、磨砂毛玻璃与无依赖双模式。</span></a></li>
-            <li class="reveal" style="--i:3"><a href="https://github.com/Wuwan94?tab=repositories" target="_blank" rel="noopener noreferrer"><b>全部开源项目</b><span><em>Wuwan94</em>直接在 GitHub 上查阅我的提交记录、CI 流水线定义与历史版本归档。</span></a></li>
-          </ul>
-          <p class="slide-note reveal" style="--i:4">点开入口查看源码或仓库，所有改动均保持透明公开。</p>
+    <!-- Websites & Footprints Section -->
+    <section class="content-section" id="websites">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Websites & Footprints</span>
+          <h2 class="section-title">网页足迹与开源代码。</h2>
+          <p class="section-subtitle">本站采用纯静态双端部署架构（GitHub Pages + Cloudflare Pages），源码完全开源透明。</p>
+        </div>
+
+        <div class="websites-grid">
+          <a class="website-item-card" href="https://github.com/Wuwan94/Wuwan94.github.io" target="_blank" rel="noopener noreferrer">
+            <div class="website-icon-wrap">🌐</div>
+            <div>
+              <div class="website-item-title">本站开源源码仓库</div>
+              <div class="website-item-desc">原生现代 Web 标准构建，GPU 动态微雾粒子幕，零外部笨重依赖。</div>
+            </div>
+          </a>
+
+          <a class="website-item-card" href="/taste-preview/">
+            <div class="website-icon-wrap">⚡</div>
+            <div>
+              <div class="website-item-title">味蕾尝鲜站 (taste-preview)</div>
+              <div class="website-item-desc">wanBox 最新预览测试版的专属发布渠道与模块直连下载入口。</div>
+            </div>
+          </a>
+
+          <a class="website-item-card" href="https://github.com/Wuwan94?tab=repositories" target="_blank" rel="noopener noreferrer">
+            <div>
+              <div class="website-icon-wrap">💻</div>
+              <div class="website-item-title">全部 GitHub 仓库索引</div>
+              <div class="website-item-desc">直接查阅全部开源代码、CI 流水线定义与历史版本归档提交。</div>
+            </div>
+          </a>
         </div>
       </div>
     </section>
 
-        <section class="slide slide-contact" id="contact" aria-labelledby="title-contact">
-      <picture class="slide-bg"><source type="image/webp" srcset="/assets/bg-contact-1280.webp 1280w, /assets/bg-contact-1920.webp 1920w" sizes="100vw"><img src="/assets/bg-contact-1920.jpg" srcset="/assets/bg-contact-1280.jpg 1280w, /assets/bg-contact-1920.jpg 1920w" sizes="100vw" width="1920" height="1080" alt="" decoding="async"></picture>
-      <div class="slide-scroll">
-        <div class="slide-inner contact-layout">
-          <div class="slide-head">
-            <h2 id="title-contact" class="slide-title reveal" style="--i:0">有想法？<br>随时交流。</h2>
-            <p class="slide-intro contact-message reveal" style="--i:1">无论是 Android 底层技术探讨、项目合作，还是分享最近发现的新玩具与灵感，都欢迎打个招呼。</p>
-          </div>
-          <a class="telegram reveal" style="--i:2" href="https://t.me/wanwuyy?direct" target="_blank" rel="noopener noreferrer"><b>Telegram · @wanwuyy</b><span>直接通过 Telegram 建立对话 ↗</span></a>
-          <a class="shop reveal" style="--i:3" href="https://www.16688.com.cn/shop/S809062" target="_blank" rel="noopener noreferrer"><b>阿婉的 AI 对接</b><span>个人技术支持与虚拟服务小店 ↗</span></a>
-          <p class="contact-close reveal" style="--i:5">保持好奇 · 继续创造。感谢来访，雾晚</p>
+    <!-- Contact Section -->
+    <section class="content-section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Contact & Connect</span>
+          <h2 class="section-title">有想法？随时交流。</h2>
+          <p class="section-subtitle">无论是 Android 底层技术探讨、架构合作，还是分享新玩具与灵感，都欢迎打个招呼。</p>
+        </div>
+
+        <div class="contact-grid">
+          <a class="contact-card" href="https://t.me/wanwuyy?direct" target="_blank" rel="noopener noreferrer">
+            <div class="contact-icon">✈️</div>
+            <div>
+              <div class="contact-label">Telegram 直接联系</div>
+              <div class="contact-value">@wanwuyy</div>
+            </div>
+          </a>
+
+          <a class="contact-card" href="https://www.16688.com.cn/shop/S809062" target="_blank" rel="noopener noreferrer">
+            <div class="contact-icon">🏪</div>
+            <div>
+              <div class="contact-label">个人技术服务与支持</div>
+              <div class="contact-value">阿婉的 AI 对接小店</div>
+            </div>
+          </a>
+
+          <a class="contact-card" href="https://github.com/Wuwan94" target="_blank" rel="noopener noreferrer">
+            <div class="contact-icon">🐙</div>
+            <div>
+              <div class="contact-label">GitHub 开发者主页</div>
+              <div class="contact-value">@Wuwan94</div>
+            </div>
+          </a>
         </div>
       </div>
     </section>
   </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <span>© 2026 雾晚 (Wuwan94)</span> · <span class="footer-creed">“保持好奇 · 继续创造”</span>
+      </div>
+      <div>
+        <span>Crafted with engineering precision & modern web standards</span>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
