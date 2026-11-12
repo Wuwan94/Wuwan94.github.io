@@ -277,7 +277,7 @@
   let visitorIp = '';
   const block = () => {
     const detail = visitorIp ? `<p>${visitorIp}</p>` : '';
-    gate.innerHTML = `<div class="box"><h2>此 IP 已被拉黑</h2>${detail}<p>本站仅向中国地区 IP 开放。</p></div>`;
+    gate.innerHTML = `<div class="box"><h2>访问区域受限</h2>${detail}<p>本站目前仅对中国大陆地区 IP 开放访问，感谢您的理解与关注。</p></div>`;
   };
   const fromTrace = () => fetch('https://www.cloudflare.com/cdn-cgi/trace').then((r) => r.text()).then((text) => {
     const country = text.match(/loc=([A-Z]{2})/);
