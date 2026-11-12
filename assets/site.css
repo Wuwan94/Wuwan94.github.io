@@ -112,14 +112,123 @@ body {
   position: relative;
 }
 
-/* ---------- Background Canvas & Spotlight Overlay ---------- */
+/* ---------- Background Canvas, Aurora & Spotlight Overlay ---------- */
 #mistCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Dynamic Colorful Aurora Floating Orbs */
+.ambient-aurora {
   position: fixed;
   inset: 0;
   width: 100vw;
   height: 100vh;
   z-index: 0;
   pointer-events: none;
+  overflow: hidden;
+}
+
+.aurora-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  will-change: transform;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+[data-theme="dark"] .orb-1 {
+  width: 720px;
+  height: 720px;
+  top: -160px;
+  left: 15%;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.42) 0%, rgba(99, 102, 241, 0.3) 45%, transparent 75%);
+  animation: floatOrb1 20s infinite ease-in-out;
+}
+
+[data-theme="dark"] .orb-2 {
+  width: 620px;
+  height: 620px;
+  top: 30%;
+  right: -5%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.38) 0%, rgba(236, 72, 153, 0.22) 50%, transparent 75%);
+  animation: floatOrb2 25s infinite ease-in-out;
+}
+
+[data-theme="dark"] .orb-3 {
+  width: 680px;
+  height: 680px;
+  bottom: 5%;
+  left: 5%;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.28) 0%, rgba(239, 68, 68, 0.18) 50%, transparent 75%);
+  animation: floatOrb3 22s infinite ease-in-out;
+}
+
+[data-theme="dark"] .orb-4 {
+  width: 580px;
+  height: 580px;
+  top: 60%;
+  right: 20%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.25) 0%, rgba(6, 182, 212, 0.22) 50%, transparent 75%);
+  animation: floatOrb4 28s infinite ease-in-out;
+}
+
+[data-theme="light"] .orb-1 {
+  width: 720px;
+  height: 720px;
+  top: -160px;
+  left: 10%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.32) 0%, rgba(129, 140, 248, 0.22) 45%, transparent 75%);
+  animation: floatOrb1 20s infinite ease-in-out;
+}
+
+[data-theme="light"] .orb-2 {
+  width: 620px;
+  height: 620px;
+  top: 30%;
+  right: -5%;
+  background: radial-gradient(circle, rgba(244, 114, 182, 0.26) 0%, rgba(192, 132, 252, 0.2) 50%, transparent 75%);
+  animation: floatOrb2 25s infinite ease-in-out;
+}
+
+[data-theme="light"] .orb-3 {
+  width: 680px;
+  height: 680px;
+  bottom: 5%;
+  left: 5%;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.28) 0%, rgba(251, 146, 60, 0.2) 50%, transparent 75%);
+  animation: floatOrb3 22s infinite ease-in-out;
+}
+
+[data-theme="light"] .orb-4 {
+  width: 580px;
+  height: 580px;
+  top: 60%;
+  right: 20%;
+  background: radial-gradient(circle, rgba(52, 211, 153, 0.25) 0%, rgba(56, 189, 248, 0.2) 50%, transparent 75%);
+  animation: floatOrb4 28s infinite ease-in-out;
+}
+
+@keyframes floatOrb1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(45px, 60px) scale(1.12); }
+}
+@keyframes floatOrb2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-60px, -45px) scale(0.92); }
+}
+@keyframes floatOrb3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(65px, -55px) scale(1.08); }
+}
+@keyframes floatOrb4 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-45px, 55px) scale(1.06); }
 }
 
 .ambient-spotlight {
@@ -127,9 +236,9 @@ body {
   inset: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 1;
+  z-index: 2;
   pointer-events: none;
-  background: radial-gradient(750px circle at var(--mouse-x) var(--mouse-y), var(--spotlight-glow), transparent 75%);
+  background: radial-gradient(850px circle at var(--mouse-x) var(--mouse-y), var(--spotlight-glow), transparent 75%);
   transition: opacity 0.4s ease;
 }
 
@@ -138,9 +247,9 @@ body {
   inset: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 1;
+  z-index: 2;
   pointer-events: none;
-  background-image: radial-gradient(var(--bg-dots) 1px, transparent 1px);
+  background-image: radial-gradient(var(--bg-dots) 1.2px, transparent 1.2px);
   background-size: 32px 32px;
   mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 80%);
   -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 80%);

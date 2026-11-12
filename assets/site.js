@@ -71,7 +71,23 @@
     let width = 0;
     let height = 0;
     let particles = [];
-    const count = Math.min(65, Math.max(25, Math.floor(window.innerWidth / 25)));
+    const count = Math.min(85, Math.max(35, Math.floor(window.innerWidth / 20)));
+
+    const colorsDark = [
+      '56, 189, 248',  // Electric Cyan
+      '168, 85, 247',  // Cosmic Violet
+      '251, 191, 36',  // Warm Amber
+      '52, 211, 153',  // Emerald Mint
+      '244, 114, 182'  // Neon Pink
+    ];
+
+    const colorsLight = [
+      '2, 132, 199',   // Cobalt Blue
+      '147, 51, 234',  // Purple
+      '217, 119, 6',   // Deep Amber
+      '16, 185, 129',  // Emerald
+      '219, 39, 119'   // Rose
+    ];
 
     const resize = () => {
       width = canvas.width = window.innerWidth;
@@ -82,15 +98,16 @@
 
     class Particle {
       constructor() {
+        this.colorIdx = Math.floor(Math.random() * colorsDark.length);
         this.reset(true);
       }
       reset(init = false) {
         this.x = Math.random() * width;
         this.y = init ? Math.random() * height : height + 10;
-        this.size = Math.random() * 1.8 + 0.6;
-        this.vx = (Math.random() - 0.5) * 0.35;
-        this.vy = -(Math.random() * 0.4 + 0.15);
-        this.alpha = Math.random() * 0.5 + 0.2;
+        this.size = Math.random() * 2.2 + 0.8;
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = -(Math.random() * 0.45 + 0.18);
+        this.alpha = Math.random() * 0.6 + 0.25;
         this.baseAlpha = this.alpha;
         this.pulse = Math.random() * Math.PI;
       }
@@ -98,17 +115,17 @@
         this.x += this.vx;
         this.y += this.vy;
         this.pulse += 0.02;
-        this.alpha = this.baseAlpha + Math.sin(this.pulse) * 0.15;
+        this.alpha = this.baseAlpha + Math.sin(this.pulse) * 0.2;
 
         // Mouse proximity interaction
         const dx = mouseX - this.x;
         const dy = mouseY - this.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 140) {
-          const force = (1 - dist / 140) * 0.8;
+        if (dist < 160) {
+          const force = (1 - dist / 160) * 1.2;
           this.x -= (dx / dist) * force;
           this.y -= (dy / dist) * force;
-          this.alpha = Math.min(0.9, this.alpha + 0.3);
+          this.alpha = Math.min(1.0, this.alpha + 0.4);
         }
 
         if (this.y < -20 || this.x < -20 || this.x > width + 20) {
@@ -116,17 +133,12 @@
         }
       }
       draw(isDark) {
+        const rgb = isDark ? colorsDark[this.colorIdx] : colorsLight[this.colorIdx];
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        if (isDark) {
-          ctx.fillStyle = `rgba(56, 189, 248, ${this.alpha * 0.6})`;
-          ctx.shadowBlur = 8;
-          ctx.shadowColor = 'rgba(56, 189, 248, 0.4)';
-        } else {
-          ctx.fillStyle = `rgba(2, 132, 199, ${this.alpha * 0.45})`;
-          ctx.shadowBlur = 4;
-          ctx.shadowColor = 'rgba(2, 132, 199, 0.2)';
-        }
+        ctx.fillStyle = `rgba(${rgb}, ${Math.max(0.12, this.alpha * (isDark ? 0.75 : 0.65))})`;
+        ctx.shadowBlur = isDark ? 10 : 5;
+        ctx.shadowColor = `rgba(${rgb}, ${isDark ? 0.55 : 0.35})`;
         ctx.fill();
         ctx.shadowBlur = 0;
       }
@@ -151,9 +163,10 @@
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            const lineAlpha = (1 - dist / 95) * (isDark ? 0.08 : 0.05);
-            ctx.strokeStyle = isDark ? `rgba(56, 189, 248, ${lineAlpha})` : `rgba(2, 132, 199, ${lineAlpha})`;
-            ctx.lineWidth = 0.8;
+            const lineAlpha = (1 - dist / 105) * (isDark ? 0.15 : 0.1);
+            const rgb = isDark ? colorsDark[particles[i].colorIdx] : colorsLight[particles[i].colorIdx];
+            ctx.strokeStyle = `rgba(${rgb}, ${lineAlpha})`;
+            ctx.lineWidth = 0.9;
             ctx.stroke();
           }
         }
