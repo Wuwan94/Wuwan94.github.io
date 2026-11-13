@@ -623,10 +623,6 @@ code, pre { font-family: var(--font-mono); }
 .about-quote p { margin-bottom: 4px; font-weight: 500; }
 .about-quote cite { display: block; font-size: 0.85rem; color: var(--ink-muted); font-style: normal; }
 
-/* Engineering Creeds (2x2 Grid) */
-.creeds-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
 /* ---------- Creed Cards Grid ---------- */
 .creeds-grid {
   display: grid;
@@ -1161,8 +1157,6 @@ code, pre { font-family: var(--font-mono); }
   font-family: var(--font-display);
   font-size: 1.1rem;
   font-weight: 700;
-  color: var(--ink);
-}
   color: var(--ink);
 }
 
