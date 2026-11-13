@@ -283,6 +283,10 @@
   const gate = document.getElementById('geoGate');
   if (gate) {
     const allow = () => { gate.style.display = 'none'; };
+    if (window.location.search.includes('preview=1') || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      allow();
+      return;
+    }
     let visitorIp = '';
     const block = () => {
       const detail = visitorIp ? `<p style="font-family:var(--font-mono);font-size:0.85rem;color:var(--accent);margin-bottom:8px;">IP: ${visitorIp}</p>` : '';

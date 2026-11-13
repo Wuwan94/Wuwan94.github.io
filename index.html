@@ -26,8 +26,8 @@
     })();
   </script>
 
-  <link rel="stylesheet" href="/assets/site.css?v=live-20261113-aurora">
-  <script src="/assets/site.js?v=live-20261113-aurora" defer></script>
+  <link rel="stylesheet" href="/assets/site.css?v=live-20261113-watermarks">
+  <script src="/assets/site.js?v=live-20261113-watermarks" defer></script>
   <noscript><style>#geoGate{display:none}</style></noscript>
 </head>
 <body>
@@ -81,7 +81,42 @@
   <main>
     <!-- Hero Section -->
     <section class="hero-section" id="hero">
-      <div class="container">
+      <div class="container hero-container">
+        <!-- Hero Background Watermark Schematic & Floating Badges -->
+        <div class="hero-watermark-wrap" aria-hidden="true">
+          <svg class="hero-watermark-svg" viewBox="0 0 600 500" fill="none" stroke="currentColor">
+            <!-- Concentric Blueprint Orbit Rings -->
+            <circle cx="320" cy="230" r="180" stroke-width="1.5" stroke-dasharray="5 10" opacity="0.35"/>
+            <circle cx="320" cy="230" r="120" stroke-width="2" opacity="0.5"/>
+            <circle cx="320" cy="230" r="65" stroke-width="1.5" stroke-dasharray="6 6" opacity="0.4"/>
+            <!-- Android Geometric Silhouette -->
+            <path d="M280 180L255 140M360 180L385 140" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+            <path d="M255 205C255 170 282 148 320 148C358 148 385 170 385 205Z" stroke-width="2.5" opacity="0.6"/>
+            <circle cx="288" cy="184" r="3.5" fill="currentColor"/>
+            <circle cx="352" cy="184" r="3.5" fill="currentColor"/>
+            <!-- Circuit Routes & Data Buses -->
+            <path d="M320 48V148M140 230H255M385 230H500M320 312V412" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+            <path d="M140 230L90 180H20M500 230L550 280H590" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+            <path d="M320 412L270 462H200M320 48L370 8H440" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+            <!-- Engineering Labels & Code Glyphs -->
+            <text x="320" y="242" text-anchor="middle" font-family="var(--font-mono)" font-size="28" font-weight="700" fill="currentColor" stroke="none" opacity="0.7"># root</text>
+            <text x="210" y="112" font-family="var(--font-mono)" font-size="12" fill="currentColor" stroke="none" opacity="0.5">SM8850_KERNEL_6.12</text>
+            <text x="430" y="112" font-family="var(--font-mono)" font-size="12" fill="currentColor" stroke="none" opacity="0.5">tun0:127.0.0.1:9090</text>
+            <text x="450" y="340" font-family="var(--font-mono)" font-size="12" fill="currentColor" stroke="none" opacity="0.5">Fail-Closed: Active</text>
+            <text x="75" y="340" font-family="var(--font-mono)" font-size="12" fill="currentColor" stroke="none" opacity="0.5">LruCache: 120_items</text>
+            <!-- Routing Points -->
+            <circle cx="90" cy="180" r="4.5" fill="currentColor"/>
+            <circle cx="550" cy="280" r="4.5" fill="currentColor"/>
+            <circle cx="320" cy="48" r="4.5" fill="currentColor"/>
+            <circle cx="320" cy="412" r="4.5" fill="currentColor"/>
+          </svg>
+          <div class="hero-floating-badges">
+            <span class="hero-badge-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> KernelSU / Magisk / APatch</span>
+            <span class="hero-badge-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Fail-Closed 防泄漏</span>
+            <span class="hero-badge-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3"/></svg> SM8850 内核自动编译</span>
+          </div>
+        </div>
+
         <div class="hero-content">
           <div class="hero-eyebrow">
             <span class="hero-eyebrow-dot"></span>
@@ -111,18 +146,22 @@
           <!-- Quick Stats Bar -->
           <div class="hero-stats-bar">
             <div class="stat-item">
+              <svg class="stat-watermark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
               <span class="stat-value">v3.0.14</span>
               <span class="stat-label">wanBox 稳定基线</span>
             </div>
             <div class="stat-item">
+              <svg class="stat-watermark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
               <span class="stat-value">v3.0.15-pre.1</span>
               <span class="stat-label">最新尝鲜版本</span>
             </div>
             <div class="stat-item">
+              <svg class="stat-watermark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
               <span class="stat-value">6.19 MiB</span>
               <span class="stat-label">纯净 APK 瘦身体积</span>
             </div>
             <div class="stat-item">
+              <svg class="stat-watermark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
               <span class="stat-value">Fail-Closed</span>
               <span class="stat-label">零直连泄漏防御铁律</span>
             </div>
@@ -143,6 +182,14 @@
         <div class="about-grid">
           <!-- Bio Story Card -->
           <div class="about-bio-card">
+            <svg class="card-bg-watermark bio-watermark" viewBox="0 0 240 180" fill="none" stroke="currentColor" aria-hidden="true">
+              <rect x="10" y="10" width="220" height="160" rx="12" stroke-width="1.8" stroke-dasharray="4 4"/>
+              <circle cx="34" cy="28" r="4" fill="currentColor"/>
+              <circle cx="48" cy="28" r="4" fill="currentColor"/>
+              <circle cx="62" cy="28" r="4" fill="currentColor"/>
+              <path d="M26 68l24 20-24 20M56 108h36" stroke-width="2.8" stroke-linecap="round"/>
+              <path d="M140 52l32 38-32 38M192 52l-32 76" stroke-width="2.2" stroke-linecap="round" opacity="0.45"/>
+            </svg>
             <p>
               在日常工程实践中，我热衷于探索 Linux 内核、Android 系统底层机制与现代网络代理架构。我深知在 Root 权限下，一次疏忽就可能导致设备失联或流量泄漏，因此始终坚持严格的防御性架构。
             </p>
@@ -176,24 +223,43 @@
           <!-- 4 Creeds Grid -->
           <div class="creeds-grid">
             <div class="creed-card">
+              <svg class="card-bg-watermark creed-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor" aria-hidden="true">
+                <path d="M50 12L18 26v28c0 24 32 38 32 38s32-14 32-38V26L50 12z" stroke-width="2.5"/>
+                <rect x="40" y="44" width="20" height="16" rx="2" stroke-width="2"/>
+                <path d="M44 44v-5a6 6 0 0112 0v5" stroke-width="2"/>
+              </svg>
               <div class="creed-icon-wrap">🛡️</div>
               <h3 class="creed-title">Fail-Closed 绝不裸奔</h3>
               <p class="creed-desc">异常即阻断黑洞，坚守流量安全底线，宁断网绝不让流量未经审查直连流出。</p>
             </div>
 
             <div class="creed-card">
+              <svg class="card-bg-watermark creed-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor" aria-hidden="true">
+                <path d="M50 15L15 32l35 17 35-17-35-17zM15 50l35 17 35-17M15 68l35 17 35-17" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
               <div class="creed-icon-wrap">⚡</div>
               <h3 class="creed-title">极简解耦架构</h3>
               <p class="creed-desc">APK 仅 6.19MB，界面与核心守护进程彻底解耦，通过本地回环通信，零冗余开销。</p>
             </div>
 
             <div class="creed-card">
+              <svg class="card-bg-watermark creed-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor" aria-hidden="true">
+                <path d="M50 18A32 32 0 1082 50" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M82 36v14H68" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="50" cy="50" r="12" stroke-width="2" stroke-dasharray="3 3"/>
+                <circle cx="50" cy="50" r="4" fill="currentColor"/>
+              </svg>
               <div class="creed-icon-wrap">🔄</div>
               <h3 class="creed-title">5s Canary 免重启热更新</h3>
               <p class="creed-desc">异步健康看门狗实时探测，秒级发现异常即刻自动回滚，无须重启整个系统。</p>
             </div>
 
             <div class="creed-card">
+              <svg class="card-bg-watermark creed-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor" aria-hidden="true">
+                <circle cx="50" cy="50" r="16" stroke-width="2"/>
+                <path d="M50 14v8M50 78v8M14 50h8M78 50h8M25 25l6 6M69 69l6 6M25 75l6-6M69 31l6-6" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M42 50l6 6 12-12" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
               <div class="creed-icon-wrap">⚙️</div>
               <h3 class="creed-title">自动化门禁闭环</h3>
               <p class="creed-desc">全量单测覆盖，发布包与 SHA-256 哈希严格对齐，小步快发且杜绝任何技术负债。</p>
@@ -214,6 +280,24 @@
 
         <!-- Flagship Hero Card: wanBox for Android -->
         <div class="flagship-card">
+          <!-- Flagship WanBox Core Watermark SVG -->
+          <svg class="card-bg-watermark flagship-watermark" viewBox="0 0 320 320" fill="none" stroke="currentColor" aria-hidden="true">
+            <polygon points="160,25 285,95 285,235 160,305 35,235 35,95" stroke-width="2.2" stroke-dasharray="6 8" opacity="0.45"/>
+            <polygon points="160,55 255,110 255,215 160,270 65,215 65,110" stroke-width="2"/>
+            <circle cx="160" cy="160" r="55" stroke-width="2"/>
+            <!-- Android Head in Center -->
+            <path d="M142 135l-8-12M178 135l8-12" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M130 152c0-16 13-26 30-26s30 10 30 26Z" stroke-width="2"/>
+            <circle cx="148" cy="144" r="2.5" fill="currentColor"/>
+            <circle cx="172" cy="144" r="2.5" fill="currentColor"/>
+            <!-- Network Routing Nodes -->
+            <path d="M160 55v50M160 215v55M65 160h40M215 160h40" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="160" cy="55" r="4" fill="currentColor"/>
+            <circle cx="160" cy="270" r="4" fill="currentColor"/>
+            <circle cx="65" cy="160" r="4" fill="currentColor"/>
+            <circle cx="255" cy="160" r="4" fill="currentColor"/>
+          </svg>
+
           <div class="flagship-badge-row">
             <span class="badge-flagship-tag">🔥 核心开源旗舰</span>
             <span class="badge-version-pill">稳定版 v3.0.14</span>
@@ -227,18 +311,22 @@
 
           <div class="flagship-specs">
             <div class="spec-box">
+              <svg class="spec-watermark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
               <div class="spec-box-title"><span>🛡️</span> Fail-Closed 防泄漏</div>
               <div class="spec-box-desc">瞬态黑洞路由守护，异常中断绝不裸连</div>
             </div>
             <div class="spec-box">
+              <svg class="spec-watermark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.24 12.24a6 6 0 00-8.49-8.49L5 10.5V19h8.5zM16 8L2 22M17.5 15H9"/></svg>
               <div class="spec-box-title"><span>⚡</span> 极致瘦身材</div>
               <div class="spec-box-desc">6.19 MiB 纯净 APK，严守 25MB 体积预算</div>
             </div>
             <div class="spec-box">
+              <svg class="spec-watermark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 11-.57-8.38l5.67-5.67"/></svg>
               <div class="spec-box-title"><span>🔄</span> Canary 热更新</div>
               <div class="spec-box-desc">5 秒健康看门狗，秒崩即自动安全回滚</div>
             </div>
             <div class="spec-box">
+              <svg class="spec-watermark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="4" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><circle cx="6" cy="8" r="1" fill="currentColor"/><circle cx="6" cy="18" r="1" fill="currentColor"/></svg>
               <div class="spec-box-title"><span>📦</span> 120项 LruCache</div>
               <div class="spec-box-desc">协程异步化分应用列表渲染与瞬时响应</div>
             </div>
@@ -263,6 +351,12 @@
         <!-- Ecosystem Grid (6 Projects) -->
         <div class="projects-grid">
           <a class="project-card" href="https://github.com/Wuwan94/oppo_oplus_realme_sm8850" target="_blank" rel="noopener noreferrer">
+            <svg class="card-bg-watermark project-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor" aria-hidden="true">
+              <rect x="24" y="24" width="52" height="52" rx="8" stroke-width="2.5"/>
+              <rect x="36" y="36" width="28" height="28" rx="4" stroke-width="1.8" stroke-dasharray="3 3"/>
+              <path d="M32 10v14M50 10v14M68 10v14M32 76v14M50 76v14M68 76v14M10 32h14M10 50h14M10 68h14M76 32h14M76 50h14M76 68h14" stroke-width="2.2" stroke-linecap="round"/>
+              <text x="50" y="53" text-anchor="middle" font-family="var(--font-mono)" font-size="9" font-weight="700" fill="currentColor" stroke="none">8850</text>
+            </svg>
             <div>
               <div class="project-card-header">
                 <span class="project-card-tag">CI / 内核编译</span>
@@ -275,6 +369,11 @@
           </a>
 
           <a class="project-card" href="https://github.com/Wuwan94/AnyKernel3" target="_blank" rel="noopener noreferrer">
+            <svg class="card-bg-watermark project-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor" aria-hidden="true">
+              <path d="M50 16L18 32v36l32 18 32-18V32L50 16z" stroke-width="2.5"/>
+              <path d="M18 32l32 17 32-17M50 49v37" stroke-width="2"/>
+              <path d="M34 24l32 17" stroke-width="2" stroke-linecap="round"/>
+            </svg>
             <div>
               <div class="project-card-header">
                 <span class="project-card-tag">Android 内核刷机</span>
@@ -287,6 +386,10 @@
           </a>
 
           <a class="project-card" href="https://github.com/Wuwan94/finasu-sm8850-builder" target="_blank" rel="noopener noreferrer">
+            <svg class="card-bg-watermark project-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor" aria-hidden="true">
+              <path d="M68 20a16 16 0 00-21 21L20 68a7 7 0 0010 10l27-27a16 16 0 0021-21l-10 10-10-2-2-10 10-10z" stroke-width="2.5" stroke-linejoin="round"/>
+              <circle cx="26" cy="74" r="3" fill="currentColor"/>
+            </svg>
             <div>
               <div class="project-card-header">
                 <span class="project-card-tag">Root 框架集成</span>
@@ -299,6 +402,12 @@
           </a>
 
           <a class="project-card" href="https://github.com/Wuwan94/rea" target="_blank" rel="noopener noreferrer">
+            <svg class="card-bg-watermark project-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor" aria-hidden="true">
+              <circle cx="50" cy="50" r="34" stroke-width="2.5"/>
+              <circle cx="50" cy="50" r="20" stroke-width="1.8" stroke-dasharray="4 4"/>
+              <circle cx="50" cy="50" r="6" stroke-width="2"/>
+              <path d="M50 16v68M16 50h68M50 50L74 26" stroke-width="2" stroke-linecap="round"/>
+            </svg>
             <div>
               <div class="project-card-header">
                 <span class="project-card-tag">TypeScript / 逆向</span>
@@ -311,6 +420,10 @@
           </a>
 
           <a class="project-card" href="https://github.com/Wuwan94/GKI_FinaSU" target="_blank" rel="noopener noreferrer">
+            <svg class="card-bg-watermark project-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor" aria-hidden="true">
+              <path d="M50 14L20 28v26c0 22 30 34 30 34s30-12 30-34V28L50 14z" stroke-width="2.5"/>
+              <path d="M38 52l8 8 16-16" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
             <div>
               <div class="project-card-header">
                 <span class="project-card-tag">GKI / 安全加固</span>
@@ -323,6 +436,10 @@
           </a>
 
           <a class="project-card" href="https://github.com/Wuwan94?tab=repositories" target="_blank" rel="noopener noreferrer">
+            <svg class="card-bg-watermark project-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor" aria-hidden="true">
+              <rect x="16" y="22" width="68" height="56" rx="8" stroke-width="2.5"/>
+              <path d="M30 42l10 8-10 8M48 58h14" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
             <div>
               <div class="project-card-header">
                 <span class="project-card-tag">工具与脚本库</span>
@@ -347,6 +464,12 @@
         </div>
 
         <div class="konbini-feature-card">
+          <svg class="card-bg-watermark konbini-watermark" viewBox="0 0 160 160" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="M80 20L25 52v56l55 32 55-32V52L80 20z" stroke-width="2"/>
+            <path d="M25 52l55 32 55-32M80 84v56" stroke-width="2"/>
+            <circle cx="80" cy="52" r="8" stroke-width="1.5" stroke-dasharray="2 3"/>
+            <path d="M10 80h15M135 80h15M80 5v15M80 140v15" stroke-width="1.5"/>
+          </svg>
           <div class="konbini-thumb-wrap">
             <img class="konbini-thumb" src="/assets/konbini-scene.webp" width="720" height="450" alt="雨夜便利店 3D 街角全景预览" loading="lazy">
           </div>
@@ -385,6 +508,11 @@
 
         <div class="websites-grid">
           <a class="website-item-card" href="https://github.com/Wuwan94/Wuwan94.github.io" target="_blank" rel="noopener noreferrer">
+            <svg class="card-bg-watermark website-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor" aria-hidden="true">
+              <circle cx="50" cy="50" r="35" stroke-width="2.5"/>
+              <ellipse cx="50" cy="50" rx="18" ry="35" stroke-width="2"/>
+              <path d="M15 50h70M20 32h60M20 68h60" stroke-width="2" stroke-linecap="round"/>
+            </svg>
             <div class="website-icon-wrap">🌐</div>
             <div>
               <div class="website-item-title">本站开源源码仓库</div>
@@ -393,6 +521,9 @@
           </a>
 
           <a class="website-item-card" href="/taste-preview/">
+            <svg class="card-bg-watermark website-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor" aria-hidden="true">
+              <path d="M56 12L24 52h24l-6 36 34-40H52l4-36z" stroke-width="2.5" stroke-linejoin="round"/>
+            </svg>
             <div class="website-icon-wrap">⚡</div>
             <div>
               <div class="website-item-title">味蕾尝鲜站 (taste-preview)</div>
@@ -401,8 +532,12 @@
           </a>
 
           <a class="website-item-card" href="https://github.com/Wuwan94?tab=repositories" target="_blank" rel="noopener noreferrer">
+            <svg class="card-bg-watermark website-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor" aria-hidden="true">
+              <rect x="20" y="24" width="60" height="52" rx="8" stroke-width="2.5"/>
+              <path d="M35 44l15 15M50 59l-15 15M55 74h20" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <div class="website-icon-wrap">💻</div>
             <div>
-              <div class="website-icon-wrap">💻</div>
               <div class="website-item-title">全部 GitHub 仓库索引</div>
               <div class="website-item-desc">直接查阅全部开源代码、CI 流水线定义与历史版本归档提交。</div>
             </div>
@@ -422,6 +557,10 @@
 
         <div class="contact-grid">
           <a class="contact-card" href="https://t.me/wanwuyy?direct" target="_blank" rel="noopener noreferrer">
+            <svg class="card-bg-watermark contact-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor" aria-hidden="true">
+              <path d="M85 20L15 48l28 10 12 26 12-18 18 14 10-60z" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M43 58l30-28" stroke-width="2"/>
+            </svg>
             <div class="contact-icon">✈️</div>
             <div>
               <div class="contact-label">Telegram 直接联系</div>
@@ -430,6 +569,11 @@
           </a>
 
           <a class="contact-card" href="https://www.16688.com.cn/shop/S809062" target="_blank" rel="noopener noreferrer">
+            <svg class="card-bg-watermark contact-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor" aria-hidden="true">
+              <path d="M20 32L30 18h40l10 14v52a6 6 0 01-6 6H26a6 6 0 01-6-6V32z" stroke-width="2.5"/>
+              <path d="M20 32h60" stroke-width="2"/>
+              <path d="M40 44a10 10 0 0020 0" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
             <div class="contact-icon">🏪</div>
             <div>
               <div class="contact-label">个人技术服务与支持</div>
@@ -438,6 +582,9 @@
           </a>
 
           <a class="contact-card" href="https://github.com/Wuwan94" target="_blank" rel="noopener noreferrer">
+            <svg class="card-bg-watermark contact-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor" aria-hidden="true">
+              <path d="M50 18a32 32 0 00-10 62c1.6.3 2.2-.7 2.2-1.5v-6c-9 2-11-4-11-4-1.5-3.8-3.6-4.8-3.6-4.8-3-2 .2-2 .2-2 3.3.2 5 3.4 5 3.4 3 5 7.8 3.5 9.7 2.7.3-2.2 1.2-3.6 2.2-4.5-7.2-.8-14.7-3.6-14.7-16 0-3.5 1.3-6.4 3.3-8.7-.3-.8-1.4-4.1.3-8.6 0 0 2.7-.9 8.8 3.3a30 30 0 0116 0c6.1-4.2 8.8-3.3 8.8-3.3 1.7 4.5.6 7.8.3 8.6 2.1 2.3 3.3 5.2 3.3 8.7 0 12.4-7.5 15.2-14.7 16 1.2 1 2.3 3 2.3 6.2v9.2c0 .8.6 1.8 2.2 1.5A32 32 0 0050 18z" stroke-width="2"/>
+            </svg>
             <div class="contact-icon">🐙</div>
             <div>
               <div class="contact-label">GitHub 开发者主页</div>
