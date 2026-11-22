@@ -165,3 +165,19 @@ footer.site-footer{margin-top:110px;padding-bottom:26px}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
+
+/* ---------- drivable island (about page) ---------- */
+.island-wrap{margin-top:36px}
+.island-stage{position:relative;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:#0d2138;aspect-ratio:16/10}
+.island-stage canvas{display:block;width:100%;height:100%}
+.island-hud{position:absolute;top:14px;left:14px;background:color-mix(in srgb,var(--card) 88%,transparent);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:600;backdrop-filter:blur(6px)}
+.island-card{position:absolute;left:14px;right:14px;bottom:14px;background:color-mix(in srgb,var(--card) 94%,transparent);border:1px solid var(--line);border-radius:18px;padding:18px 20px;backdrop-filter:blur(8px)}
+.island-card h3{margin:0 26px 6px 0;font-size:21px}
+.island-card p{margin:0 0 10px;color:var(--muted)}
+.island-card-link{font-weight:700;color:var(--water-text)}
+.island-card-close{position:absolute;top:8px;right:12px;border:0;background:none;color:var(--muted);font-size:22px;cursor:pointer;line-height:1;padding:4px}
+.island-pad{position:absolute;right:12px;bottom:12px;display:none;gap:8px}
+.island-pad button{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:color-mix(in srgb,var(--card) 85%,transparent);color:var(--ink);font-size:16px;backdrop-filter:blur(6px)}
+@media(pointer:coarse){.island-pad{display:flex}}
+.island-hint{color:var(--muted);margin:12px 2px 0;font-size:15px}
+@media(max-width:680px){.island-card{right:14px}}
