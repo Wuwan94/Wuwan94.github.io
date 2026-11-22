@@ -90,6 +90,7 @@
     document.querySelectorAll('[data-nav]').forEach((a) => a.classList.toggle('on', a.dataset.nav === route));
     document.title = titles[route];
     window.scrollTo(0, 0);
+    document.dispatchEvent(new CustomEvent('ww-route', { detail: route }));
   }
   window.addEventListener('hashchange', render);
   render();
@@ -143,4 +144,249 @@
   window.setTimeout(() => {
     if (gate.style.display !== 'none' && gate.querySelector('h2') && gate.querySelector('h2').textContent.startsWith('正在确认')) allow();
   }, 2500);
+})();
+
+/* ---------- drivable island on the about page ---------- */
+(function () {
+  'use strict';
+  const canvas = document.getElementById('islandCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const stage = document.getElementById('islandStage');
+  const hud = document.getElementById('islandCount');
+  const card = document.getElementById('islandCard');
+  const cardTitle = document.getElementById('islandCardTitle');
+  const cardCopy = document.getElementById('islandCardCopy');
+  const cardLink = document.getElementById('islandCardLink');
+  const WW = 1000, WH = 620, CX = 500, CY = 310, RX = 452, RY = 258;
+
+  const landmarks = [
+    { id: 'home', x: 330, y: 305, glyph: '屋', name: '雾晚的小屋', kind: 'box', roof: '#e2574c', title: '雾晚的小屋', copy: '你好，我是雾晚，一名开发者，也是终身学习者。这座小岛就是我的关于页——开车逛一圈，六个地方，六件我正在做的事。「好奇心会带我们走得更远。」', link: null },
+    { id: 'workshop', x: 435, y: 155, glyph: '工', name: 'wanBox 工坊', kind: 'box', roof: '#007bff', title: 'wanBox 工坊', copy: 'wanBox for Android 在这里打磨：基于 sing-box 核心的客户端加 Root 模块，瘦身到 26MB 以内，一个版本一个版本往前推。', link: { href: '#/projects', label: '去项目页看看 →' } },
+    { id: 'tower', x: 700, y: 185, glyph: '塔', name: '汉字塔防', kind: 'tower', roof: '#8a5cff', title: '汉字塔防', copy: '《汉字塔防》是我做的文字塔防小游戏，已经上架 TapTap，点开就能玩。', link: { href: 'https://www.taptap.cn/app/1019120', label: '去 TapTap 看看 ↗' } },
+    { id: 'lighthouse', x: 872, y: 300, glyph: '灯', name: '电报灯塔', kind: 'lighthouse', roof: '#f2b44c', title: '电报灯塔', copy: '想找我聊天，来 Telegram：@wanwuyy。技术、合作，或者交换最近学到的新东西，都欢迎。', link: { href: 'https://t.me/wanwuyy?direct', label: '去 Telegram ↗' } },
+    { id: 'konbini', x: 745, y: 415, glyph: '店', name: '雨夜便利店', kind: 'box', roof: '#00b39a', title: '雨夜便利店街角', copy: '一个能拖动旋转的 3D 小场景：下雨的夜里，街角便利店的灯还亮着。', link: { href: '/konbini/', label: '进店里坐坐 →' } },
+    { id: 'shop', x: 520, y: 465, glyph: '摊', name: '阿婉的小店', kind: 'box', roof: '#ff8a3d', title: '阿婉的 AI 对接', copy: '我自己开的小店，卖 AI 成品号等虚拟商品，自动发货。', link: { href: 'https://www.16688.com.cn/shop/S809062', label: '去逛小店 ↗' } }
+  ];
+  const visited = new Set();
+  let cardFor = null, suppressed = null;
+
+  const rng = (seed) => () => { seed |= 0; seed = (seed + 0x6D2B79F5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  const rand = rng(20261122);
+  const inside = (x, y, f) => ((x - CX) / (RX * f)) ** 2 + ((y - CY) / (RY * f)) ** 2 <= 1;
+  const trees = [], rocks = [];
+  for (let i = 0; i < 30 && trees.length < 26; i++) {
+    const x = 60 + rand() * 880, y = 60 + rand() * 500;
+    if (!inside(x, y, 0.9)) continue;
+    if (landmarks.some((l) => Math.hypot(l.x - x, l.y - y) < 82)) continue;
+    if (Math.hypot(300 - x, 390 - y) < 64) continue;
+    trees.push({ x, y, s: 0.8 + rand() * 0.7 });
+  }
+  for (let i = 0; i < 16 && rocks.length < 8; i++) {
+    const x = 60 + rand() * 880, y = 60 + rand() * 500;
+    if (!inside(x, y, 0.92)) continue;
+    if (landmarks.some((l) => Math.hypot(l.x - x, l.y - y) < 70)) continue;
+    rocks.push({ x, y, s: 5 + rand() * 8 });
+  }
+
+  const car = { x: 300, y: 390, heading: -0.5, speed: 0 };
+  const keys = new Set();
+  let target = null, running = false, raf = 0, last = 0;
+
+  const keymap = { ArrowUp: 'up', KeyW: 'up', ArrowDown: 'down', KeyS: 'down', ArrowLeft: 'left', KeyA: 'left', ArrowRight: 'right', KeyD: 'right' };
+  window.addEventListener('keydown', (e) => {
+    if (!running || e.metaKey || e.ctrlKey || e.altKey) return;
+    const k = keymap[e.code];
+    if (k) { keys.add(k); target = null; e.preventDefault(); }
+  });
+  window.addEventListener('keyup', (e) => { const k = keymap[e.code]; if (k) keys.delete(k); });
+  stage.querySelectorAll('.island-pad button').forEach((b) => {
+    const k = b.dataset.k;
+    const on = (e) => { e.preventDefault(); keys.add(k); target = null; };
+    const off = () => keys.delete(k);
+    b.addEventListener('pointerdown', on);
+    b.addEventListener('pointerup', off);
+    b.addEventListener('pointerleave', off);
+    b.addEventListener('pointercancel', off);
+  });
+  canvas.addEventListener('pointerdown', (e) => {
+    const r = canvas.getBoundingClientRect();
+    const wx = (e.clientX - r.left) / r.width * WW, wy = (e.clientY - r.top) / r.height * WH;
+    const near = landmarks.find((l) => Math.hypot(l.x - wx, l.y - wy) < 76);
+    target = near ? { x: near.x, y: near.y } : { x: wx, y: wy };
+  });
+  document.getElementById('islandCardClose').addEventListener('click', () => {
+    suppressed = cardFor; card.hidden = true; cardFor = null;
+  });
+
+  function showCard(lm) {
+    cardFor = lm.id;
+    cardTitle.textContent = lm.title;
+    cardCopy.textContent = lm.copy;
+    if (lm.link) {
+      cardLink.hidden = false;
+      cardLink.href = lm.link.href;
+      cardLink.textContent = lm.link.label;
+      if (/^https?:/.test(lm.link.href)) { cardLink.target = '_blank'; cardLink.rel = 'noopener'; } else { cardLink.removeAttribute('target'); }
+    } else cardLink.hidden = true;
+    card.hidden = false;
+    if (!visited.has(lm.id)) {
+      visited.add(lm.id);
+      hud.textContent = visited.size >= landmarks.length ? '全岛探索完成 · 6 / 6' : `已探索 ${visited.size} / 6`;
+    }
+  }
+
+  function step(dt) {
+    let steer = 0, throttle = 0;
+    if (keys.has('left')) steer -= 1;
+    if (keys.has('right')) steer += 1;
+    if (keys.has('up')) throttle += 1;
+    if (keys.has('down')) throttle -= 1;
+    if (target) {
+      const dx = target.x - car.x, dy = target.y - car.y, dist = Math.hypot(dx, dy);
+      if (dist < 30) target = null;
+      else {
+        let diff = Math.atan2(dy, dx) - car.heading;
+        while (diff > Math.PI) diff -= 2 * Math.PI;
+        while (diff < -Math.PI) diff += 2 * Math.PI;
+        steer = Math.max(-1, Math.min(1, diff * 2.2));
+        throttle = Math.abs(diff) > 2.4 ? -0.6 : 1;
+      }
+    }
+    car.speed += throttle * 300 * dt;
+    car.speed -= car.speed * 1.6 * dt;
+    car.speed = Math.max(-80, Math.min(195, car.speed));
+    if (Math.abs(car.speed) > 2) car.heading += steer * 1.9 * dt * Math.sign(car.speed) * Math.min(1, Math.abs(car.speed) / 90);
+    car.x += Math.cos(car.heading) * car.speed * dt;
+    car.y += Math.sin(car.heading) * car.speed * dt;
+    const e = ((car.x - CX) / RX) ** 2 + ((car.y - CY) / RY) ** 2;
+    if (e > 1) {
+      const s = 1 / Math.sqrt(e);
+      car.x = CX + (car.x - CX) * s; car.y = CY + (car.y - CY) * s;
+      car.speed *= 0.45;
+    }
+    let nearest = null, nd = 1e9;
+    for (const lm of landmarks) { const d = Math.hypot(lm.x - car.x, lm.y - car.y); if (d < nd) { nd = d; nearest = lm; } }
+    if (nearest && nd < 68) { if (cardFor !== nearest.id && suppressed !== nearest.id) showCard(nearest); }
+    else {
+      if (suppressed && nd > 100) suppressed = null;
+      if (cardFor && nd > 100) { card.hidden = true; cardFor = null; }
+    }
+  }
+
+  function rr(x, y, w, h, r) { ctx.beginPath(); ctx.roundRect(x, y, w, h, r); }
+
+  function draw(t) {
+    const dark = document.documentElement.dataset.theme !== 'light';
+    const w = canvas.width, h = canvas.height;
+    ctx.setTransform(w / WW, 0, 0, h / WH, 0, 0);
+    const g = ctx.createLinearGradient(0, 0, 0, WH);
+    if (dark) { g.addColorStop(0, '#0a1a2e'); g.addColorStop(1, '#0e2a47'); } else { g.addColorStop(0, '#bfe0ff'); g.addColorStop(1, '#8fc6f7'); }
+    ctx.fillStyle = g; ctx.fillRect(0, 0, WW, WH);
+    ctx.strokeStyle = dark ? 'rgba(140,190,255,.20)' : 'rgba(255,255,255,.55)';
+    ctx.lineWidth = 2;
+    for (let i = 0; i < 7; i++) {
+      ctx.beginPath();
+      const y = 40 + i * 84;
+      for (let x = -10; x <= WW + 10; x += 26) ctx.lineTo(x, y + Math.sin(x / 90 + t / 1400 + i * 1.7) * 5);
+      ctx.stroke();
+    }
+    ctx.fillStyle = dark ? '#3d5a3a' : '#5d8a52';
+    ctx.beginPath(); ctx.ellipse(CX, CY + 14, RX + 14, RY + 12, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = dark ? '#d9c491' : '#ecd9a4';
+    ctx.beginPath(); ctx.ellipse(CX, CY + 6, RX + 8, RY + 6, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = dark ? '#6f9e63' : '#7fae72';
+    ctx.beginPath(); ctx.ellipse(CX, CY, RX - 12, RY - 12, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = 'rgba(217,196,145,.55)'; ctx.lineWidth = 11; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(330, 305); ctx.quadraticCurveTo(390, 220, 435, 155); ctx.quadraticCurveTo(580, 130, 700, 185); ctx.quadraticCurveTo(800, 230, 872, 300); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(330, 305); ctx.quadraticCurveTo(430, 420, 520, 465); ctx.quadraticCurveTo(640, 470, 745, 415); ctx.stroke();
+    for (const r of rocks) { ctx.fillStyle = dark ? '#8b8f94' : '#a7adb3'; ctx.beginPath(); ctx.ellipse(r.x, r.y, r.s, r.s * 0.62, 0.4, 0, Math.PI * 2); ctx.fill(); }
+    for (const tr of trees) {
+      ctx.fillStyle = 'rgba(0,0,0,.18)'; ctx.beginPath(); ctx.ellipse(tr.x, tr.y + 4, 13 * tr.s, 5 * tr.s, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#5d4630'; ctx.fillRect(tr.x - 2 * tr.s, tr.y - 6 * tr.s, 4 * tr.s, 9 * tr.s);
+      ctx.fillStyle = dark ? '#2e6b34' : '#35793d';
+      ctx.beginPath(); ctx.arc(tr.x, tr.y - 14 * tr.s, 12 * tr.s, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = dark ? '#3a8142' : '#45904e';
+      ctx.beginPath(); ctx.arc(tr.x - 6 * tr.s, tr.y - 9 * tr.s, 8 * tr.s, 0, Math.PI * 2); ctx.fill();
+    }
+    for (const lm of landmarks) drawBuilding(lm, dark);
+    if (target) {
+      ctx.strokeStyle = '#007bff'; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.arc(target.x, target.y, 14 + Math.sin(t / 220) * 4, 0, Math.PI * 2); ctx.stroke();
+    }
+    ctx.save();
+    ctx.translate(car.x, car.y); ctx.rotate(car.heading);
+    ctx.fillStyle = 'rgba(0,0,0,.25)'; rr(-16, -6, 34, 19, 7); ctx.fill();
+    ctx.fillStyle = '#141416';
+    rr(-13, -11, 9, 4, 2); ctx.fill(); rr(5, -11, 9, 4, 2); ctx.fill(); rr(-13, 7, 9, 4, 2); ctx.fill(); rr(5, 7, 9, 4, 2); ctx.fill();
+    ctx.fillStyle = '#007bff'; rr(-17, -9, 34, 18, 6); ctx.fill();
+    ctx.fillStyle = '#9fd0ff'; rr(-4, -6, 11, 12, 3); ctx.fill();
+    ctx.fillStyle = '#eaf6ff'; ctx.beginPath(); ctx.arc(16, -5, 2.2, 0, Math.PI * 2); ctx.arc(16, 5, 2.2, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+  }
+
+  function drawBuilding(lm, dark) {
+    const { x, y } = lm;
+    ctx.fillStyle = 'rgba(0,0,0,.20)';
+    ctx.beginPath(); ctx.ellipse(x, y + 5, 40, 11, 0, 0, Math.PI * 2); ctx.fill();
+    if (lm.kind === 'lighthouse') {
+      ctx.fillStyle = '#e8e4da'; rr(x - 11, y - 74, 22, 74, 4); ctx.fill();
+      ctx.fillStyle = '#d64541'; rr(x - 11, y - 56, 22, 13, 2); ctx.fill(); rr(x - 11, y - 30, 22, 13, 2); ctx.fill();
+      ctx.fillStyle = '#f2b44c'; ctx.beginPath(); ctx.arc(x, y - 84, 9, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = 'rgba(242,180,76,.30)'; ctx.beginPath(); ctx.arc(x, y - 84, 17, 0, Math.PI * 2); ctx.fill();
+    } else if (lm.kind === 'tower') {
+      ctx.fillStyle = '#4a3f63'; rr(x - 17, y - 26, 34, 26, 3); ctx.fill();
+      ctx.fillStyle = lm.roof;
+      for (let i = 0; i < 3; i++) {
+        const wdt = 52 - i * 11, yy = y - 26 - i * 17;
+        ctx.beginPath(); ctx.moveTo(x - wdt / 2, yy); ctx.lineTo(x + wdt / 2, yy); ctx.lineTo(x + wdt / 4, yy - 11); ctx.lineTo(x - wdt / 4, yy - 11); ctx.closePath(); ctx.fill();
+        if (i < 2) { ctx.fillStyle = '#4a3f63'; ctx.fillRect(x - 12 + i * 2, yy - 15, 24 - i * 4, 5); ctx.fillStyle = lm.roof; }
+      }
+    } else {
+      const w = 58, hgt = 36;
+      ctx.fillStyle = dark ? '#2c2f36' : '#e8e6e0'; rr(x - w / 2, y - hgt, w, hgt, 3); ctx.fill();
+      ctx.fillStyle = lm.roof;
+      ctx.beginPath(); ctx.moveTo(x - w / 2 - 5, y - hgt); ctx.lineTo(x + w / 2 + 5, y - hgt); ctx.lineTo(x + w / 4, y - hgt - 14); ctx.lineTo(x - w / 4, y - hgt - 14); ctx.closePath(); ctx.fill();
+      ctx.fillStyle = '#ffd98a'; rr(x - 7, y - 22, 14, 16, 2); ctx.fill();
+    }
+    const seen = visited.has(lm.id);
+    ctx.beginPath(); ctx.arc(x, y - 108, 13.5, 0, Math.PI * 2);
+    ctx.fillStyle = dark ? '#0e0e10' : '#ffffff'; ctx.fill();
+    ctx.lineWidth = 2.4; ctx.strokeStyle = seen ? '#007bff' : (dark ? 'rgba(255,255,255,.4)' : 'rgba(20,20,22,.3)'); ctx.stroke();
+    ctx.fillStyle = dark ? '#f4f4f2' : '#141416';
+    ctx.font = '600 13px "PingFang SC","Noto Sans SC",sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(lm.glyph, x, y - 107);
+    ctx.font = '600 13px "PingFang SC","Noto Sans SC",sans-serif';
+    const tw = ctx.measureText(lm.name).width + 18;
+    ctx.fillStyle = dark ? 'rgba(10,10,12,.82)' : 'rgba(255,255,255,.88)';
+    rr(x - tw / 2, y + 13, tw, 22, 11); ctx.fill();
+    ctx.fillStyle = dark ? '#f4f4f2' : '#141416';
+    ctx.fillText(lm.name, x, y + 24.5);
+  }
+
+  function frame(ts) {
+    if (!running) return;
+    const dt = Math.min(0.05, (ts - last) / 1000 || 0.016);
+    last = ts;
+    step(dt);
+    draw(ts);
+    raf = requestAnimationFrame(frame);
+  }
+  function resize() {
+    const r = stage.getBoundingClientRect();
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    canvas.width = Math.round(r.width * dpr);
+    canvas.height = Math.round(r.width * (WH / WW) * dpr);
+  }
+  function start() {
+    if (running) return;
+    resize();
+    running = true; last = performance.now();
+    raf = requestAnimationFrame(frame);
+  }
+  function stop() { running = false; cancelAnimationFrame(raf); keys.clear(); target = null; }
+  window.addEventListener('resize', () => { if (running) { resize(); draw(performance.now()); } });
+  document.addEventListener('ww-route', (e) => { if (e.detail === 'about') start(); else stop(); });
+  if (!document.querySelector('[data-view="about"]').hidden) start();
 })();
