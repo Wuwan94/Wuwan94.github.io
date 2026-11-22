@@ -24,8 +24,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="preconnect" href="https://api.github.com" crossorigin>
-  <link rel="stylesheet" href="/assets/site.css?v=20261122b">
-  <script src="/assets/site.js?v=20261122b" defer></script>
+  <link rel="stylesheet" href="/assets/site.css?v=20261122c">
+  <script src="/assets/site.js?v=20261122c" defer></script>
   <noscript><style>#geoGate,#loader{display:none}</style></noscript>
 </head>
 <body>
@@ -101,6 +101,25 @@
           <p class="head-intro">先动手，<br>再慢慢变好。</p>
         </div>
       </div>
+      <section class="island-wrap" aria-label="可以开车逛的小岛">
+        <div class="island-stage" id="islandStage">
+          <canvas id="islandCanvas"></canvas>
+          <div class="island-hud"><span id="islandCount">已探索 0 / 6</span></div>
+          <div class="island-card" id="islandCard" hidden>
+            <button class="island-card-close" id="islandCardClose" type="button" aria-label="关掉这张卡">×</button>
+            <h3 id="islandCardTitle"></h3>
+            <p id="islandCardCopy"></p>
+            <a class="island-card-link" id="islandCardLink" href="#/about"></a>
+          </div>
+          <div class="island-pad" aria-hidden="true">
+            <button type="button" data-k="left" tabindex="-1">◀</button>
+            <button type="button" data-k="up" tabindex="-1">▲</button>
+            <button type="button" data-k="down" tabindex="-1">▼</button>
+            <button type="button" data-k="right" tabindex="-1">▶</button>
+          </div>
+        </div>
+        <p class="island-hint">开车逛一圈吧：WASD 或方向键驾驶，点岛上的建筑也能自动开过去，手机可以用右下角的方向键。六个地方，六件我正在做的事。</p>
+      </section>
       <div class="prose">
         <p>我是一名对技术充满热情的开发者，平时喜欢折腾网站和各种小工具。这个主页也是我的作品之一——从页面、样式到部署，都是一次边做边学的实践。</p>
         <p>我相信学习最好的方式就是动手做项目。每做完一个小项目，就把经验记下来，慢慢积累成自己的作品集。</p>
