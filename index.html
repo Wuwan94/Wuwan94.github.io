@@ -11,13 +11,17 @@
   <script>try{const t=localStorage.getItem('wuwan-theme');document.documentElement.dataset.theme=t==='dark'||t==='light'?t:matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}catch(e){}</script>
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/main.js" defer></script>
+  <script src="assets/island.js" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主要内容</a>
 <header class="topbar">
   <a class="logo" href="#home" aria-label="雾晚，回到首页">雾晚<span aria-hidden="true">●</span></a>
   <nav aria-label="主导航"><a href="#home">首页</a><a href="#about">关于</a><a href="#projects">项目</a><a href="#works">作品</a><a href="#sites">网页</a><a href="#contact">联系</a></nav>
-  <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深色主题"><span aria-hidden="true">◐</span><span class="theme-label">深色</span></button>
+  <div class="top-actions">
+    <a class="download-pill" data-latest-bundle href="https://github.com/Wuwan94/wanBoxForAndroid/releases/download/v3.0.19-preview.3/wanbox-root-module-with-manager-arm64-v8a.zip">下载客户端 <span aria-hidden="true">↓</span></a>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深色主题"><span aria-hidden="true">◐</span><span class="theme-label">深色</span></button>
+  </div>
 </header>
 <main id="main">
   <section id="home" class="home" aria-labelledby="home-title">
@@ -49,8 +53,22 @@
         <div class="fact"><span class="fact-num">1</span><span class="fact-label">款上架小游戏</span></div>
         <div class="fact"><span class="fact-num">1</span><span class="fact-label">家自己的小店</span></div>
       </div></div>
-    <div class="story-heading"><span class="mini-island" aria-hidden="true">⌂</span><p>六个地方，六件我正在做的事。</p><span aria-hidden="true">06 / 06</span></div>
-    <div class="stories"><article class="story"><span class="story-index">01</span><h3>雾晚的小屋</h3><p>你好，我是雾晚，一名开发者，也是终身学习者。这座小岛就是我的关于页——开车逛一圈，六个地方，六件我正在做的事。「好奇心会带我们走得更远。」</p></article><article class="story"><span class="story-index">02</span><h3>wanBox 工坊</h3><p>wanBox for Android 在这里打磨：基于 sing-box 核心的客户端加 Root 模块，瘦身到 26MB 以内，一个版本一个版本往前推。</p><a href="#projects">去项目页看看 →</a></article><article class="story"><span class="story-index">03</span><h3>汉字塔防</h3><p>《汉字塔防》是我做的文字塔防小游戏，已经上架 TapTap，点开就能玩。</p><a href="https://www.taptap.cn/app/1019120">去 TapTap 看看 ↗</a></article><article class="story"><span class="story-index">04</span><h3>电报灯塔</h3><p>想找我聊天，来 Telegram：@wanwuyy。技术、合作，或者交换最近学到的新东西，都欢迎。</p><a href="https://t.me/wanwuyy?direct">去 Telegram ↗</a></article><article class="story"><span class="story-index">05</span><h3>雨夜便利店街角</h3><p>一个能拖动旋转的 3D 小场景：下雨的夜里，街角便利店的灯还亮着。</p><a href="/konbini/">进店里坐坐 →</a></article><article class="story"><span class="story-index">06</span><h3>阿婉的 AI 对接</h3><p>我自己开的小店，卖 AI 成品号等虚拟商品，自动发货。</p><a href="https://www.16688.com.cn/shop/S809062">去逛小店 ↗</a></article></div>
+    <section class="island-wrap" aria-label="可以开车逛的小岛">
+      <div class="island-stage" id="islandStage">
+        <canvas id="islandCanvas"></canvas>
+        <div class="island-hud"><span id="islandCount">已探索 0 / 6</span></div>
+        <div class="island-card" id="islandCard" hidden>
+          <button class="island-card-close" id="islandCardClose" type="button" aria-label="关掉这张卡">×</button>
+          <h3 id="islandCardTitle"></h3><p id="islandCardCopy"></p>
+          <a class="island-card-link" id="islandCardLink" href="#about"></a>
+        </div>
+        <div class="island-pad" aria-label="触摸方向键">
+          <button type="button" data-k="left" aria-label="向左">◀</button><button type="button" data-k="up" aria-label="向上">▲</button>
+          <button type="button" data-k="down" aria-label="向下">▼</button><button type="button" data-k="right" aria-label="向右">▶</button>
+        </div>
+      </div>
+      <p class="island-hint">开车逛一圈：WASD 或方向键驾驶，点击建筑自动开过去；手机使用右下角方向键。</p>
+    </section>
   </section>
   <section id="projects" class="section" aria-labelledby="projects-title">
     <div class="section-head"><div><p class="eyebrow">02 / PROJECTS</p><h2 id="projects-title">项目<span>动手实践</span></h2></div><p>我的项目，<br>直接看仓库。</p></div>
