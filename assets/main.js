@@ -72,49 +72,40 @@ async function updateLatestBundle() {
 }
 updateLatestBundle();
 
-// geoGate is a dismissible notice, never a resource-loading or navigation block.
-// Detection errors and timeouts fail open; there is no loading overlay.
+// geoGate: non-CN IPs are blocked outright, with no way to continue
+// (owner's rule, set 2026-11-27). Client-side gate; detection errors
+// and timeouts fail open so a lookup failure never locks anyone out.
 async function geoGate() {
   const gate = document.getElementById('geoGate');
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 3000);
-  let previousFocus;
-  function dismiss() {
-    gate.hidden = true;
-    document.body.classList.remove('gate-open');
-    document.getElementById('main').inert = false;
-    document.querySelector('.topbar').inert = false;
-    document.querySelector('footer').inert = false;
-    if (previousFocus && typeof previousFocus.focus === 'function') previousFocus.focus();
-  }
-  const dismissButton = gate.querySelector('[data-dismiss-gate]');
-  dismissButton.addEventListener('click', dismiss);
-  gate.addEventListener('keydown', event => {
-    if (event.key === 'Escape') dismiss();
-    if (event.key === 'Tab') { event.preventDefault(); dismissButton.focus(); }
-  });
   try {
     let country;
+    let ip;
     try {
       const response = await fetch('https://www.cloudflare.com/cdn-cgi/trace', { signal: controller.signal, cache: 'no-store' });
       if (!response.ok) throw new Error('Trace unavailable');
-      const match = (await response.text()).match(/^loc=([A-Z]{2})\s*$/m);
-      if (!match) throw new Error('Country unavailable');
-      country = match[1];
+      const text = await response.text();
+      const locMatch = text.match(/^loc=([A-Z]{2})\s*$/m);
+      if (!locMatch) throw new Error('Country unavailable');
+      country = locMatch[1];
+      const ipMatch = text.match(/^ip=(.+)$/m);
+      if (ipMatch) ip = ipMatch[1].trim();
     } catch (error) {
       if (controller.signal.aborted) return;
-      const response = await fetch('https://ipapi.co/country/', { signal: controller.signal, cache: 'no-store' });
+      const response = await fetch('https://ipapi.co/json/', { signal: controller.signal, cache: 'no-store' });
       if (!response.ok) throw error;
-      country = (await response.text()).trim().toUpperCase();
+      const data = await response.json();
+      country = (data.country_code || '').trim().toUpperCase();
+      if (data.ip) ip = data.ip;
     }
     if (!controller.signal.aborted && /^[A-Z]{2}$/.test(country) && country !== 'CN') {
-      previousFocus = document.activeElement;
+      if (ip) document.getElementById('geoIp').textContent = ip;
       gate.hidden = false;
       document.body.classList.add('gate-open');
       document.getElementById('main').inert = true;
       document.querySelector('.topbar').inert = true;
       document.querySelector('footer').inert = true;
-      dismissButton.focus();
     }
   } catch (_) { /* Unknown region: leave the page accessible. */ }
   finally { clearTimeout(timeout); }
